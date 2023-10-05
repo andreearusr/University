@@ -14,6 +14,8 @@ Semestrul 2:
 
 🔷 Algoritmica grafelor
 
+🔷 Geometrie
+
 🔷 Programare orientată obiect (OOP)
 
 🔷 Sisteme de operare (SO)
