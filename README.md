@@ -54,8 +54,6 @@ Semestrul 2:
 
 Semestrul 1:
 
-🔷 	Interacţiunea om-calculator (IOC)
-
 🔷 Limbaje formale și tehnici de compilare (LFTC)
 
 🔷 Programare paralelă și distribuită (PPD)
