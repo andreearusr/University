@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1618758799 source:c:\users\admin\desktop\semestrul 2\algoritmica grafurilor\laboratorul_4\huffman codare\main.cpp
+	<iostream>
+	<queue>
+	<string>
+

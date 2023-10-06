@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1621840352 source:c:\users\admin\desktop\semestrul 2\algoritmica grafurilor\proiect\studenti\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+

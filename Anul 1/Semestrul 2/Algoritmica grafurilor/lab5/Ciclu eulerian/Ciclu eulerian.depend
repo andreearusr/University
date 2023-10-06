@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1620630671 source:c:\users\admin\desktop\semestrul 2\algoritmica grafurilor\laboratorul_5\ciclu eulerian\main.cpp
+	<iostream>
+	<fstream>
+

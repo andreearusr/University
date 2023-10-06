@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1620907607 source:c:\users\admin\desktop\semestrul 2\algoritmica grafurilor\laboratorul_5\pompare_top\main.cpp
+	<iostream>
+	<fstream>
+	<algorithm>
+

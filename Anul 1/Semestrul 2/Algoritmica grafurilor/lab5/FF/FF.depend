@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1618820887 source:c:\users\admin\desktop\semestrul 2\algoritmica grafurilor\laboratorul_5\ff\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+

@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1615196968 source:c:\users\admin\desktop\semestrul 2\algoritmica grafurilor\dfs\main.cpp
+	<iostream>
+	<fstream>
+
+1615200568 source:c:\users\admin\desktop\semestrul 2\algoritmica grafurilor\lab2\dfs\main.cpp
+	<iostream>
+	<fstream>
+

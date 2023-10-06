@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1615192714 source:c:\users\admin\desktop\l2\main.cpp
+	<iostream>
+	<fstream>
+
+1615196314 source:c:\users\admin\desktop\semestrul 2\algoritmica grafurilor\lab2\matricea inchiderii tranz\main.cpp
+	<iostream>
+	<fstream>
+
