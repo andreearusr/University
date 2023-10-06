@@ -1,0 +1,88 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit,printf,scanf               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import printf msvcrt.dll
+    11                                  import scanf msvcrt.dll
+    12                                  ; our data is declared here (the variables needed by our program)
+    13                                  segment data use32 class=data
+    14 00000000 <res 00000001>                  a resb 1
+    15 00000001 <res 00000002>                  b resw 1
+    16 00000003 613D00                          mesaja db "a=",0
+    17 00000006 623D00                          mesajb db "b=",0
+    18 00000009 257800                          format1 db "%x",0
+    19 0000000C 446100                          format2 db "Da",0
+    20 0000000F 4E7500                          format3 db "Nu",0
+    21                                  
+    22                                  ; our code starts here
+    23                                  segment code use32 class=code
+    24                                      start:
+    25                                          ; Sa se citeasca de la tastatura un octet si un cuvant. Sa se afiseze pe ecran daca bitii octetului citit se 
+    26                                          ; regasesc in bitii cuvantului 
+    27                                          ; a = 10 = 0000 1010b
+    28                                          ; b = 256 = 0000 0001 0000 0000b    Pe ecran se va afisa NU
+    29                                          ; a = 0Ah = 0000 1010b
+    30                                          ; b = 6151h = 0110 0001 0101 0001b   Se va afisa: DA (se regasesc pe pozitiile 5-12)
+    31                                          
+    32 00000000 68[03000000]                    push dword mesaja
+    33 00000005 FF15[00000000]                  call[printf]
+    34 0000000B 83C404                          add ESP,4*1
+    35                                          
+    36 0000000E 68[00000000]                    push dword a 
+    37 00000013 68[09000000]                    push dword format1
+    38 00000018 FF15[00000000]                  call[scanf]    ;citeste a de tip hexa
+    39 0000001E 83C408                          add ESP,4*2
+    40                                          
+    41 00000021 68[06000000]                    push dword mesajb
+    42 00000026 FF15[00000000]                  call[printf]
+    43 0000002C 83C404                          add ESP,4*1
+    44                                          
+    45 0000002F 68[01000000]                    push dword b 
+    46 00000034 68[09000000]                    push dword format1
+    47 00000039 FF15[00000000]                  call[scanf]    ;citeste b de tip hexa
+    48 0000003F 83C408                          add ESP,4*2
+    49                                          
+    50 00000042 B908000000                      mov ECX,8  ; deoarece sunt 8 posibili octeti in interiorul unui cuvant
+    51 00000047 B200                            mov DL,0
+    52 00000049 BE[00000000]                    mov ESI,a 
+    53 0000004E AC                              lodsb  ;AL=a
+    54 0000004F 88C3                            mov BL,AL   ; in BL pastrez a pt a-l compara
+    55 00000051 FC                              cld 
+    56 00000052 E316                            jecxz sfarsit
+    57                                          repeta:
+    58 00000054 BE[01000000]                        mov ESI,b 
+    59 00000059 AC                                  lodsb 
+    60 0000005A AC                                  lodsb   ;vom compara mereu octetul superior
+    61 0000005B 38C3                                cmp BL,AL
+    62 0000005D 7502                                jnz sari
+    63 0000005F B201                                mov DL,1
+    64                                              sari:
+    65 00000061 66D115[01000000]                        RCL word[b],1   ;pt a roti cuvantul
+    66 00000068 E2EA                            loop repeta
+    67                                          
+    68                                          sfarsit:
+    69 0000006A 80FA00                          cmp DL,0
+    70 0000006D 7513                            jnz mesaj_da
+    71                                          
+    72 0000006F 68[0F000000]                    push dword format3
+    73 00000074 FF15[00000000]                  call [printf]
+    74 0000007A 83C404                          add ESP, 4*1
+    75                                          
+    76 0000007D 80FA00                          cmp DL,0
+    77 00000080 740E                            jz ending
+    78                                          
+    79                                          mesaj_da:
+    80 00000082 68[0C000000]                        push dword format2
+    81 00000087 FF15[00000000]                      call[printf]
+    82 0000008D 83C404                              add ESP, 4*1
+    83                                              
+    84                                          ending:
+    85                                          
+    86                                          ; exit(0)
+    87 00000090 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    88 00000092 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

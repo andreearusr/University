@@ -1,0 +1,71 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit,scanf,printf               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import printf msvcrt.dll
+    11                                  import scanf msvcrt.dll
+    12                                  ; our data is declared here (the variables needed by our program)
+    13                                  segment data use32 class=data
+    14 00000000 6A00                        a dw 106
+    15 00000002 496E74726F64756365-         mesaj_citire dd "Introduceti numarul b:",0
+    15 0000000B 7469206E756D617275-
+    15 00000014 6C20623A0000000000-
+    15 0000001D 00                 
+    16 0000001E 52657A756C74617475-         mesaj_rezultat dd "Rezultatul lui %d + %d/%d este: %d",0
+    16 00000027 6C206C756920256420-
+    16 00000030 2B2025642F25642065-
+    16 00000039 7374653A2025640000-
+    16 00000042 00000000           
+    17 00000046 4E7520736520706F61-         mesaj_zero dd "Nu se poate face impartirea cu 0!",0
+    17 0000004F 746520666163652069-
+    17 00000058 6D7061727469726561-
+    17 00000061 206375203021000000-
+    17 0000006A 00000000           
+    18 0000006E 00000000                    b dd 0
+    19 00000072 25640000                    format_b dd "%d"
+    20                                  
+    21                                  ; our code starts here
+    22                                  segment code use32 class=code
+    23                                      start:
+    24                                          ; ...Se da un numar natural a (a: dword). Sa se citeasca un nr natural b si sa se calculeze a+a/b 
+    25                                          ;  Sa se afiseze rezultatul operatiei. Valorile vor fi afisate in format decimal(baza 10) cu semn
+    26                                          
+    27 00000000 68[02000000]                    push dword mesaj_citire
+    28 00000005 FF15[00000000]                  call[printf]
+    29 0000000B 83C404                          add ESP, 4*1
+    30                                          
+    31 0000000E 68[6E000000]                    push dword b
+    32 00000013 68[72000000]                    push format_b
+    33 00000018 FF15[00000000]                  call[scanf]
+    34 0000001E 83C408                          add ESP, 4*2
+    35                                          
+    36 00000021 833D[6E000000]00                cmp dword[b],0
+    37 00000028 7435                            jz zero
+    38 0000002A A1[00000000]                    mov EAX,[a]
+    39 0000002F 99                              cdq 
+    40 00000030 F73D[6E000000]                  idiv dword[b]
+    41 00000036 0305[00000000]                  add EAX, dword[a]
+    42                                          
+    43 0000003C 50                              push dword EAX
+    44 0000003D FF35[6E000000]                  push dword[b]
+    45 00000043 FF35[00000000]                  push dword[a]
+    46 00000049 FF35[00000000]                  push dword[a]
+    47 0000004F 68[1E000000]                    push mesaj_rezultat
+    48 00000054 FF15[00000000]                  call[printf]
+    49 0000005A 83C414                          add ESP,4*5
+    50                                          
+    51 0000005D EB0E                            jmp sfarsit
+    52                                          zero:
+    53 0000005F 68[46000000]                        push dword mesaj_zero
+    54 00000064 FF15[00000000]                      call[printf]
+    55 0000006A 83C404                              add ESP,4*1
+    56                                          sfarsit:
+    57                                      
+    58                                          ; exit(0)
+    59 0000006D 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    60 0000006F FF15[00000000]                  call    [exit]       ; call exit to terminate the program

@@ -1,0 +1,46 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13 00000000 616263646566                    s1 db 'abcdef'
+    14                                          l_s1 equ $-s1
+    15 00000006 3132333435                      s2 db '12345'
+    16                                          l_s2 equ $-s2
+    17 0000000B <res 00000005>                  d resb (l_s1+l_s2)/2
+    18                                  
+    19                                  ; our code starts here
+    20                                  segment code use32 class=code
+    21                                      start:
+    22                                          ; ...Se dau doua siruri de caractere S1 si S2, Sa se construiasca sirul D prin concatenarea elem de pe 
+    23                                          ; pozitiile impare din S2 cu elem de pe pozitiile pare din S1
+    24                                          
+    25 00000000 BF00000000                      mov EDI,0
+    26 00000005 BE00000000                      mov ESI,0
+    27                                          for_s2:
+    28 0000000A 8A86[06000000]                      mov AL,[s2+ESI]
+    29 00000010 8887[0B000000]                      mov [d+EDI],AL
+    30 00000016 47                                  inc EDI
+    31 00000017 83C602                              add ESI,2
+    32 0000001A 83FE05                              cmp ESI, l_s2
+    33 0000001D 76EB                            jbe for_s2
+    34                                          
+    35 0000001F BE01000000                      mov ESI,1
+    36                                          for_s1:
+    37 00000024 8A86[00000000]                      mov AL,[s1+ESI]
+    38 0000002A 8887[0B000000]                      mov [d+EDI],AL
+    39 00000030 47                                  inc EDI 
+    40 00000031 83C602                              add ESI,2
+    41 00000034 83FE06                              cmp ESI,l_s1
+    42 00000037 76EB                            jbe for_s1
+    43                                          
+    44                                          ; exit(0)
+    45 00000039 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    46 0000003B FF15[00000000]                  call    [exit]       ; call exit to terminate the program

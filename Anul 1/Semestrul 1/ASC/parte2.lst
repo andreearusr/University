@@ -1,0 +1,149 @@
+     1                                  bits 32
+     2                                  
+     3                                  global start
+     4                                  extern exit,printf
+     5                                  import exit msvcrt.dll
+     6                                  import printf msvcrt.dll
+     7                                  
+     8                                  segment data use32 class=data
+     9 00000000 36AB451289674523EE-         sir1 dd 1245AB36h,23456789h,1212F1EEh
+     9 00000009 F11212             
+    10                                      len equ ($-sir1)/4
+    11                                      
+    12 0000000C 00<rept>                    sir2 times len db 0
+    13 0000000F 00<rept>                    sir3 times len db 0
+    14                                      
+    15 00000012 256400                      format db "%d",0
+    16 00000015 2000                        spatiu db " ",0
+    17 00000017 0A                          zece db 10
+    18 00000018 00<rept>                    cifre times 10 db 0
+    19                                      
+    20                                  segment code use32 class=code
+    21                                  start:
+    22                                      
+    23 00000000 BE[00000000]                mov ESI,sir1 
+    24 00000005 BF[0C000000]                mov EDI,sir2
+    25 0000000A B903000000                  mov ECX,len
+    26                                      ;jecxz final
+    27 0000000F FC                          cld 
+    28 00000010 B800000000                  mov EAX,0
+    29                                      bucla:
+    30 00000015 AC                              lodsb
+    31 00000016 AC                              lodsb; AL<-octetul bun
+    32 00000017 88C2                            mov DL,AL
+    33                                          
+    34 00000019 3C00                            cmp AL,0
+    35 0000001B 7F01                            jg aici
+    36                                          
+    37 0000001D AA                              stosb
+    38                                          
+    39                                          aici:
+    40 0000001E 83C602                          add ESI,2
+    41 00000021 E2F2                        loop bucla
+    42                                      
+    43 00000023 BE[0C000000]                mov ESI,sir2
+    44 00000028 FC                          cld
+    45                                  
+    46                                      repeta:
+    47 00000029 AC                              lodsb   ;AL<-primul octet
+    48 0000002A 3C00                            cmp AL,0
+    49 0000002C 744B                            je final 
+    50 0000002E B908000000                          mov ECX,8
+    51                                              repeta2:
+    52                                          
+    53 00000033 D0E0                                shl AL,1 
+    54 00000035 7218                                jc afisare
+    55                                              
+    56 00000037 60                                  pushad  
+    57 00000038 B800000000                          mov EAX,0
+    58 0000003D 50                                  push dword EAX
+    59 0000003E 68[12000000]                        push dword format
+    60 00000043 FF15[00000000]                      call [printf] 
+    61 00000049 83C408                              add ESP,4*2
+    62 0000004C 61                                  popad 
+    63                                              
+    64 0000004D EB16                                jmp aici2
+    65                                          
+    66                                              afisare:
+    67 0000004F 60                                      pushad
+    68 00000050 B801000000                              mov EAX,1
+    69 00000055 50                                      push dword EAX
+    70 00000056 68[12000000]                            push dword format
+    71 0000005B FF15[00000000]                          call [printf] 
+    72 00000061 83C408                                  add ESP,4*2
+    73 00000064 61                                      popad
+    74                                              aici2:
+    75 00000065 E2CC                                loop repeta2
+    76 00000067 60                              pushad
+    77 00000068 68[15000000]                    push dword spatiu
+    78 0000006D FF15[00000000]                  call [printf]
+    79 00000073 83C404                          add ESP,4*1
+    80 00000076 61                              popad
+    81 00000077 EBB0                        jmp repeta
+    82                                       
+    83                                      final:
+    84 00000079 B903000000                  mov ECX,len
+    85 0000007E BE[0C000000]                mov ESI,sir2
+    86 00000083 BF[0F000000]                mov EDI,sir3
+    87 00000088 FC                          cld 
+    88 00000089 B800000000                  mov EAX,0
+    89                                      baza10:
+    90 0000008E 51                              push ECX 
+    91                                          
+    92 0000008F AC                              lodsb    ;AL<-primul octet din sir2
+    93 00000090 56                              push ESI 
+    94                                          
+    95 00000091 3C00                            cmp AL,0
+    96 00000093 7D09                            jge ok
+    97                                          
+    98 00000095 88C3                            mov BL,AL
+    99 00000097 B02D                            mov AL,"-"
+   100 00000099 AA                              stosb 
+   101 0000009A F6DB                            neg BL 
+   102 0000009C 88D8                            mov AL,BL 
+   103                                          
+   104                                          ok:
+   105 0000009E BA00000000                          mov EDX,0
+   106                                              cifre10:
+   107 000000A3 B400                                    mov AH,0
+   108 000000A5 F635[17000000]                          div byte[zece]    ;AL cat   AH rest
+   109 000000AB 3C00                                    cmp AL,0
+   110 000000AD 740C                                    je out1
+   111                                                  
+   112 000000AF 80C430                                  add AH,"0"
+   113 000000B2 88A2[18000000]                          mov [cifre+EDX],AH
+   114 000000B8 42                                      inc EDX 
+   115 000000B9 EBE8                                    jmp cifre10
+   116                                                  
+   117                                          
+   118                                                  out1:
+   119 000000BB 80C430                                      add AH,"0"
+   120 000000BE 88A2[18000000]                              mov [cifre+EDX],AH
+   121 000000C4 89D6                                        mov ESI,EDX 
+   122 000000C6 4E                                          dec ESI 
+   123 000000C7 81C6[18000000]                              add ESI,cifre
+   124 000000CD 89D1                                        mov ECX,EDX 
+   125                                                      
+   126                                                      mutare:
+   127 000000CF FD                                              std 
+   128 000000D0 AC                                              lodsb 
+   129 000000D1 FC                                              cld 
+   130 000000D2 AA                                              stosb 
+   131                                                          
+   132 000000D3 E2FA                                        loop mutare
+   133 000000D5 5E                              pop ESI 
+   134 000000D6 59                              pop ECX 
+   135                                          
+   136 000000D7 E2B5                            loop baza10
+   137                                                
+   138                                          
+   139                                                  
+   140                                                  
+   141                                  
+   142                                  
+   143                                  
+   144                                          
+   145                                     ; final:
+   146 000000D9 6A00                        push dword 0
+   147 000000DB FF15[00000000]              call [exit]
+   148                                      

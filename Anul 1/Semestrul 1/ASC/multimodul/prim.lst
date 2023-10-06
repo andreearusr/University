@@ -1,0 +1,52 @@
+     1                                  bits 32
+     2                                  
+     3                                  global prim
+     4                                  
+     5                                  segment data use32 class=data public
+     6 00000000 0300                        divizor dw 3
+     7 00000002 00000000                    x1 dd 0
+     8                                      
+     9                                  segment code use 32 class=code public 
+    10                                      
+    11                                      prim:
+    12 00000000 8B442404                        mov EAX,[ESP+4]
+    13 00000004 A3[02000000]                    mov dword[x1],EAX 
+    14                                          
+    15 00000009 833D[02000000]01                cmp dword [x1],1
+    16 00000010 7456                            je .nu_este_prim
+    17                                          
+    18 00000012 833D[02000000]04                cmp dword[x1],4
+    19 00000019 7243                            jb .este_prim
+    20                                          
+    21 0000001B 66A1[02000000]                  mov AX,[x1]
+    22 00000021 6683E001                        and AX,0000000000000001
+    23 00000025 6683F800                        cmp AX,0
+    24 00000029 743D                            je .nu_este_prim
+    25                                          
+    26                                          .incearca_divizor:
+    27 0000002B BB00000000                          mov EBX,0
+    28 00000030 668B1D[00000000]                    mov BX, word[divizor]
+    29 00000037 3B1D[02000000]                      cmp EBX,dword[x1]
+    30 0000003D 741F                                je .este_prim
+    31                                              
+    32 0000003F A1[02000000]                        mov EAX,dword[x1]
+    33                                              
+    34 00000044 50                                  push EAX
+    35 00000045 6658                                pop AX
+    36 00000047 665A                                pop DX
+    37                                              
+    38 00000049 F735[00000000]                      div dword[divizor]
+    39 0000004F 6683FA00                            cmp DX,0
+    40 00000053 7413                                je .nu_este_prim
+    41 00000055 66FF05[00000000]                    inc word[divizor]
+    42 0000005C EBCD                                jmp .incearca_divizor
+    43                                          
+    44                                          .este_prim:
+    45 0000005E C744240401000000                    mov dword[ESP+4],1
+    46 00000066 EB08                                jmp .sfarsit_prim 
+    47                                              
+    48                                          .nu_este_prim:
+    49 00000068 C744240400000000                    mov dword[ESP+4],0
+    50                                          
+    51                                          .sfarsit_prim:
+    52 00000070 C3                                  ret

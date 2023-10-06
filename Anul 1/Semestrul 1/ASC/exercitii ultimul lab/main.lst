@@ -1,0 +1,131 @@
+     1                                  bits 32
+     2                                  
+     3                                  global start
+     4                                  
+     5                                  extern exit,fopen,fread,fclose,printf ,scanf            
+     6                                  
+     7                                  import exit msvcrt.dll    
+     8                                  import fopen msvcrt.dll
+     9                                  import printf msvcrt.dll
+    10                                  import fread msvcrt.dll
+    11                                  import fclose msvcrt.dll
+    12                                  import scanf msvcrt.dll
+    13                                  
+    14                                  
+    15                                  segment data use32 class=data
+    16 00000000 66312E74787400              nume_fisier db "f1.txt",0
+    17 00000007 7200                        mod_acces db "r",0
+    18 00000009 FFFFFFFF                    descriptor_fis dd -1
+    19 0000000D 00                          text db 0
+    20                                      
+    21                                      max equ 100
+    22 0000000E 00<rept>                    sir times max db 0 
+    23 00000072 00000000                    n dd 0
+    24 00000076 00000000                    nr dd 0
+    25                                      
+    26 0000007A 20204C756E67696D65-         mesaj db "  Lungimea sirului nu este cuprinsa intre 0 si 16!",10,0
+    26 00000083 6120736972756C7569-
+    26 0000008C 206E75206573746520-
+    26 00000095 63757072696E736120-
+    26 0000009E 696E74726520302073-
+    26 000000A7 69203136210A00     
+    27 000000AE 496E74726F64756365-         mesaj2 db "Introduceti un numar intre 1 si 16:",0
+    27 000000B7 746920756E206E756D-
+    27 000000C0 617220696E74726520-
+    27 000000C9 312073692031363A00 
+    28 000000D2 257300                      format_eroare db "%s",0
+    29 000000D5 256400                      format db "%d",0
+    30                                      
+    31                                  
+    32                                  
+    33                                  segment code use32 class=code
+    34                                  start:
+    35                                      ;fopen(nume_fisier,mod_acces)
+    36 00000000 68[07000000]                    push dword mod_acces
+    37 00000005 68[00000000]                    push dword nume_fisier
+    38 0000000A FF15[00000000]                  call[fopen]
+    39 00000010 83C408                          add ESP, 4*2
+    40                                          
+    41 00000013 83F800                          cmp EAX,0
+    42 00000016 0F84B7000000                    je final
+    43                                          
+    44 0000001C A3[09000000]                    mov [descriptor_fis],EAX
+    45 00000021 BE[0E000000]                    mov ESI,sir 
+    46 00000026 B964000000                      mov ECX,max
+    47 0000002B FC                              cld 
+    48                                          
+    49                                          bucla:
+    50                                          
+    51 0000002C FF35[09000000]                      push dword [descriptor_fis]
+    52 00000032 6A01                                push dword 1
+    53 00000034 6A01                                push dword 1
+    54 00000036 68[0D000000]                        push dword text
+    55 0000003B FF15[00000000]                      call [fread]
+    56 00000041 83C410                              add ESP,4*4
+    57                                              
+    58 00000044 83F801                              cmp EAX,1
+    59 00000047 750E                                jne cleanup
+    60                                              
+    61 00000049 A1[0D000000]                        mov EAX,[text]
+    62 0000004E AB                                  stosd
+    63                                              
+    64 0000004F FF05[72000000]                      inc dword[n]
+    65                                              
+    66 00000055 E2D5                            loop bucla 
+    67                                          
+    68                                          cleanup:
+    69                                          
+    70                                          ;fclose(descriptor_fis)
+    71 00000057 FF35[09000000]                  push dword[descriptor_fis]
+    72 0000005D FF15[00000000]                  call [fclose]
+    73 00000063 83C404                          add ESP, 4*1
+    74                                          
+    75 00000066 8B0D[72000000]                  mov ECX,[n]
+    76 0000006C 83F901                          cmp ECX,1
+    77 0000006F 724F                            jb eroare
+    78                                          
+    79 00000071 83F910                          cmp ECX,16
+    80 00000074 774A                            ja eroare
+    81                                          
+    82 00000076 68[AE000000]                    push dword mesaj2
+    83 0000007B 68[D2000000]                    push dword format_eroare
+    84 00000080 FF15[00000000]                  call[printf]
+    85 00000086 83C408                          add ESP,4*2
+    86                                              
+    87 00000089 68[76000000]                    push dword nr
+    88 0000008E 68[D5000000]                    push dword format 
+    89 00000093 FF15[00000000]                  call [scanf]
+    90 00000099 83C408                          add ESP,4*2
+    91                                          
+    92 0000009C 8B0D[72000000]                  mov ECX,[n]
+    93 000000A2 E32F                            jecxz final
+    94                                          
+    95 000000A4 BE[0E000000]                    mov ESI,sir
+    96 000000A9 FC                              cld 
+    97                                  
+    98                                          cont:
+    99 000000AA 51                                  push ECX
+   100                                  
+   101 000000AB B800000000                          mov EAX,0
+   102 000000B0 AD                                  lodsd
+   103                                              
+   104 000000B1 50                                  push dword EAX 
+   105                                              push dword format1
+   105          ******************       error: symbol `format1' undefined
+   106 000000B2 FF15[00000000]                      call [printf]
+   107 000000B8 83C408                              add ESP,4*2
+   108                                              
+   109 000000BB 59                                  pop ECX 
+   110                                              
+   111 000000BC E2EC                            loop cont
+   112                                          
+   113                                          eroare:
+   114 000000BE 68[7A000000]                        push dword mesaj
+   115 000000C3 68[D2000000]                        push dword format_eroare
+   116 000000C8 FF15[00000000]                      call[printf]
+   117 000000CE 83C408                              add ESP,4*2
+   118                                              
+   119                                          
+   120                                          final:
+   121 000000D1 6A00                            push dword 0
+   122 000000D3 FF15[00000000]                  call [exit]

@@ -1,0 +1,71 @@
+     1                                  bits 32 
+     2                                  global start        
+     3                                  
+     4                                  extern exit,fopen,fprintf,fclose               
+     5                                  import exit msvcrt.dll    
+     6                                  import fopen msvcrt.dll 
+     7                                  import fprintf msvcrt.dll 
+     8                                  import fclose msvcrt.dll 
+     9                                  
+    10                                  segment data use32 class=data
+    11                                      ; Se dau un nume de fisier si un text. Textul contine litere mici,litere mari,cifre si caractere speciale.
+    12                                      ; Sa se transforme toate literele mari din textul dat in litere mici. Se creeaza un fisier cu numele dat si se
+    13                                      ; scrie textul obtinut in fisier 
+    14                                      
+    15 00000000 7472616E73666F726D-         nume_fisier db "transformare.txt",0
+    15 00000009 6172652E74787400   
+    16 00000011 FFFFFFFF                    descriptor_fis dd -1
+    17 00000015 7700                        mod_acces db "w",0
+    18 00000017 61772A67413F463671-         text db "aw*gA?F6q!",0
+    18 00000020 2100               
+    19                                      len equ $-text 
+    20 00000022 <res 00000001>              aux resb 1
+    21                                      
+    22                                  
+    23                                  segment code use32 class=code
+    24                                      start:
+    25 00000000 68[15000000]                    push dword mod_acces
+    26 00000005 68[00000000]                    push dword nume_fisier
+    27 0000000A FF15[00000000]                  call[fopen]
+    28 00000010 83C408                          add ESP,4*2
+    29                                          
+    30 00000013 83F800                          cmp EAX,0
+    31 00000016 7458                            je final 
+    32                                          
+    33 00000018 A3[11000000]                    mov [descriptor_fis],EAX
+    34                                          
+    35 0000001D B90B000000                      mov ECX,len
+    36 00000022 E34C                            jecxz final 
+    37 00000024 BE[17000000]                    mov ESI,text 
+    38 00000029 FC                              cld 
+    39                                          
+    40                                          bucla:
+    41 0000002A 51                                  push ECX 
+    42 0000002B AC                                  lodsb 
+    43 0000002C A2[22000000]                        mov [aux],AL 
+    44                                              
+    45 00000031 803D[22000000]61                    cmp byte[aux],'a'
+    46 00000038 7210                                jb pass
+    47 0000003A 803D[22000000]7A                    cmp byte[aux],'z'
+    48 00000041 7707                                ja pass 
+    49 00000043 8005[22000000]E0                    add byte[aux],'A'-'a'
+    50                                              
+    51                                              pass:
+    52 0000004A 68[22000000]                            push dword aux
+    53 0000004F FF35[11000000]                          push dword [descriptor_fis]
+    54 00000055 FF15[00000000]                          call [fprintf]
+    55 0000005B 83C408                                  add ESP,4*2
+    56                                                  
+    57 0000005E 59                                  pop ECX
+    58 0000005F E2C9                            loop bucla 
+    59                                          
+    60 00000061 FF35[11000000]                  push dword [descriptor_fis]
+    61 00000067 FF15[00000000]                  call [fclose]
+    62 0000006D 83C404                          add ESP,4
+    63                                          
+    64                                          
+    65                                          final:
+    66                                      
+    67                                          ; exit(0)
+    68 00000070 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    69 00000072 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

@@ -1,0 +1,101 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit,printf               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import printf msvcrt.dll
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13 00000000 341278569000                    a dw 1234h,5678h,90h
+    14                                          len_a equ ($-a)/2
+    15 00000006 0400CDAB10002211                b dw 4h,0abcdh,10h,1122h
+    16                                          len_b equ ($-b)/2
+    17 0000000E <res 00000007>                  c resb (len_a+len_b)
+    18 00000015 25780A00                        format db "%x",10,0
+    19                                          
+    20                                  ; our code starts here
+    21                                  segment code use32 class=code
+    22                                      start:
+    23                                          ; ...Se dau 2 siruri de cuvinte a si b. Sa se obtina sirul c astfel: 
+    24                                          ; concatenati sirul octetilor low din primul sir cu sirul octetilor high din al doilea sir
+    25                                          ; sirul c se va ordona crescator
+    26                                          ; nr din siruri se vor interpreta cu semn
+    27                                          ; afisati sirul c(numere in baza 16)
+    28                                      
+    29 00000000 BE[00000000]                    mov ESI,a
+    30 00000005 BF[0E000000]                    mov EDI,c
+    31 0000000A FC                              cld 
+    32 0000000B B903000000                      mov ECX,len_a
+    33 00000010 E305                            jecxz sari
+    34                                          
+    35                                          sir_a:
+    36 00000012 AC                                  lodsb   ; AL<- octetul low de la adresa lui a
+    37 00000013 AA                                  stosb   ; punem in sirul destinatie octetul low 
+    38 00000014 46                                  inc ESI
+    39 00000015 E2FB                            loop sir_a
+    40                                          
+    41                                          sari:
+    42 00000017 BE[06000000]                    mov ESI,b
+    43 0000001C FC                              cld 
+    44 0000001D B904000000                      mov ECX,len_b
+    45 00000022 E305                            jecxz final 
+    46                                          
+    47                                          sir_b:
+    48 00000024 AC                                  lodsb 
+    49 00000025 AC                                  lodsb    ; AL<- octetul high de la adresa lui b
+    50 00000026 AA                                  stosb 
+    51 00000027 E2FB                            loop sir_b 
+    52                                          
+    53                                          final:
+    54 00000029 B201                            mov DL,1
+    55                                          repeta:
+    56 0000002B 80FA00                              cmp DL,0
+    57 0000002E 7421                                jz final2
+    58                                              
+    59 00000030 B200                                mov DL,0
+    60 00000032 B906000000                          mov ECX, len_a+len_b-1
+    61 00000037 BE[0E000000]                        mov ESI,c
+    62                                          
+    63                                              sir_c:
+    64 0000003C 8A06                                    mov AL, [ESI]
+    65 0000003E 8A5E01                                  mov BL, [ESI+1]
+    66 00000041 38D8                                    cmp AL,BL
+    67 00000043 7E07                                    jle urmatorul
+    68                                              
+    69 00000045 881E                                    mov [ESI],BL
+    70 00000047 884601                                  mov [ESI+1],AL 
+    71 0000004A B201                                    mov DL,1
+    72                                             
+    73                                                  urmatorul:
+    74 0000004C 46                                          inc ESI 
+    75 0000004D E2ED                                loop sir_c
+    76 0000004F EBDA                            jmp repeta
+    77                                          
+    78                                          final2:
+    79                                          
+    80 00000051 BE[0E000000]                    mov ESI,c 
+    81 00000056 B907000000                      mov ECX,len_a+len_b
+    82 0000005B E319                            jecxz final3
+    83                                          afisare:
+    84 0000005D B800000000                          mov EAX,0
+    85 00000062 AC                                  lodsb   ; AL<- primul octet din sirul c 
+    86 00000063 60                                  PUSHAD
+    87                                  
+    88 00000064 50                                  push dword EAX
+    89 00000065 68[15000000]                        push dword format 
+    90 0000006A FF15[00000000]                      call [printf]
+    91 00000070 83C408                              add ESP,4*2
+    92 00000073 61                                  POPAD
+    93                                              
+    94 00000074 E2E7                            loop afisare
+    95                                        
+    96                                          final3:
+    97                                              
+    98                                          
+    99                                          ; exit(0)
+   100 00000076 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+   101 00000078 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

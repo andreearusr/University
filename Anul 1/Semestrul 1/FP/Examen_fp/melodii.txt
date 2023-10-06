@@ -1,0 +1,13 @@
+Aroma;Antonia;Pop;160
+Vara;Nicole;Altele;180
+Vara;Alex;Jazz;234
+Ibiza;Alexandra;Rock;402
+Nunca;Alexandra;Jazz;239
+Toamna;Ozuna;Jazz;130
+Ploaie;Mira;Jazz;250
+Privire;Kombakt;Altele;310
+Bomb;Kombakt;Rock;200
+Lacrimi;Mira;Jazz;170
+Zambet;a;Pop;490
+Zambet;s;Pop;410
+Zambet;Andreea;Altele;242

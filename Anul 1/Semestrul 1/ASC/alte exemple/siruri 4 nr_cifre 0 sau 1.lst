@@ -1,0 +1,65 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13 00000000 EAFF9100D0FF7F00                s dw -22,145,-48,127
+    14                                          ls equ ($-s)/2
+    15 00000008 00<rept>                        d times ls db 0
+    16                                  
+    17                                  ; our code starts here
+    18                                  segment code use32 class=code
+    19                                      start:
+    20                                          ; ...Se da un sir de cuvinte S. Sa se construiasca sirul de octeti d, a.i. d sa contina pentru fiecare pozitie
+    21                                          ;s:
+    22                                          ; - nr de biti 0, daca numarul este negativ
+    23                                          ; - nr de biti 1, daca numarul este pozitiv
+    24                                      
+    25 00000000 BE[00000000]                    mov ESI,s
+    26 00000005 B904000000                      mov ECX,ls
+    27 0000000A BF[08000000]                    mov EDI,d 
+    28 0000000F E32E                            jecxz sfarsit
+    29 00000011 FC                              cld 
+    30                                          
+    31                                          repeta:
+    32 00000012 66AD                                lodsw  
+    33 00000014 6683F800                            cmp AX,0
+    34 00000018 51                                  push ECX 
+    35 00000019 7811                                js negativ 
+    36                                              ; caz-pozitiv
+    37 0000001B B910000000                              mov ECX,16
+    38 00000020 F8                                      clc
+    39                                                  cifre_caz1:
+    40 00000021 66D1E8                                      SHR AX,1
+    41 00000024 7302                                        jnc skip1
+    42 00000026 FE07                                        inc byte[EDI]
+    43                                                      skip1:
+    44 00000028 E2F7                                    loop cifre_caz1
+    45 0000002A EB0F                                jmp sfarsit_parcurge
+    46                                              
+    47                                              negativ:
+    48 0000002C B910000000                              mov ECX,16
+    49 00000031 F8                                      clc
+    50                                                  cifre_caz2:
+    51 00000032 66D1E8                                      SHR AX,1
+    52 00000035 7202                                        jc skip2
+    53 00000037 FE07                                        inc byte[EDI]
+    54                                                      skip2:
+    55 00000039 E2F7                                    loop cifre_caz2
+    56                                              sfarsit_parcurge:
+    57 0000003B 59                                  pop ECX
+    58 0000003C 47                                  inc EDI
+    59 0000003D E2D3                            loop repeta
+    60                                          
+    61                                          sfarsit:
+    62                                          
+    63                                          ; exit(0)
+    64 0000003F 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    65 00000041 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

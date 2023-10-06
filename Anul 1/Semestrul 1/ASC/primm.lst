@@ -1,0 +1,59 @@
+     1                                  bits 32
+     2                                  
+     3                                  global start
+     4                                  extern exit,scanf,printf 
+     5                                  import exit msvcrt.dll
+     6                                  import scanf msvcrt.dll
+     7                                  import printf msvcrt.dll
+     8                                  
+     9                                  segment data use32 class=data 
+    10 00000000 00000000                    numar dd 0
+    11 00000004 257500                      format db "%u",0
+    12 00000007 257500                      format1 db "%u",0
+    13                                  segment code use32 class=code
+    14                                  start:
+    15                                      
+    16 00000000 68[00000000]                push dword numar
+    17 00000005 68[04000000]                push dword format
+    18 0000000A FF15[00000000]              call [scanf]
+    19 00000010 83C408                      add ESP,4*2
+    20                                      
+    21 00000013 8B1D[00000000]              mov EBX,dword[numar]
+    22                                      
+    23 00000019 6689D8                      mov AX,BX
+    24 0000001C 66BA0000                    mov DX,0
+    25 00000020 66B90200                    mov CX,2
+    26 00000024 66F7F1                      div CX  ; AX cat   DX rest
+    27                                      
+    28 00000027 6689C6                      mov SI,AX 
+    29 0000002A 66BA0100                    mov DX,1   ; pp ca e prim
+    30                                      
+    31 0000002E 66B90200                    mov CX,2
+    32                                      
+    33                                      bucla:
+    34 00000032 6639F1                          cmp CX,SI
+    35 00000035 7716                            ja stop
+    36                                          
+    37 00000037 6689D8                          mov AX,BX 
+    38 0000003A 66BA0000                        mov DX,0
+    39 0000003E 66F7F1                          div CX 
+    40                                          
+    41 00000041 6683FA00                        cmp DX,0
+    42 00000045 741A                            je final 
+    43                                          
+    44 00000047 6683C101                        add CX,1
+    45                                          
+    46 0000004B EBE5                        jmp bucla
+    47                                      
+    48                                      
+    49                                      stop:
+    50 0000004D FF35[00000000]              push dword [numar]
+    51 00000053 68[07000000]                push dword format1
+    52 00000058 FF15[00000000]              call [printf]
+    53 0000005E 83C408                      add ESP,4*2
+    54                                      
+    55                                      
+    56                                      final:
+    57 00000061 6A00                        push dword 0
+    58 00000063 FF15[00000000]              call [exit]
+    59                                      

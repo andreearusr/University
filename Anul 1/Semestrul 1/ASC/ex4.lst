@@ -1,0 +1,46 @@
+     1                                  bits 32
+     2                                  
+     3                                  global start
+     4                                  extern exit
+     5                                  import exit msvcrt.dll
+     6                                  
+     7                                  
+     8                                  segment data use32 class=data
+     9 00000000 785634124D3C2B1A76-         s dd 12345678h,1A2B3C4Dh,0FE98DC76h
+     9 00000009 DC98FE             
+    10                                      len equ ($-s)/4
+    11                                      
+    12 0000000C 00<rept>                    d times len db 0
+    13 0000000F 03                          trei db 3
+    14                                  
+    15                                  segment code use32 class=code 
+    16                                  start:
+    17 00000000 B903000000                  mov ECX,len
+    18 00000005 E325                        jecxz final
+    19 00000007 BE[00000000]                mov ESI,s
+    20 0000000C BF[0C000000]                mov EDI,d
+    21 00000011 FC                          cld 
+    22                                      
+    23                                      repeta:
+    24 00000012 66AD                            lodsw
+    25 00000014 AC                              lodsb
+    26 00000015 AC                              lodsb ;AL octetul bun
+    27 00000016 88C2                            mov DL,AL 
+    28                                          
+    29 00000018 B400                            mov AH,0  ;AX<- octetul bun 
+    30 0000001A F635[0F000000]                  div byte[trei]  ;AL cat   AH rest
+    31 00000020 80FC00                          cmp AH,0
+    32 00000023 7402                            je gasit
+    33                                          
+    34 00000025 EB03                            jmp aici
+    35                                          gasit:
+    36 00000027 88D0                                mov AL,DL 
+    37 00000029 AA                                  stosb
+    38                                          aici:
+    39                                         
+    40 0000002A E2E6                        loop repeta
+    41                                      
+    42                                      final:
+    43                                      
+    44 0000002C 6A00                        push dword 0
+    45 0000002E FF15[00000000]              call [exit]

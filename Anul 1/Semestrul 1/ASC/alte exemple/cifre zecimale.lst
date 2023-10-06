@@ -1,0 +1,67 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit,fopen,fclose,fprintf               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import fprintf msvcrt.dll
+    11                                  import fopen msvcrt.dll
+    12                                  import fclose msvcrt.dll
+    13                                  
+    14                                  ; our data is declared here (the variables needed by our program)
+    15                                  segment data use32 class=data
+    16 00000000 666973696572312E74-             nume_fisier db "fisier1.txt",0
+    16 00000009 787400             
+    17 0000000C 7700                            mod_acces db "w",0
+    18 0000000E 25640A00                        format db "%d",10,0
+    19 00000012 5715                            nr dw 5463
+    20 00000014 FFFFFFFF                        descriptor_fis dd -1
+    21                                  
+    22                                  ; our code starts here
+    23                                  segment code use32 class=code
+    24                                      start:
+    25                                          ; Se da numele unui fisier si un numar pe cuvant scris in memorie. Se considera numarul in repr fara semn.
+    26                                          ;Sa se scrie cifrele zecimale ale acestui nr ca text in fisier,fiecare cifra pe o linie separata
+    27                                          
+    28 00000000 68[0C000000]                    push dword mod_acces
+    29 00000005 68[00000000]                    push dword nume_fisier
+    30 0000000A FF15[00000000]                  call[fopen]
+    31 00000010 83C408                          add ESP, 4*2
+    32                                          
+    33 00000013 A3[14000000]                    mov [descriptor_fis],EAX
+    34                                          
+    35 00000018 83F800                          cmp EAX,0
+    36 0000001B 7441                            je final
+    37                                          
+    38 0000001D 66BA0000                        mov DX,0
+    39 00000021 66A1[12000000]                  mov AX, word[nr]
+    40                                          
+    41                                          bucla:
+    42 00000027 66BB0A00                            mov BX,10
+    43 0000002B 66F7F3                              div BX
+    44                                              
+    45 0000002E 60                                  PUSHAD
+    46                                              
+    47 0000002F 52                                  push EDX
+    48 00000030 68[0E000000]                        push dword format
+    49 00000035 FF35[14000000]                      push dword [descriptor_fis]
+    50 0000003B FF15[00000000]                      call [fprintf]
+    51 00000041 83C40C                              add ESP, 4*3
+    52                                              
+    53 00000044 61                                  POPAD
+    54                                              
+    55 00000045 66BA0000                            mov DX,0
+    56 00000049 6683F800                            cmp AX,0
+    57 0000004D 75D8                                jnz bucla
+    58                                              
+    59 0000004F FF35[14000000]                  push dword [descriptor_fis]
+    60 00000055 FF15[00000000]                  call [fclose]
+    61 0000005B 83C404                          add ESP, 4*1
+    62                                          
+    63                                          final:
+    64                                          ; exit(0)
+    65 0000005E 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    66 00000060 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

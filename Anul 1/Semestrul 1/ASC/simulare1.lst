@@ -1,0 +1,109 @@
+     1                                  bits 32 
+     2                                  
+     3                                  global start        
+     4                                  
+     5                                  
+     6                                  extern exit,scanf,fopen,fclose,fprintf,printf               
+     7                                  import exit msvcrt.dll    
+     8                                  import scanf msvcrt.dll                          
+     9                                  import fopen msvcrt.dll  
+    10                                  import fclose msvcrt.dll          
+    11                                  import fprintf msvcrt.dll
+    12                                  import printf msvcrt.dll
+    13                                  
+    14                                  segment data use32 class=data
+    15                                  
+    16                                      
+    17 00000000 00000000<rept>              sir  times 100 dd 0
+    18 00000190 00000000                    numar dd 0
+    19 00000194 25642000                    format db "%d ",0
+    20 00000198 00000000                    contor dd 0
+    21                                      
+    22 0000019C 312D696D7061725F6E-         nume_fis db "1-impar_neg.txt",0
+    22 000001A5 65672E74787400     
+    23 000001AC 7700                        mod_acces db "w",0
+    24 000001AE FFFFFFFF                    descriptor_fis dd -1
+    25                                      
+    26                                  ; Scrie un program care citeste de la tast mai multe nr intregi cu semn pana ce se introduce valoarea 0. Stocheaza nr-le intr-o variabila.
+    27                                  ; Determina nr-le negative care contin un nr impar de biti care au valoarea 1. Creeaza un fisier text numit "1-impar_neg.txt" si scrie
+    28                                  ; in acest fisier nr-le intregi determinate anterior.
+    29                                  segment code use32 class=code
+    30                                      start:
+    31                                         
+    32 00000000 68[AC010000]                   push dword mod_acces
+    33 00000005 68[9C010000]                   push dword nume_fis
+    34 0000000A FF15[00000000]                 call [fopen]
+    35 00000010 83C408                         add ESP,4*2
+    36                                         
+    37 00000013 83F800                         cmp EAX,0
+    38 00000016 0F8481000000                   je final 
+    39 0000001C A3[AE010000]                   mov [descriptor_fis],EAX
+    40                                         
+    41                                         
+    42 00000021 BF[00000000]                    mov EDI,sir
+    43 00000026 FC                              cld
+    44 00000027 B800000000                      mov EAX,0
+    45                                         bucla:
+    46                                   
+    47 0000002C 68[90010000]                        push dword numar
+    48 00000031 68[94010000]                        push dword format
+    49 00000036 FF15[00000000]                      call [scanf]
+    50 0000003C 83C408                              add ESP, 4*2
+    51                                  
+    52 0000003F A1[90010000]                        mov EAX,dword[numar]
+    53 00000044 83F800                              cmp EAX,0
+    54 00000047 7409                                je continuare
+    55                                              
+    56 00000049 AB                                  STOSD
+    57 0000004A FF05[98010000]                      inc dword[contor]
+    58                                  
+    59 00000050 EBDA                            jmp bucla
+    60                                             
+    61                                           
+    62                                          continuare:
+    63 00000052 8B0D[98010000]                  mov ECX, dword [contor]
+    64                                          
+    65                                          
+    66 00000058 51                              push dword ECX
+    67 00000059 68[94010000]                    push dword format
+    68 0000005E FF15[00000000]                  call [printf]
+    69 00000064 83C408                          add ESP,4*2
+    70                                          
+    71                                          
+    72 00000067 8B0D[98010000]                  mov ECX, dword[contor]
+    73 0000006D BE[00000000]                    mov ESI,sir
+    74 00000072 FC                              cld
+    75                                          
+    76                                          verificare:
+    77 00000073 B800000000                          mov EAX,0
+    78 00000078 AD                                  LODSD
+    79 00000079 83F800                              cmp EAX,0
+    80 0000007C 7C02                                jl continua
+    81 0000007E EB1B                                jmp aici
+    82                                              
+    83                                              continua:
+    84 00000080 7B02                                    jnp continua1
+    85 00000082 7A17                                    jp aici
+    86                                                  
+    87                                                  continua1:
+    88 00000084 60                                      pushad
+    89                                  
+    90 00000085 50                                      push dword EAX 
+    91 00000086 68[94010000]                            push dword format
+    92 0000008B FF35[AE010000]                          push dword [descriptor_fis]
+    93 00000091 FF15[00000000]                          call [fprintf]
+    94 00000097 83C40C                                  add ESP,4*3
+    95 0000009A 61                                      popad
+    96                                                  
+    97                                              aici:
+    98                                          
+    99 0000009B E2D6                            loop verificare 
+   100                                          
+   101                                     
+   102                                          final:
+   103 0000009D FF35[AE010000]                      push dword [descriptor_fis]
+   104 000000A3 FF15[00000000]                      call [fclose]
+   105 000000A9 83C404                              add ESP,4*1
+   106                                          
+   107 000000AC 6A00                            push    dword 0    
+   108 000000AE FF15[00000000]                  call    [exit]      

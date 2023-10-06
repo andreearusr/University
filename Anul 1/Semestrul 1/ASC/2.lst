@@ -1,0 +1,118 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  extern exit,printf               
+     4                                  import exit msvcrt.dll 
+     5                                  import printf msvcrt.dll    
+     6                                  
+     7                                  segment data use32 class=data
+     8 00000000 1A0108020410F42009         sir db 1Ah,1,8,2,4,10h,0F4h,20h,9
+     9                                     len equ $-sir
+    10 00000009 00<rept>                   sir2 times len db 0
+    11 00000012 0000                       max dw 0 
+    12 00000014 0100                       ratie dw 1
+    13 00000016 <res 00000002>             ratie_buna resw 1
+    14 00000018 0000                       nr dw 0
+    15 0000001A 00                         t db 0
+    16 0000001B 0000                       mem dw 0
+    17                                     
+    18 0000001D 25782000                   format db "%x ",0   
+    19                                  
+    20                                  segment code use32 class=code
+    21                                      start:
+    22 00000000 B300                            mov bl,0
+    23                                          sortare:
+    24 00000002 BE[00000000]                          mov esi,sir
+    25 00000007 80FB01                                cmp bl,1
+    26 0000000A 741D                                  je final
+    27 0000000C B301                                  mov bl,1
+    28 0000000E B909000000                            mov ecx,len
+    29 00000013 49                                    dec ecx
+    30                                                sort:
+    31 00000014 89F7                                       mov edi,esi
+    32 00000016 AC                                         lodsb
+    33 00000017 88C2                                       mov dl,al
+    34 00000019 AC                                         lodsb
+    35 0000001A 38D0                                       cmp al,dl
+    36 0000001C 7706                                       ja peste
+    37 0000001E AA                                         stosb
+    38 0000001F 88D0                                       mov al,dl
+    39 00000021 AA                                         stosb
+    40 00000022 B300                                       mov bl,0
+    41                                                     peste:
+    42 00000024 4E                                         dec esi
+    43 00000025 E2ED                                       loop sort
+    44 00000027 EBD9                                  jmp sortare
+    45                                          final:
+    46                                          ;am sirul ordonat crescator
+    47                                    
+    48                                          
+    49 00000029 BF[09000000]                    mov edi,sir2
+    50 0000002E BA00000000                      mov edx,0
+    51 00000033 66B80000                        mov ax,0
+    52                                          
+    53                                          repeta:
+    54                                                 repeta1:
+    55 00000037 FE0D09000000                                    dec byte [len]
+    56 0000003D BE[00000000]                                    mov esi,sir
+    57 00000042 01D6                                            add esi,edx
+    58 00000044 83FA09                                          cmp edx,len
+    59 00000047 0F84A3000000                                    je terminat
+    60 0000004D FE0509000000                                    inc byte [len]
+    61 00000053 AC                                              lodsb
+    62 00000054 88C3                                            mov bl,al
+    63 00000056 42                                              inc edx
+    64 00000057 C605[1A000000]00                                mov byte[t],0
+    65                                                                  
+    66                                                          while1:
+    67 0000005E 89D1                                                  mov ecx,edx
+    68 00000060 020D[1A000000]                                        add cl,[t]
+    69 00000066 FE05[1A000000]                                        inc byte[t]
+    70 0000006C 83F909                                                cmp ecx,len
+    71 0000006F 74C6                                                  je repeta1
+    72                                                                for1: 
+    73                                                                   
+    74 00000071 3B0D09000000                                            cmp ecx,[len]
+    75 00000077 74E5                                                    je while1
+    76 00000079 8BB2[00000000]                                          mov esi,[sir+edx]
+    77 0000007F AC                                                      lodsb
+    78 00000080 F6F3                                                    div bl
+    79 00000082 80FC00                                                  cmp ah,0
+    80 00000085 7567                                                    jne da
+    81 00000087 A2[1B000000]                                            mov byte [mem],al
+    82 0000008C 66833D[14000000]01                                      cmp word[ratie],1
+    83 00000094 7508                                                    jne bun
+    84 00000096 A2[14000000]                                            mov [ratie],al
+    85 0000009B 88D8                                                    mov al,bl
+    86 0000009D AA                                                      stosb
+    87                                                              bun: 
+    88 0000009E 66813D[1B000000]-                                    cmp word [mem],ratie
+    88 000000A5 [1400]             
+    89 000000A7 7526                                                 jne continua
+    90 000000A9 66FF05[18000000]                                     inc word [nr]
+    91 000000B0 4E                                                   dec esi
+    92 000000B1 A4                                                   movsb
+    93 000000B2 66813D[18000000]-                                    cmp word [nr],max
+    93 000000B9 [1200]             
+    94 000000BB 7E12                                                 jle continua
+    95 000000BD 66C705[12000000]-                                    mov word [max],nr
+    95 000000C4 [1800]             
+    96 000000C6 66C705[16000000]-                                    mov word [ratie_buna],ratie
+    96 000000CD [1400]             
+    97                                                    continua:
+    98 000000CF 66813D[1B000000]-                         cmp word[mem],ratie
+    98 000000D6 [1400]             
+    99 000000D8 7D14                                      jnl da
+   100 000000DA 66C705[18000000]00-                       mov word [nr],0
+   100 000000E2 00                 
+   101 000000E3 BF[09000000]                              mov edi,sir2
+   102 000000E8 8B0D09000000                              mov ecx,[len]
+   103                                                    da:
+   104 000000EE EB81                                      jmp for1
+   105                                                    
+   106                                          terminat:          
+   107                                                       
+   108                                                
+   109 000000F0 6A00                            push dword 0      
+   110 000000F2 FF15[00000000]                  call [exit]       
+   111                                                
+   112                                                     

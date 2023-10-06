@@ -1,0 +1,109 @@
+     1                                  bits 32
+     2                                  
+     3                                  global start
+     4                                  
+     5                                  extern exit, printf, fopen, fscanf, fclose
+     6                                  import exit msvcrt.dll
+     7                                  import printf msvcrt.dll
+     8                                  import fopen msvcrt.dll
+     9                                  import fscanf msvcrt.dll
+    10                                  import fclose msvcrt.dll
+    11                                  
+    12                                  segment data use32 class=data
+    13 00000000 00000000                    act_num dd 0                    ; numarul de intregi cititi
+    14                                      max_num equ 100                 ; numarul maxim de intregi
+    15 00000004 00<rept>                    sir_numere times max_num db 0   ; sirul de numere intregi
+    16                                      
+    17 00000068 FFFFFFFF                    descr_fis dd -1                 ; descriptorul fisierului
+    18 0000006C 7200                        mod_acces db "r", 0             ; modul de acces la fisier
+    19 0000006E 696E7075742E747874-         nume_fisier db "input.txt", 0   ; numele fisierului
+    19 00000077 00                 
+    20                                      
+    21 00000078 00000000                    n dd 0                          ; numarul intreg citit din fisier
+    22 0000007C 256400                      format db '%d', 0               ; formatul de citire din fisier
+    23                                      
+    24 0000007F 536972756C20646520-         mesaj db 'Sirul de numere intregi citit este:', 0
+    24 00000088 6E756D65726520696E-
+    24 00000091 747265676920636974-
+    24 0000009A 697420657374653A00 
+    25 000000A3 20256400                    format_afisare db ' %d', 0      ; formatul de afisare la consola
+    26                                      
+    27                                  ; Citirea unui sir de numere intregi cu semn dintr-un fisier de tip text folosind functia fscanf().
+    28                                  segment code use32 class=code
+    29                                      start:
+    30                                          ; apelam functia fopen() pentru a deschide fisierul
+    31                                          ; functia va returna in EAX descriptorul fisierului sau 0 in caz de eroare
+    32                                          ; eax = fopen(nume_fisier, mod_acces)
+    33 00000000 68[6C000000]                    push dword mod_acces     
+    34 00000005 68[6E000000]                    push dword nume_fisier
+    35 0000000A FF15[00000000]                  call [fopen]
+    36 00000010 83C408                          add esp, 4*2
+    37                                  
+    38                                          ; verificam daca functia fopen a deschis cu succes fisierul (EAX != 0)
+    39 00000013 83F800                          cmp eax, 0
+    40 00000016 0F8481000000                    je final                    ; daca a aparut o eroare (EAX = 0), terminam executia programului
+    41                                          
+    42                                          ; stocam descriptorul de fisier (valoarea returnata de functia fopen())
+    43 0000001C A3[68000000]                    mov [descr_fis], eax
+    44                                          
+    45                                          ; citim numerele intregi din fisier unul cate unul
+    46 00000021 B964000000                      mov ecx, max_num            ; citim maximum 100 de numere intregi
+    47                                          ;jecxz final
+    48 00000026 FC                              cld
+    49 00000027 BB00000000                      mov ebx, 0                  ; in EBX vom contoriza numarul actual de intregi cititi din fisier
+    50 0000002C BF[04000000]                    mov edi, sir_numere
+    51                                      citire:
+    52                                          ; apelam functia fscanf() pentru a citi din fisier
+    53                                          ; functia va returna in EAX valoarea 1 (daca a citit cu succes un numar intreg) sau 0 in caz de eroare
+    54                                          ; eax = fscanf(descr_fis, format, n)
+    55 00000031 68[78000000]                    push dword n                ; adresa la care stocam numarul intreg citit
+    56 00000036 68[7C000000]                    push dword format           ; formatul de citire
+    57 0000003B FF35[68000000]                  push dword [descr_fis]      ; descriptorul fisierului
+    58 00000041 FF15[00000000]                  call [fscanf]
+    59 00000047 83C40C                          add esp, 4*3
+    60                                          
+    61 0000004A 83F801                          cmp eax, 1                  ; verificam daca citirea a avut loc cu succes (EAX = 1)
+    62 0000004D 7509                            jne stop                    ; in caz contrar (EAX != 1), incheiem citirea
+    63                                          
+    64                                          ; stocam numarul citit in sirul de numere
+    65 0000004F A1[78000000]                    mov eax, [n]
+    66 00000054 AB                              stosd
+    67 00000055 43                              inc ebx                     ; am mai citit un numar intreg
+    68 00000056 E2D9                            loop citire
+    69                                          
+    70                                      stop:
+    71                                          ; stocam numarul actual de intregi cititi din fisier
+    72 00000058 891D[00000000]                  mov [act_num], ebx
+    73                                          
+    74                                          ; apelam functia fclose() pentru a inchide fisierul
+    75                                          ; fclose(descr_fis)
+    76 0000005E FF35[68000000]                  push dword [descr_fis]
+    77 00000064 FF15[00000000]                  call [fclose]
+    78 0000006A 83C404                          add esp, 4*1
+    79                                          
+    80                                          ; afisam mesajul 'Sirul de numere ...'
+    81 0000006D 68[7F000000]                    push dword mesaj
+    82 00000072 FF15[00000000]                  call [printf]
+    83 00000078 83C404                          add esp, 4*1
+    84                                      
+    85                                          ; afisam numerele intregi din sir unul cate unul
+    86 0000007B 8B0D[00000000]                  mov ecx, [act_num]  ; numarul actual de intregi care au fost cititi
+    87 00000081 E31A                            jecxz final
+    88 00000083 FC                              cld
+    89 00000084 BE[04000000]                    mov esi, sir_numere
+    90                                      afisare:
+    91 00000089 51                              push ecx
+    92                                          
+    93 0000008A AD                              lodsd
+    94 0000008B 50                              push eax
+    95 0000008C 68[A3000000]                    push dword format_afisare
+    96 00000091 FF15[00000000]                  call [printf]
+    97 00000097 83C408                          add esp, 4*2
+    98                                          
+    99 0000009A 59                              pop ecx
+   100 0000009B E2EC                            loop afisare
+   101                                          
+   102                                      final:                  ; incheiem executia programului
+   103                                          ; exit(0)
+   104 0000009D 6A00                            push dword 0        ; push the parameter for exit onto the stack
+   105 0000009F FF15[00000000]                  call [exit]         ; call exit to terminate the program

@@ -1,0 +1,99 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit,fopen,fclose,fprintf,rename,remove,fread               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import fopen msvcrt.dll
+    11                                  import fclose msvcrt.dll
+    12                                  import fprintf msvcrt.dll
+    13                                  import remove msvcrt.dll
+    14                                  import rename msvcrt.dll
+    15                                  import fread msvcrt.dll
+    16                                  ; our data is declared here (the variables needed by our program)
+    17                                  segment data use32 class=data
+    18 00000000 612E74787400                    nume_fisier db "a.txt", 0 
+    19 00000006 622E74787400                    nume_fisier_scriere db "b.txt", 0 
+    20 0000000C 7200                            mod_citire db "r", 0 
+    21 0000000E 6100                            mod_adaugare db "a", 0 
+    22 00000010 <res 00000004>                  descriptor_fisier resd 1 
+    23 00000014 <res 00000004>                  descriptor_fisier_scriere resd 1 
+    24 00000018 256300                          format_afisare db "%c", 0 
+    25 0000001B 00                              text   times 1 db 0
+    26                                  
+    27                                  ; our code starts here
+    28                                  segment code use32 class=code
+    29                                      start:
+    30                                          ; ...Se citeste continutul unui fisier (a.txt) si se adauga 1 la fiecare octet citit. Apoi, se scriu octetii rezultati ;in fisierul b.txt. Se redenumeste la finalul scrierii fisierul b.txt in a.txt si se ste
+    31                                      
+    32 00000000 68[0C000000]                    push dword mod_citire 
+    33 00000005 68[00000000]                    push dword nume_fisier 
+    34 0000000A FF15[00000000]                  call [fopen] 
+    35 00000010 83C408                          add esp, 4 * 2 
+    36                                          
+    37 00000013 83F800                          cmp eax, 0 
+    38 00000016 0F84AE000000                    jz sfarsit 
+    39 0000001C A3[10000000]                    mov [descriptor_fisier], eax 
+    40                                          
+    41 00000021 68[0E000000]                    push dword mod_adaugare 
+    42 00000026 68[06000000]                    push dword nume_fisier_scriere 
+    43 0000002B FF15[00000000]                  call [fopen] 
+    44 00000031 83C408                          add esp, 4 * 2 
+    45                                          
+    46 00000034 A3[14000000]                    mov [descriptor_fisier_scriere], eax
+    47 00000039 83F800                          cmp eax, 0 
+    48 0000003C 0F8488000000                    jz sfarsit 
+    49                                          
+    50                                          bucla: 
+    51 00000042 FF35[10000000]                      push dword [descriptor_fisier] 
+    52 00000048 6A01                                push dword 1 
+    53 0000004A 6A01                                push dword 1 
+    54 0000004C 68[1B000000]                        push dword text 
+    55 00000051 FF15[00000000]                      call [fread] 
+    56 00000057 83C410                              add esp, 4 * 4 
+    57                                              
+    58 0000005A 83F800                              cmp eax, 0 
+    59 0000005D 7429                                je cleanup
+    60                                              
+    61 0000005F 8005[1B000000]01                    add byte [text], 1 
+    62 00000066 BB00000000                          mov ebx, 0 
+    63 0000006B 8A1D[1B000000]                      mov bl, byte[text] 
+    64                                              
+    65 00000071 53                                  push ebx 
+    66 00000072 68[18000000]                        push dword format_afisare 
+    67 00000077 FF35[14000000]                      push dword [descriptor_fisier_scriere] 
+    68 0000007D FF15[00000000]                      call [fprintf] 
+    69 00000083 83C40C                              add esp, 4 * 3 
+    70                                  
+    71 00000086 EBBA                            jmp bucla 
+    72                                          
+    73                                          cleanup: 
+    74 00000088 FF35[10000000]                      push dword [descriptor_fisier] 
+    75 0000008E FF15[00000000]                      call [fclose] 
+    76 00000094 83C404                              add esp, 4 * 1 
+    77                                              
+    78 00000097 FF35[14000000]                      push dword [descriptor_fisier_scriere] 
+    79 0000009D FF15[00000000]                      call [fclose] 
+    80 000000A3 83C404                              add esp, 4 * 1 
+    81                                          
+    82                                          ;remove(path) 
+    83 000000A6 FF35[00000000]                  push dword [nume_fisier] 
+    84 000000AC FF15[00000000]                  call [remove] 
+    85 000000B2 83C404                          add esp, 4 * 1 
+    86                                   
+    87                                          ;rename(oldname, newname) 
+    88 000000B5 FF35[00000000]                  push dword [nume_fisier] 
+    89 000000BB FF35[06000000]                  push dword [nume_fisier_scriere] 
+    90 000000C1 FF15[00000000]                  call [rename] 
+    91 000000C7 83C408                          add esp, 4 * 2 
+    92                                          
+    93                                          sfarsit:
+    94                                  
+    95                                   
+    96                                      
+    97                                          ; exit(0)
+    98 000000CA 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    99 000000CC FF15[00000000]                  call    [exit]       ; call exit to terminate the program

@@ -1,0 +1,98 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit,scanf,fopen,fclose,fprintf             ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import scanf msvcrt.dll
+    11                                  import fopen msvcrt.dll
+    12                                  import fclose msvcrt.dll
+    13                                  import fprintf msvcrt.dll
+    14                                  ; our data is declared here (the variables needed by our program)
+    15                                  segment data use32 class=data
+    16                                      ; ...
+    17 00000000 00000000                    cititor dd 0
+    18 00000004 00                          n db 0
+    19 00000005 0000                        s dw 0
+    20 00000007 0000                        numar dw 0
+    21 00000009 256400                      format db "%d",0
+    22 0000000C 25642000                    format_afi db "%d ",0
+    23                                      
+    24 00000010 6F75742E74787400            nume_fisier db "out.txt", 0  
+    25 00000018 7700                        mod_acces db "w", 0                                     
+    26 0000001A 00000000                    descriptor dd 0
+    27                                      
+    28 0000001E 00000000                    contor dd 0
+    29                                     
+    30                                  ; our code starts here
+    31                                  segment code use32 class=code
+    32                                      start:
+    33                                          ; ...
+    34 00000000 68[18000000]                    push dword mod_acces     
+    35 00000005 68[10000000]                    push dword nume_fisier
+    36 0000000A FF15[00000000]                  call [fopen]
+    37 00000010 83C408                          add esp, 4*2 ; deschidem fisierul in modul "w"
+    38                                          
+    39 00000013 A3[1A000000]                    mov [descriptor],eax
+    40 00000018 83F800                          cmp eax,0
+    41 0000001B 0F849B000000                    je final ; verificam daca fisierul a fost deschis corect
+    42                                          
+    43 00000021 68[00000000]                    push dword cititor
+    44 00000026 68[09000000]                    push dword format
+    45 0000002B FF15[00000000]                  call [scanf]
+    46 00000031 83C408                          add esp,4*2 ; citim valoare pentru n, folosim cititor pt ca functia scanf va citi un 
+    47                                                      ; dword indiferent de tipul de data a lui n si ar suprapune peste alte adrese
+    48                                          
+    49 00000034 A1[00000000]                    mov eax,[cititor]
+    50 00000039 A2[04000000]                    mov byte [n],al ; mutam in n al, octetul inferior din cititor
+    51                                          
+    52 0000003E B900000000                      mov ecx,0
+    53 00000043 8A0D[04000000]                  mov cl,[n] ; initializam ecx cu 0 si punem in cl valoarea octetului n
+    54                                          
+    55                                          citire:
+    56 00000049 60                                  pushad
+    57 0000004A 68[00000000]                            push dword cititor
+    58 0000004F 68[09000000]                            push dword format
+    59 00000054 FF15[00000000]                          call [scanf]
+    60 0000005A 83C408                                  add esp,4*2
+    61 0000005D 61                                  popad
+    62 0000005E A1[00000000]                        mov eax,[cititor]
+    63 00000063 660105[05000000]                    add word [s],ax ; folosim cititor din acelasi motiv ca mai sus
+    64                                          
+    65 0000006A E2DD                            loop citire
+    66                                          
+    67 0000006C B900000000                      mov ecx,0
+    68 00000071 668B0D[05000000]                mov cx,[s] ; punem in ecx valoarea din s
+    69 00000078 66C705[07000000]00-             mov word [numar],0 ; initializam numar cu 0
+    69 00000080 00                 
+    70                                          afisare:
+    71 00000081 60                                  pushad
+    72 00000082 B800000000                          mov eax,0
+    73 00000087 66A1[07000000]                      mov ax,[numar] ; transformam word-ul numar in dword pt a putea fi afisat
+    74 0000008D 50                                  push eax
+    75 0000008E 68[0C000000]                        push dword format_afi
+    76 00000093 FF35[1A000000]                      push dword [descriptor]
+    77 00000099 FF15[00000000]                      call [fprintf]
+    78 0000009F 83C40C                              add esp,4*3
+    79                                              
+    80 000000A2 61                                  popad
+    81 000000A3 668305[07000000]01                  add word [numar],1 ; incrementare
+    82 000000AB E2D4                            loop afisare
+    83                                              
+    84                                          
+    85                                  
+    86 000000AD FF35[1A000000]                  push dword [descriptor]
+    87 000000B3 FF15[00000000]                  call [fclose]
+    88 000000B9 83C404                          add esp, 4        
+    89                                          final:
+    90                                          
+    91                                          ; exit(0)
+    92 000000BC 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    93 000000BE FF15[00000000]                  call    [exit]       ; call exit to terminate the program
+    94                                  
+    95                                  
+    96                                  
+    97                                  

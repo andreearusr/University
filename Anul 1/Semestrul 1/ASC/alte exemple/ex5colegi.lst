@@ -1,0 +1,42 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13                                      ; ... dandu-se 4 octeti, sa se obt in AX suma numerelor intregi repr de bitii 4-6 ai celor 4 octeti
+    14 00000000 2A                          a db 00101010b
+    15 00000001 E5                          b db 11100101b
+    16 00000002 02                          c db 00000010b
+    17 00000003 A5                          d db 10100101b
+    18                                  
+    19                                  ; our code starts here
+    20                                  segment code use32 class=code
+    21                                      start:
+    22 00000000 6631C0                          xor AX,AX
+    23 00000003 0A05[00000000]                  or AL,[a]
+    24 00000009 2470                            and AL,01110000b
+    25 0000000B C0E804                          shr AL,4
+    26                                          
+    27 0000000E B903000000                      mov ECX,3
+    28 00000013 BE00000000                      mov ESI,0
+    29                                          Repet:
+    30 00000018 6631DB                              xor BX,BX
+    31 0000001B 0A9E[01000000]                      or BL, byte[b+ESI]
+    32 00000021 80E370                              and BL, 01110000b
+    33 00000024 C0EB04                              shr BL,4
+    34 00000027 00D8                                add AL,BL
+    35 00000029 80D400                              adc AH,0
+    36 0000002C 46                                  inc ESI
+    37 0000002D E2E9                            loop Repet
+    38                                          
+    39                                      
+    40                                          ; exit(0)
+    41 0000002F 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    42 00000031 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

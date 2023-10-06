@@ -1,0 +1,39 @@
+     1                                  bits 32 
+     2                                  global dest 
+     3                                  
+     4                                  segment data use32 class=data public
+     5 00000000 04000000                    patru dd 4
+     6                                  segment code use32 class=code public
+     7                                  
+     8                                      dest:
+     9                                  ; [ESP] <- adresa de revenire
+    10                                  ; [ESP+4] <- valoarea nr_citite 
+    11                                  ; [ESP+8] <- adresa sirului sir_final
+    12                                  ; [ESP+12] <- adresa sirului sir 
+    13                                  
+    14 00000000 B800000000                      mov EAX,0
+    15                                          
+    16 00000005 8B7C2408                        mov EDI,[ESP+8]
+    17 00000009 8B4C2404                        mov ECX,[ESP+4]
+    18                                          
+    19 0000000D 8B442404                        mov EAX,[ESP+4]
+    20 00000011 48                              dec EAX
+    21 00000012 F725[00000000]                  mul dword[patru]     ;EDX:EAX<-rezultatul
+    22                                  
+    23 00000018 8B74240C                        mov ESI,[ESP+12]
+    24 0000001C 01C6                            add ESI,EAX
+    25                                          
+    26                                          repeta:
+    27 0000001E B800000000                          mov EAX,0
+    28                                          
+    29 00000023 FD                                  std
+    30 00000024 AD                                  lodsd
+    31 00000025 01C0                                add EAX,EAX   
+    32                                      
+    33 00000027 FC                                  cld
+    34 00000028 AB                                  stosd
+    35                                              
+    36 00000029 E2F3                            loop repeta 
+    37                                          
+    38 0000002B C3                              ret 
+    39                                      

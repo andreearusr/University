@@ -1,0 +1,76 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit,fopen,scanf,printf,fread               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import fopen msvcrt.dll
+    11                                  import fread msvcrt.dll
+    12                                  import scanf msvcrt.dll
+    13                                  import printf msvcrt.dll
+    14                                  ; our data is declared here (the variables needed by our program)
+    15                                  segment data use32 class=data
+    16 00000000 00000000                        n dd 0 
+    17 00000004 257800                          mod_citire_n db "%x", 0 
+    18 00000007 256300                          mod_afisare db "%c", 0 
+    19 0000000A 696E2E74787400                  nume_fisier db "in.txt", 0 
+    20 00000011 7200                            mod_citire db "r", 0 
+    21 00000013 00000000                        descriptor_fisier dd 0 
+    22 00000017 00                              string times 1 db 0  
+    23                                  
+    24                                  ; our code starts here
+    25                                  segment code use32 class=code
+    26                                      start:
+    27                                          ; ...Se citeste de la tastatura un numar n in baza 16 care poate fi reprezentat pe un cuvant (nu se fac validari in ;acest sens). Sa se deschida fisierul in.txt care contine exact 16 octeti si sa se afiseze 
+    28                                      
+    29                                          ;Exemplu: 
+    30                                          ;n = F2A1h = 1111 0010 1010 0001b 
+    31                                          ;in.txt = 0123456789abcdef 
+    32                                          ;=> se va afisa pe ecran 0579cdef 
+    33                                          
+    34 00000000 68[00000000]                    push dword n
+    35 00000005 68[04000000]                    push dword mod_citire_n 
+    36 0000000A FF15[00000000]                  call [scanf] 
+    37 00000010 83C408                          add esp, 4 * 2 
+    38                                          
+    39 00000013 68[11000000]                    push dword mod_citire 
+    40 00000018 68[0A000000]                    push dword nume_fisier 
+    41 0000001D FF15[00000000]                  call [fopen] 
+    42 00000023 83C408                          add esp, 4 * 2 
+    43                                          
+    44 00000026 83F800                          cmp EAX, 0 
+    45 00000029 7446                            jz final
+    46 0000002B A3[13000000]                    mov [descriptor_fisier], EAX
+    47                                          
+    48 00000030 B910000000                      Mov ECX, 16 
+    49                                  
+    50                                          bucla: 
+    51 00000035 FF35[13000000]                      push dword [descriptor_fisier] 
+    52 0000003B 6A01                                push dword 1 
+    53 0000003D 6A01                                push dword 1 
+    54 0000003F 68[17000000]                        push dword string 
+    55 00000044 FF15[00000000]                      call [fread] 
+    56 0000004A 83C410                              add esp, 4 * 4 
+    57                                              
+    58 0000004D D12D[00000000]                      SHR dword[n], 1 
+    59 00000053 731A                                jnc urmatorul 
+    60                                              
+    61 00000055 BB00000000                          mov ebx, 0 
+    62 0000005A 8A1D[17000000]                      mov bl, [string] 
+    63                                              
+    64 00000060 53                                  push dword ebx 
+    65 00000061 68[07000000]                        push dword mod_afisare 
+    66 00000066 FF15[00000000]                      call [printf] 
+    67 0000006C 83C408                              add esp, 4 * 2 
+    68                                  
+    69                                              urmatorul: 
+    70 0000006F E2C4                            loop bucla
+    71                                          
+    72                                          final: 
+    73                                          
+    74                                          ; exit(0)
+    75 00000071 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    76 00000073 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

@@ -1,0 +1,152 @@
+     1                                  
+     2                                  bits 32
+     3                                  global start
+     4                                  
+     5                                  extern exit,printf
+     6                                  import exit msvcrt.dll
+     7                                  import printf msvcrt.dll
+     8                                  
+     9                                  
+    10                                  segment data use32 class=data 
+    11 00000000 1054FAFF7879B2F57F-         sir_cuv dw 21520,-6,'xy',0F5B2h,-129
+    11 00000009 FF                 
+    12                                      
+    13                                      len equ ($-sir_cuv)/2
+    14 0000000A 00<rept>                    sir1 times len db 0
+    15 0000000F 00<rept>                    sir2 times len db 0
+    16                                      
+    17 00000014 4361743D2000                mesaj1 db "Cat= ",0
+    18 0000001A 526573743D2000              mesaj2 db "Rest= ",0
+    19                                      
+    20 00000021 25782000                    format db "%x ",0
+    21                                      
+    22                                  segment code use32 class=code 
+    23                                  start:
+    24                                      
+    25 00000000 B905000000                  mov ECX,len
+    26 00000005 BE[00000000]                mov ESI,sir_cuv
+    27 0000000A BF[0A000000]                mov EDI,sir1
+    28 0000000F E306                        jecxz final
+    29 00000011 FC                          cld 
+    30                                      
+    31                                      bucla:
+    32 00000012 AC                              lodsb 
+    33 00000013 AA                              stosb
+    34 00000014 AC                              lodsb
+    35 00000015 E2FB                        loop bucla 
+    36                                      
+    37                                      final:
+    38 00000017 B201                        mov DL,1
+    39                                      repeta:
+    40 00000019 80FA00                          cmp DL,0
+    41 0000001C 7421                            jz final2
+    42 0000001E B200                            mov DL,0
+    43 00000020 B904000000                      mov ECX,len-1
+    44 00000025 BE[0A000000]                    mov ESI,sir1
+    45                                          repeta2:
+    46 0000002A 8A06                                mov AL,[ESI]
+    47 0000002C 8A5E01                              mov BL,[ESI+1]
+    48 0000002F 38D8                                cmp AL,BL
+    49 00000031 7D07                                jge next
+    50                                              
+    51 00000033 881E                                mov [ESI],BL
+    52 00000035 884601                              mov [ESI+1],AL
+    53 00000038 B201                                mov DL,1
+    54                                              next:
+    55 0000003A 46                                      inc ESI
+    56 0000003B E2ED                            loop repeta2
+    57 0000003D EBDA                        jmp repeta
+    58                                      
+    59                                      
+    60                                      final2:
+    61 0000003F B905000000                  mov ECX,len
+    62 00000044 BE[00000000]                mov ESI,sir_cuv
+    63 00000049 BF[0F000000]                mov EDI,sir2
+    64 0000004E E306                        jecxz final3
+    65 00000050 FC                          cld
+    66                                      
+    67                                      bucla2:
+    68 00000051 AC                              lodsb
+    69 00000052 AC                              lodsb
+    70 00000053 AA                              stosb
+    71 00000054 E2FB                        loop bucla2
+    72                                      
+    73                                      final3:
+    74 00000056 B201                        mov DL,1
+    75                                      repeta3:
+    76 00000058 80FA00                          cmp DL,0
+    77 0000005B 7421                            jz final4
+    78 0000005D B200                            mov DL,0
+    79 0000005F B904000000                      mov ECX,len-1
+    80 00000064 BE[0F000000]                    mov ESI,sir2
+    81                                          repeta4:
+    82 00000069 8A06                                mov AL,[ESI]
+    83 0000006B 8A5E01                              mov BL,[ESI+1]
+    84 0000006E 38D8                                cmp AL,BL
+    85 00000070 7E07                                jle next1
+    86                                              
+    87 00000072 881E                                mov [ESI],BL
+    88 00000074 884601                              mov [ESI+1],AL
+    89 00000077 B201                                mov DL,1
+    90                                              next1:
+    91 00000079 46                                      inc ESI
+    92 0000007A E2ED                            loop repeta4
+    93 0000007C EBDA                        jmp repeta3
+    94                                      
+    95                                      final4:
+    96 0000007E BE[0A000000]                mov ESI,sir1
+    97 00000083 FC                          cld
+    98 00000084 AC                          lodsb ;AL<-maximul valorilor octetilor inferiori 
+    99 00000085 B400                        mov AH,0  ;AX<-maximul
+   100                                      
+   101 00000087 6689C3                      mov BX,AX   ;BX<-maximul
+   102                                      
+   103 0000008A BE[0F000000]                mov ESI,sir2 
+   104 0000008F FC                          cld 
+   105 00000090 AC                          lodsb ;AL<-minimul valorilor octetilor inferiori 
+   106                                     
+   107 00000091 88C2                        mov DL,AL ;DL<-minimul=b 
+   108                                      
+   109 00000093 6689D8                      mov AX,BX   ;AX <-maxim=a
+   110 00000096 F6F2                        div DL   ;AL cat   AH rest
+   111                                      
+   112 00000098 88E2                        mov DL,AH 
+   113                                      
+   114 0000009A B400                        mov AH,0  ;AX cat 
+   115 0000009C 6689C3                      mov BX,AX
+   116 0000009F B800000000                  mov EAX,0
+   117 000000A4 6689D8                      mov AX,BX 
+   118                                      
+   119 000000A7 60                          pushad
+   120 000000A8 68[14000000]                push dword mesaj1 
+   121 000000AD FF15[00000000]              call [printf]
+   122 000000B3 83C404                      add esp,4*1
+   123 000000B6 61                          popad 
+   124                                      
+   125 000000B7 52                          push edx 
+   126 000000B8 50                          push dword EAX
+   127 000000B9 68[21000000]                push dword format
+   128 000000BE FF15[00000000]              call [printf]
+   129 000000C4 83C408                      add esp,4*2
+   130 000000C7 5A                          pop edx 
+   131                                      
+   132 000000C8 88D0                        mov AL,DL
+   133 000000CA B400                        mov AH,0   
+   134 000000CC 6689C3                      mov BX,AX
+   135 000000CF B800000000                  mov EAX,0
+   136 000000D4 6689D8                      mov AX,BX ;EAX restul
+   137                                      
+   138 000000D7 60                          pushad
+   139 000000D8 68[1A000000]                push dword mesaj2 
+   140 000000DD FF15[00000000]              call [printf]
+   141 000000E3 83C404                      add esp,4*1
+   142 000000E6 61                          popad 
+   143                                      
+   144                                   
+   145 000000E7 50                          push dword EAX
+   146 000000E8 68[21000000]                push dword format
+   147 000000ED FF15[00000000]              call [printf]
+   148 000000F3 83C408                      add esp,4*2
+   149                                  
+   150 000000F6 6A00                        push dword 0
+   151 000000F8 FF15[00000000]              call [exit]

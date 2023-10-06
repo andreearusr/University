@@ -1,0 +1,59 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit,printf,scanf               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import printf msvcrt.dll
+    11                                  import scanf msvcrt.dll
+    12                                  ; our data is declared here (the variables needed by our program)
+    13                                  segment data use32 class=data
+    14 00000000 613D00                          mesaj_a db "a=",0
+    15 00000003 623D00                          mesaj_b db "b=",0
+    16 00000006 256400                          format_1 db "%d",0
+    17 00000009 53756D61206E756D65-             format_2 db "Suma numerelor a si b este:%x",0
+    17 00000012 72656C6F7220612073-
+    17 0000001B 69206220657374653A-
+    17 00000024 257800             
+    18 00000027 <res 00000004>                  a resd 1
+    19 0000002B <res 00000004>                  b resd 1 
+    20 0000002F <res 00000004>                  suma resd 1
+    21                                  
+    22                                  
+    23                                  ; our code starts here
+    24                                  segment code use32 class=code
+    25                                      start:
+    26                                          ; ...Sa se citeasca de la tastatura doua numere a si b (in baza 10) si sa se calculeze a+b
+    27                                          ;    Sa se afiseze rezultatul adunarii in baza 16
+    28                                          
+    29 00000000 68[00000000]                    push dword mesaj_a
+    30 00000005 FF15[00000000]                  call[printf]
+    31 0000000B 83C404                          add ESP, 4*1
+    32                                          
+    33 0000000E 68[27000000]                    push dword a
+    34 00000013 68[06000000]                    push dword format_1
+    35 00000018 FF15[00000000]                  call[scanf]
+    36 0000001E 83C408                          add ESP, 4*2
+    37                                          
+    38 00000021 68[03000000]                    push dword mesaj_b
+    39 00000026 FF15[00000000]                  call[printf]
+    40 0000002C 83C404                          add ESP, 4*1
+    41                                          
+    42 0000002F 68[2B000000]                    push dword b 
+    43 00000034 68[06000000]                    push dword format_1
+    44 00000039 FF15[00000000]                  call[scanf]
+    45 0000003F 83C408                          add ESP, 4*2
+    46                                          
+    47 00000042 A1[27000000]                    mov EAX,dword[a]
+    48 00000047 0305[2B000000]                  add EAX,dword[b]
+    49                                          
+    50 0000004D 50                              push EAX
+    51 0000004E 68[09000000]                    push format_2
+    52 00000053 FF15[00000000]                  call[printf]
+    53 00000059 83C408                          add ESP, 4*2
+    54                                          ; exit(0)
+    55 0000005C 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    56 0000005E FF15[00000000]                  call    [exit]       ; call exit to terminate the program

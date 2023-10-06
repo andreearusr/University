@@ -1,0 +1,8 @@
+55;Amalia;Strada:Bujorilor  Numar:1  Oras:Bistrita
+311;Andrei;Strada:Republicii  Numar:102  Oras:Dej
+321;Ioana;Strada:Bucegi  Numar:33  Oras:Brasov
+278;Maria;Strada:Otelarilor  Numar:31  Oras:Campia-Turzii
+1;Andreea;Strada:Principala  Numar:25  Oras:Cluj
+26;Catalin;Strada:Laminoristilor  Numar:12  Oras:Viisoara
+19;Maria;Strada:Frunzisului  Numar:78  Oras:Suceava
+60;Marius;Strada:Prahovei  Numar:56  Oras:Prahova

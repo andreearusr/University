@@ -1,0 +1,142 @@
+     1                                  bits 32
+     2                                  
+     3                                  global start
+     4                                  extern exit,scanf,printf
+     5                                  
+     6                                  import exit msvcrt.dll
+     7                                  import scanf msvcrt.dll
+     8                                  import printf msvcrt.dll
+     9                                  
+    10                                  segment data use32 class=data 
+    11                                  
+    12 00000000 437576616E743A2000-         mesaj db "Cuvant: ",0,10
+    12 00000009 0A                 
+    13 0000000A 4E756D61723A20000A          mesaj2 db "Numar: ",0,10
+    14 00000013 437576616E74206372-         mesaj3 db "Cuvant criptat: ",0
+    14 0000001C 69707461743A2000   
+    15 00000024 00<rept>                    cuvant times 20 db 0
+    16 00000038 00<rept>                    cuvant_criptat times 100 db 0
+    17 0000009C 00000000                    numar dd 0
+    18 000000A0 02                          doi db 2
+    19 000000A1 7000                        litera db "p",0
+    20                                      
+    21 000000A3 6165696F75                  sir_vocale db "aeiou"
+    22                                      l equ $-sir_vocale
+    23                                      
+    24 000000A8 257300                      format db "%s",0
+    25 000000AB 257500                      format_nr db "%u",0
+    26                                  
+    27                                  ; Se citeste de la tastatura un cuvant (sir de caract de maxim 20 caract) si un nr reprezentat pe un octet.
+    28                                  ; daca nr par => criptarea cuvantului prin adunarea la fiecare caracter a numarului 20
+    29                                  ; daca nr impar => criptarea cuvantului prin adaugarea dupa fiecare vocala a gruparii "p"+vocala
+    30                                  ; +afisarea cuvantului criptat 
+    31                                  
+    32                                  ; ex: cuvant:arici numar:2 => u?}w}
+    33                                  ; cuvant:arici numar:3 => aparipicipi
+    34                                  segment code use 32 class=code
+    35                                      start:
+    36                                      
+    37 00000000 68[00000000]                    push dword mesaj
+    38 00000005 FF15[00000000]                  call [printf]
+    39 0000000B 83C404                          add ESP,4*1
+    40                                          
+    41 0000000E 68[24000000]                    push dword cuvant
+    42 00000013 68[A8000000]                    push dword format
+    43 00000018 FF15[00000000]                  call [scanf]
+    44 0000001E 83C408                          add ESP,4*2
+    45                                          
+    46 00000021 68[0A000000]                    push dword mesaj2
+    47 00000026 FF15[00000000]                  call [printf]
+    48 0000002C 83C404                          add ESP,4*1
+    49                                          
+    50 0000002F 68[9C000000]                    push dword numar
+    51 00000034 68[AB000000]                    push dword format_nr
+    52 00000039 FF15[00000000]                  call [scanf]
+    53 0000003F 83C408                          add ESP,4*2
+    54                                          
+    55 00000042 B800000000                      mov EAX,0
+    56 00000047 A0[9C000000]                    mov AL, byte[numar]
+    57 0000004C 88C2                            mov DL,AL  ; in DL avem numarul reprezentat pe un octet
+    58                                          
+    59 0000004E F635[A0000000]                  div byte[doi]  ; AL cat   AH rest
+    60 00000054 80FC00                          cmp AH,0
+    61 00000057 7402                            je criptare1
+    62 00000059 7515                            jne criptare2
+    63                                          
+    64                                          
+    65                                          criptare1:
+    66 0000005B BE[24000000]                        mov ESI,cuvant
+    67 00000060 BF[38000000]                        mov EDI,cuvant_criptat
+    68 00000065 FC                                  cld
+    69                                              
+    70                                              repeta:
+    71 00000066 AC                                      LODSB   ;AL <- primul caracter
+    72 00000067 3C00                                    cmp AL,0
+    73 00000069 743D                                    je cleanup
+    74                                                  
+    75 0000006B 0414                                    add AL,20
+    76 0000006D AA                                      STOSB
+    77                                                  
+    78 0000006E EBF6                                jmp repeta
+    79                                              
+    80                                              
+    81                                          criptare2:
+    82 00000070 BE[24000000]                        mov ESI,cuvant
+    83 00000075 BF[38000000]                        mov EDI,cuvant_criptat      
+    84 0000007A FC                                  cld
+    85                                              
+    86                                              repeta2:
+    87 0000007B AC                                      LODSB   ;AL <- primul caracter
+    88 0000007C 3C00                                    cmp AL,0
+    89 0000007E 7428                                    je cleanup
+    90 00000080 88C2                                    mov DL,AL
+    91 00000082 BB00000000                              mov EBX, 0
+    92                                                  
+    93                                                  repeta3:
+    94                                                      
+    95 00000087 8A8B[A3000000]                              mov CL, byte[sir_vocale+EBX]
+    96                                                      
+    97 0000008D 80F900                                      cmp CL,0
+    98 00000090 7413                                        je cont
+    99                                                      
+   100 00000092 38CA                                        cmp DL,CL
+   101 00000094 7403                                        je continua
+   102                                                      
+   103 00000096 43                                          inc EBX
+   104                                                      
+   105 00000097 EBEE                                    jmp repeta3
+   106                                                      
+   107                                                  
+   108                                                  continua:
+   109 00000099 AA                                          STOSB
+   110 0000009A A0[A1000000]                                mov AL, byte[litera]
+   111 0000009F AA                                          STOSB 
+   112                                                      
+   113 000000A0 88D0                                        mov AL,DL
+   114                                                  ;    dec ESI 
+   115 000000A2 AA                                          STOSB 
+   116                                                  ;    inc ESI
+   117 000000A3 EBD6                                    jmp repeta2
+   118                                  
+   119                                                      
+   120                                                  cont:
+   121 000000A5 AA                                          STOSB
+   122                                                  
+   123 000000A6 EBD3                                jmp repeta2
+   124                                              
+   125                                          cleanup:
+   126                                          
+   127 000000A8 68[13000000]                        push dword mesaj3
+   128 000000AD FF15[00000000]                      call [printf]
+   129 000000B3 83C404                              add ESP,4*1
+   130                                              
+   131 000000B6 68[38000000]                        push dword cuvant_criptat
+   132 000000BB 68[A8000000]                        push dword format
+   133 000000C0 FF15[00000000]                      call [printf]
+   134 000000C6 83C408                              add ESP,4*2
+   135                                          
+   136                                          
+   137                                          
+   138                                  
+   139 000000C9 6A00                        push dword 0
+   140 000000CB FF15[00000000]              call [exit]

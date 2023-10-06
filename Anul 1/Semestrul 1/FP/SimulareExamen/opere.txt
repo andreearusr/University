@@ -1,0 +1,12 @@
+1,Sanziana si Pepelea,comedie,35
+2,Hamlet,tragedie,60
+3,O scrisoare pierduta,comedie,45
+4,Iona,drama,70
+5,Harap-Alb,basm,80
+6,Moara cu Noroc,nuvela,25
+7,Praslea cel voinic,basm,70
+8,Luceafarul,poezie,30
+9,Ion,roman,45
+10,Maytrei,roman,60
+
+

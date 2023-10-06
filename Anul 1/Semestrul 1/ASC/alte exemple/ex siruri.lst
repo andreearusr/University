@@ -1,0 +1,66 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13 00000000 78560000CDAB561244-             sir dd 00005678h, 1256ABCDh, 12344344h
+    13 00000009 433412             
+    14                                          len equ ($-sir)/4; lungimea sirului in dublucuvinte
+    15 0000000C 0000<rept>                      s times len dw 0
+    16                                  
+    17                                  ; our code starts here
+    18                                  segment code use32 class=code
+    19                                      start:
+    20                                          ; ...Se da un sir de dublucuvinte. Sa se ordoneze crescator sirul cuvintelor superioare ale acestor dublucuvinte.
+    21                                          ; Cuvintele inferioare raman neschimbate
+    22                                      
+    23 00000000 BE[00000000]                    mov ESI,sir
+    24 00000005 FC                              cld 
+    25 00000006 B903000000                      mov ECX,len
+    26 0000000B E315                            jecxz sfarsit
+    27 0000000D BF00000000                      mov EDI,0
+    28                                          repeta:
+    29 00000012 66AD                                lodsw; AX <- cuv mai putin semnificativ 
+    30 00000014 66AD                                lodsw; AX <- cuv cel mai semnificativ 
+    31 00000016 668987[0C000000]                    mov [s+EDI],AX; punrm cuv superioare in sirul s
+    32 0000001D 83C702                              add EDI,2
+    33 00000020 E2F0                            loop repeta
+    34                                          
+    35                                          sfarsit:
+    36                                          
+    37 00000022 B903000000                      mov ECX,len
+    38 00000027 BE00000000                      mov ESI,0
+    39 0000002C E33A                            jecxz sfarsit1
+    40                                          repeta1:
+    41 0000002E 668B86[0C000000]                    mov AX,[s+ESI]
+    42 00000035 89CA                                mov EDX,ECX
+    43 00000037 49                                  dec ECX 
+    44 00000038 E327                                jecxz sfarsit2
+    45 0000003A 89F7                                mov EDI,ESI
+    46 0000003C 83C702                              add EDI,2
+    47                                              repeta2:
+    48 0000003F 668B9F[0C000000]                        mov BX,[s+EDI]
+    49 00000046 6639D8                                  cmp AX,BX; comparam 2 elem din sirul s
+    50 00000049 7211                                    jb sari
+    51 0000004B 668987[0C000000]                        mov [s+EDI],AX
+    52 00000052 66899E[0C000000]                        mov [s+ESI],BX
+    53 00000059 6689D8                                  mov AX,BX 
+    54                                                  sari:
+    55 0000005C 83C702                                      add EDI,2
+    56 0000005F E2DE                                loop repeta2
+    57                                              sfarsit2:
+    58 00000061 83C602                                  add ESI,2
+    59 00000064 89D1                                mov ECX,EDX 
+    60 00000066 E2C6                            loop repeta1
+    61                                          sfarsit1:
+    62                                          
+    63                                          ; exit(0)
+    64 00000068 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    65 0000006A FF15[00000000]                  call    [exit]       ; call exit to terminate the program

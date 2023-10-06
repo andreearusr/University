@@ -1,0 +1,57 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  
+     4                                  extern exit,scanf,printf
+     5                                  import exit msvcrt.dll
+     6                                  import scanf msvcrt.dll
+     7                                  import printf msvcrt.dll
+     8                                  
+     9                                  extern prim
+    10                                  
+    11                                  
+    12                                  segment data use32 class=data public
+    13 00000000 00000000                    x dd 0
+    14 00000004 00000000                    nr_de_numere_prime dd 0
+    15                                      
+    16 00000008 256400                      decimal db "%d",0
+    17 0000000B 4E756D6172756C2064-         mesaj_afisare db "Numarul de numere prime din sir este: %d",0
+    17 00000014 65206E756D65726520-
+    17 0000001D 7072696D652064696E-
+    17 00000026 207369722065737465-
+    17 0000002F 3A20256400         
+    18                                      
+    19                                  
+    20                                  segment code use 32 class=code public
+    21                                      start:
+    22 00000000 BB02000000                      mov ebx,2
+    23                                          
+    24                                          citeste_x:
+    25 00000005 68[00000000]                        push dword x
+    26 0000000A 68[08000000]                        push dword decimal
+    27 0000000F FF15[00000000]                      call [scanf]
+    28 00000015 83C408                              add ESP,4*2
+    29                                              
+    30 00000018 833D[00000000]00                    cmp dword[x],0
+    31 0000001F 741C                                je sfarsit_citeste_x
+    32                                              
+    33 00000021 FF35[00000000]                      push dword [x]
+    34 00000027 E8(00000000)                        call prim
+    35 0000002C 59                                  pop ecx
+    36 0000002D 83C404                              add esp,4*1
+    37                                              
+    38 00000030 83F900                              cmp ecx,0
+    39 00000033 74D0                            je citeste_x
+    40                                              
+    41 00000035 FF05[04000000]                  inc dword[nr_de_numere_prime]
+    42 0000003B EBC8                            jmp citeste_x
+    43                                          
+    44                                          sfarsit_citeste_x:
+    45 0000003D FF35[04000000]                      push dword [nr_de_numere_prime]
+    46 00000043 68[0B000000]                        push dword mesaj_afisare
+    47 00000048 FF15[00000000]                      call [printf]
+    48 0000004E 83C408                              add ESP,4*2
+    49                                              
+    50 00000051 6A00                            push dword 0
+    51 00000053 FF15[00000000]                  call [exit]
+    52                                              
+    53                                     

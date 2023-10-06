@@ -1,0 +1,49 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13                                      
+    14 00000000 2B343261383478              s1 db '+','4','2','a','8','4','x'
+    15                                      l1 equ $-s1
+    16 00000007 613435                      s2 db 'a','4','5',
+    17                                      l2 equ $-s2
+    18 0000000A 00<rept>                    d times l1+l2 db 0 ; '+','a','x','5','4','a'
+    19                                  
+    20                                  ; our code starts here
+    21                                  segment code use32 class=code
+    22                                      start:
+    23 00000000 B907000000                      mov ECX, l1
+    24 00000005 BE00000000                      mov ESI, 0
+    25 0000000A BF[0A000000]                    mov EDI, d
+    26 0000000F E325                            jecxz Sfarsit
+    27                                          Repeta:
+    28 00000011 8A86[00000000]                      mov AL,[s1+ESI]
+    29 00000017 8807                                mov [EDI],AL
+    30 00000019 47                                  inc EDI
+    31 0000001A 83C603                              add ESI,3
+    32 0000001D 39CE                            cmp ESI,ECX
+    33 0000001F 72F0                            jb Repeta
+    34                                          
+    35 00000021 B903000000                      mov ECX, l2
+    36 00000026 E30E                            jecxz Sfarsit
+    37                                          Repeta_2:
+    38 00000028 89CA                                mov EDX,ECX
+    39 0000002A 4A                                  dec EDX
+    40 0000002B 8A82[07000000]                      mov AL,[s2+EDX]
+    41 00000031 8807                                mov [EDI],AL
+    42 00000033 47                                  inc EDI
+    43 00000034 E2F2                            loop Repeta_2
+    44                                          
+    45                                          Sfarsit:
+    46                                      
+    47                                          ; exit(0)
+    48 00000036 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    49 00000038 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

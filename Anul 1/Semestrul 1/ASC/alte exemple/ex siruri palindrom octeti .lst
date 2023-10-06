@@ -1,0 +1,81 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13 00000000 785634124D3C2C1A76-             s dd 12345678h, 1A2C3C4Dh, 98FCDC76h
+    13 00000009 DCFC98             
+    14                                          len_s equ ($-s)/4
+    15 0000000C 00<rept>                        d times len_s db 0
+    16 0000000F 0000                            len_d dw 0
+    17 00000011 0A                              zece db 10
+    18 00000012 000000                          cifre db 0,0,0
+    19 00000015 00                              len_cif db 0
+    20                                  
+    21                                  ; our code starts here
+    22                                  segment code use32 class=code
+    23                                      start:
+    24                                          ; ...Se da un sir de dublucuvinte. Sa se obtina sirul format din octetii inferiori ai cuv superioare
+    25                                          ; din elementele sirului de dublucuvinte care sunt palindrom in scrierea in baza 10
+    26 00000000 BE[00000000]                    mov ESI,s
+    27 00000005 BF[0C000000]                    mov EDI,d 
+    28 0000000A FC                              cld
+    29 0000000B B903000000                      mov ECX, len_s
+    30 00000010 E36B                            jecxz sfarsit
+    31                                          
+    32                                          repeta1:
+    33 00000012 66AD                                lodsw
+    34 00000014 AC                                  lodsb
+    35 00000015 B400                                mov AH,0
+    36 00000017 57                                  push EDI 
+    37 00000018 BF[12000000]                        mov EDI,cifre
+    38 0000001D 88C3                                mov BL,AL
+    39                                              repeta2:
+    40 0000001F F635[11000000]                          div byte[zece]
+    41 00000025 66C1C808                                ROR AX,8
+    42 00000029 FE05[15000000]                          inc byte[len_cif]
+    43 0000002F B400                                    mov AH,0
+    44 00000031 3C00                                    cmp AL,0
+    45 00000033 75EA                                jne repeta2
+    46                                              
+    47 00000035 5F                                  pop EDI
+    48 00000036 88D8                                mov AL,BL
+    49 00000038 803D[15000000]02                    cmp byte[len_cif],2
+    50 0000003F 7204                                jb caz1
+    51 00000041 7406                                je caz2
+    52 00000043 7716                                ja caz3
+    53                                              caz1:
+    54 00000045 EB24                                    jmp palindrom
+    55 00000047 EB22                                jmp sf_cazuri
+    56                                              caz2:
+    57 00000049 8A1D[12000000]                          mov BL, [cifre]
+    58 0000004F 3A1D[13000000]                          cmp BL,[cifre+1]
+    59 00000055 7414                                    je palindrom
+    60 00000057 751A                                    jne not_palindrom
+    61 00000059 EB10                                jmp sf_cazuri
+    62                                              caz3:
+    63 0000005B 8A1D[12000000]                          mov BL,[cifre]
+    64 00000061 3A1D[14000000]                          cmp BL,[cifre+2]
+    65 00000067 7402                                    je palindrom
+    66 00000069 7508                                    jne not_palindrom
+    67                                              
+    68                                              sf_cazuri:
+    69                                                  palindrom:
+    70 0000006B AA                                          stosb
+    71 0000006C 66FF05[0F000000]                            inc word[len_d]
+    72                                                  not_palindrom:
+    73 00000073 C605[15000000]00                            mov byte[len_cif],0
+    74 0000007A AC                                          lodsb
+    75 0000007B E295                            loop repeta1
+    76                                          sfarsit:
+    77                                      
+    78                                          ; exit(0)
+    79 0000007D 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    80 0000007F FF15[00000000]                  call    [exit]       ; call exit to terminate the program

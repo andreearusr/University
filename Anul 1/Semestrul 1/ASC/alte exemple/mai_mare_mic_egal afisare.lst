@@ -1,0 +1,74 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit,printf,scanf               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import printf msvcrt.dll
+    11                                  import scanf msvcrt.dll
+    12                                  ; our data is declared here (the variables needed by our program)
+    13                                  segment data use32 class=data
+    14 00000000 00000000                        a dd 0
+    15 00000004 00000000                        b dd 0
+    16 00000008 256400                          format db "%d",0
+    17 0000000B 3C25643E00                      paranteze db "<%d>",0
+    18 00000010 3D00                            egal db "=",0
+    19 00000012 3C00                            mai_mic db "<",0
+    20 00000014 3E00                            mai_mare db ">",0
+    21                                  
+    22                                  ; our code starts here
+    23                                  segment code use32 class=code
+    24                                      start:
+    25                                          ; Sa se citeasca de la tastatura 2 numere a si b (in baza 10) si sa se det relatia de ordine dintre ele
+    26                                          ; (a<b, a=b sau a<b). Afisati rez il urmat format: "<a> < <b>, <a>=<b> sau <a> > <b>"
+    27                                          
+    28 00000000 68[00000000]                    push dword a
+    29 00000005 68[08000000]                    push dword format
+    30 0000000A FF15[00000000]                  call [scanf]
+    31 00000010 83C408                          add ESP, 4*2
+    32                                          
+    33 00000013 68[04000000]                    push dword b
+    34 00000018 68[08000000]                    push dword format
+    35 0000001D FF15[00000000]                  call [scanf]
+    36 00000023 83C408                          add ESP, 4*2
+    37                                          
+    38 00000026 FF35[00000000]                  push dword [a]
+    39 0000002C 68[0B000000]                    push dword paranteze
+    40 00000031 FF15[00000000]                  call [printf]
+    41 00000037 83C408                          add ESP, 4*2
+    42                                          
+    43 0000003A A1[00000000]                    mov EAX,[a]
+    44 0000003F 8B1D[04000000]                  mov EBX,[b]
+    45 00000045 39D8                            cmp EAX,EBX
+    46                                          
+    47 00000047 7C04                            jl print_mai_mic
+    48 00000049 740F                            je print_egal
+    49 0000004B 7F1A                            jg print_mai_mare
+    50                                          
+    51                                          print_mai_mic:
+    52 0000004D 68[12000000]                        push dword mai_mic 
+    53 00000052 FF15[00000000]                      call [printf]
+    54 00000058 EB1A                                jmp final
+    55                                          print_egal:
+    56 0000005A 68[10000000]                        push dword egal
+    57 0000005F FF15[00000000]                      call[printf]
+    58 00000065 EB0D                                jmp final
+    59                                          print_mai_mare:
+    60 00000067 68[14000000]                        push dword mai_mare
+    61 0000006C FF15[00000000]                      call [printf]
+    62 00000072 EB00                                jmp final
+    63                                          
+    64                                          final:
+    65 00000074 83C404                              add ESP,4*1
+    66                                              
+    67 00000077 FF35[04000000]                  push dword [b]
+    68 0000007D 68[0B000000]                    push dword paranteze
+    69 00000082 FF15[00000000]                  call [printf]
+    70 00000088 83C408                          add ESP, 4*2
+    71                                          
+    72                                          ; exit(0)
+    73 0000008B 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    74 0000008D FF15[00000000]                  call    [exit]       ; call exit to terminate the program

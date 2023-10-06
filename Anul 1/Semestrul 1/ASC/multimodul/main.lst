@@ -1,0 +1,75 @@
+     1                                  bits 32 
+     2                                  global start        
+     3                                  ;Sa se citeasca de la tastatura un sir de numere in baza 10 fara semn
+     4                                  ;Sa se det val minima din sir si sa se afiseze in fisierul min.txt,in baza 16
+     5                                  
+     6                                  extern exit,scanf,fopen,fclose,fprintf               
+     7                                  import exit msvcrt.dll    
+     8                                  import scanf msvcrt.dll
+     9                                  import fopen msvcrt.dll
+    10                                  import fclose msvcrt.dll
+    11                                  import fprintf msvcrt.dll                      
+    12                                  
+    13                                  extern modul 
+    14                                  
+    15                                  segment data use32 class=data
+    16 00000000 00000000                        n dd 0
+    17 00000004 FFFFFFFF                        x dd 0FFFFFFFFh
+    18 00000008 256400                          format_int db "%d",0
+    19 0000000B 257800                          format_hex db "%x",0
+    20 0000000E 7700                            mod_acces db "w",0
+    21 00000010 6D696E2E74787400                nume_fisier db "min.txt",0
+    22 00000018 00000000                        descriptor_fis dd 0
+    23 0000001C 2000                            spatiu db " ",0
+    24                                  
+    25                                  segment code use32 public code 
+    26                                      start:
+    27                                          
+    28                                          repeta:
+    29 00000000 60                                  pushad
+    30                                              
+    31 00000001 68[00000000]                        push dword n 
+    32 00000006 68[08000000]                        push dword format_int
+    33 0000000B FF15[00000000]                      call [scanf]
+    34 00000011 83C408                              add ESP,4*2
+    35                                              
+    36 00000014 61                                  popad
+    37                                              
+    38 00000015 833D[00000000]00                    cmp dword[n],0   ; daca n=0
+    39 0000001C 741B                                je printare      ;iesire din citire
+    40                                              
+    41 0000001E FF35[04000000]                      push dword [x]
+    42 00000024 FF35[00000000]                      push dword [n]
+    43 0000002A E8(00000000)                        call modul 
+    44 0000002F 83C408                              add ESP,4*2 
+    45                                              
+    46 00000032 A3[04000000]                        mov [x],EAX
+    47 00000037 EBC7                            jmp repeta
+    48                                          
+    49                                          
+    50                                          printare:
+    51 00000039 68[0E000000]                        push dword mod_acces
+    52 0000003E 68[10000000]                        push dword nume_fisier
+    53 00000043 FF15[00000000]                      call [fopen]
+    54 00000049 83C408                              add ESP,4*2
+    55                                              
+    56 0000004C 83F800                              cmp EAX,0
+    57 0000004F 742E                                jz final
+    58                                              
+    59 00000051 A3[18000000]                        mov [descriptor_fis],EAX 
+    60                                              
+    61 00000056 FF35[04000000]                      push dword [x]
+    62 0000005C 68[0B000000]                        push dword format_hex
+    63 00000061 FF35[18000000]                      push dword [descriptor_fis]
+    64 00000067 FF15[00000000]                      call [fprintf]
+    65 0000006D 83C40C                              add ESP,4*3
+    66                                              
+    67                                              inchide_fisier:
+    68 00000070 FF35[18000000]                          push dword [descriptor_fis]
+    69 00000076 FF15[00000000]                          call [fclose]
+    70 0000007C 83C404                                  add ESP,4
+    71                                              
+    72                                          final:
+    73                                  
+    74 0000007F 6A00                            push    dword 0      
+    75 00000081 FF15[00000000]                  call    [exit]      

@@ -1,0 +1,39 @@
+     1                                  bits 32
+     2                                  global maximul
+     3                                  
+     4                                  
+     5                                  segment code use32 class=code public
+     6                                  maximul:
+     7                                      ;[ESP]<- adresa de revenire
+     8                                      ;[ESP+4]<-adresa sirului sir
+     9                                      ;[ESP+8]<-valoarea contorului
+    10 00000000 B201                        mov DL,1
+    11                                      bucla:
+    12 00000002 80FA00                          cmp DL,0
+    13 00000005 7423                            jz final2
+    14 00000007 B200                            mov DL,0
+    15 00000009 8B742404                        mov ESI,[ESP+4]
+    16 0000000D 8B4C2408                        mov ECX,[ESP+8]
+    17 00000011 49                              dec ECX
+    18 00000012 E316                            jecxz final2
+    19 00000014 FC                              cld 
+    20                                      
+    21                                          bucla2:
+    22 00000015 8A06                                mov AL,[ESI]
+    23 00000017 8A5E01                              mov BL,[ESI+1]
+    24 0000001A 38D8                                cmp AL,BL 
+    25 0000001C 7E07                                jle next 
+    26                                              
+    27 0000001E 881E                                mov [ESI],BL
+    28 00000020 884601                              mov [ESI+1],AL
+    29 00000023 B201                                mov DL,1
+    30                                              
+    31                                              next:
+    32 00000025 46                                      inc ESI 
+    33                                                  
+    34 00000026 E2ED                            loop bucla2
+    35 00000028 EBD8                        jmp bucla    
+    36                                          
+    37                                  
+    38                                      final2:
+    39 0000002A C3                          ret

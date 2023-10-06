@@ -1,0 +1,76 @@
+     1                                  bits 32
+     2                                  ; informam asamblorul despre existenta functiei _citireSirC si a variabilei _str3
+     3                                  extern _citireSirC
+     4                                  extern _str3
+     5                                  ; in Windows, directiva nasm import poate fi folosita doar pentru fisiere obj!! noi vom crea un fisier win32, functia printf se importa in felul urmator (conform documentatiei NASM)
+     6                                  extern _printf
+     7                                  ; informam asamblorul ca dorim ca functia _asmConcat sa fie disponibila altor unitati de compilare
+     8                                  global _asmConcat
+     9                                  ; linkeditorul poate folosi segmentul public de date si pentru date din afara
+    10                                  segment data public data use32
+    11 00000000 00000000                    lenRez                dd        0
+    12 00000004 00000000                    adresaSirRezultat     dd        0
+    13 00000008 00000000                    adresaSirParam        dd        0
+    14 0000000C 00000000                    adresaSirCitit        dd        0
+    15 00000010 536972756C20322063-         mesaj                 db        "Sirul 2 citit din modulul asm: ", 0
+    15 00000019 697469742064696E20-
+    15 00000022 6D6F64756C756C2061-
+    15 0000002B 736D3A2000         
+    16                                  ; codul scris in asamblare este dispus intr-un segment public, posibil a fi partajat cu alt cod extern
+    17                                  segment code public code use32
+    18                                  ; int asmConcat(char[], char[])
+    19                                  
+    20                                  _asmConcat:
+    21                                      ; creare cadru de stiva pentru programul apelat
+    22 00000000 55                          push ebp
+    23 00000001 89E5                        mov ebp, esp
+    24                                      
+    25                                      ; rezervam spatiu pe stiva pentru variabilele locale
+    26 00000003 83EC0C                      sub esp, 4 * 3                    ; rezervam pe stiva 4*3 de octeti pentru sirul citit de la tastatura
+    27                                      ; argumentele transmise pe stiva functiei asmConcat
+    28                                      ; la locatia [ebp+4] se afla adresa de return (valoarea din EIP la momentul apelului)
+    29                                      ; la locatia [ebp] se afla valoarea ebp pentru apelant
+    30 00000006 8B4508                      mov eax, [ebp + 8]
+    31 00000009 A3[08000000]                mov [adresaSirParam], eax
+    32 0000000E 8B450C                      mov eax, [ebp + 12]
+    33 00000011 A3[04000000]                mov [adresaSirRezultat], eax
+    34                                      ; salvam adresa sirului care va fi citit
+    35 00000016 892D[0C000000]              mov [adresaSirCitit], ebp
+    36 0000001C 832D[0C000000]0C            sub dword [adresaSirCitit], 4*3
+    37                                         
+    38                                      ; apelam functia citireSirC din C pentru a citi sirul 2
+    39 00000023 68[10000000]                push dword mesaj
+    40 00000028 E8(00000000)                call _printf
+    41 0000002D 83C404                      add esp, 4*1
+    42 00000030 FF35[0C000000]              push dword [adresaSirCitit]
+    43 00000036 E8(00000000)                call _citireSirC
+    44 0000003B 83C404                      add esp, 4*1
+    45                                      ; concatenam sirurile
+    46                                      ; copiem sirul transmis ca parametru functiei asmConcat (sir1) in sirul rezultat
+    47 0000003E FC                          cld
+    48 0000003F 8B3D[04000000]              mov edi, [adresaSirRezultat]
+    49 00000045 8B35[08000000]              mov esi, [adresaSirParam]
+    50 0000004B B90A000000                  mov ecx, 10
+    51 00000050 F3A4                        rep movsb
+    52                                      ; copiem sirul citit folosind functia citireSirC in sirul rezultat
+    53 00000052 8305[00000000]0A            add dword [lenRez], 10
+    54 00000059 8B35[0C000000]              mov esi, [adresaSirCitit]
+    55 0000005F B90A000000                  mov ecx, 10
+    56 00000064 F3A4                        rep movsb
+    57                                      ; copiem sirul variabila globala in programul C (sir3) in sirul rezultat
+    58 00000066 8305[00000000]0A            add dword [lenRez], 10
+    59 0000006D BE[00000000]                mov esi, _str3
+    60 00000072 B90A000000                  mov ecx, 10
+    61 00000077 F3A4                        rep movsb
+    62 00000079 8305[00000000]0A            add dword [lenRez], 10
+    63                                      
+    64                                      ; stergem spatiul rezervat pe stiva
+    65                                      ; !! nu am salvat valorile registrilor inainte de a scrie functia _asmConcat, daca se doreste acest lucru se poate face cu instructiunile PUSHAD si restaurarea lor cu POPAD
+    66 00000080 83C40C                      add esp, 4 * 3
+    67                                      ; refacem cadrul de stiva pentru programul apelant
+    68 00000083 89EC                        mov esp, ebp
+    69 00000085 5D                          pop ebp
+    70                                      ; cele doua instructiuni ce refac cadrul de stiva pot fi inlocuite cu instructiunea leave
+    71                                      ; intoarcem ca si rezultat lungimea sirului concatenat
+    72 00000086 A1[00000000]                mov eax, [lenRez]
+    73 0000008B C3                          ret

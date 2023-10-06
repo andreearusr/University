@@ -1,0 +1,119 @@
+     1                                  bits 32
+     2                                  
+     3                                  global start
+     4                                  extern exit,printf,scanf,fopen,fclose,fprintf
+     5                                  import exit msvcrt.dll
+     6                                  import printf msvcrt.dll
+     7                                  import scanf msvcrt.dll
+     8                                  import fopen msvcrt.dll
+     9                                  import fclose msvcrt.dll
+    10                                  import fprintf msvcrt.dll
+    11                                  
+    12                                  segment data use32 class=data
+    13                                      
+    14 00000000 00000000                    numar dd 0
+    15 00000004 256300                      format db "%c",0
+    16 00000007 25752000                    format1 db "%u ",0
+    17                                      
+    18 0000000B 00000000<rept>              sir times 100 dd 0
+    19 0000019B 0200                        doi dw 2
+    20                                      
+    21 0000019D 7700                        mod_acces db "w",0
+    22 0000019F 73696D756C61726541-         nume_fisier db "simulareASC.txt",0
+    22 000001A8 53432E74787400     
+    23 000001AF FFFFFFFF                    descriptor_fis dd -1
+    24                                      
+    25 000001B3 00000000                    contor dd 0
+    26                                      
+    27                                  segment code use32 class=code 
+    28                                  start:
+    29                                  
+    30                                  
+    31 00000000 68[9D010000]                push dword mod_acces
+    32 00000005 68[9F010000]                push dword nume_fisier
+    33 0000000A FF15[00000000]              call [fopen]
+    34 00000010 83C408                      add ESP,4*2
+    35                                      
+    36 00000013 83F800                      cmp EAX,0
+    37 00000016 0F84B3000000                je final 
+    38                                      
+    39 0000001C A3[AF010000]                mov [descriptor_fis],EAX
+    40                                      
+    41 00000021 BF[0B000000]                mov EDI,sir 
+    42 00000026 FC                          cld
+    43                                      
+    44                                      bucla:
+    45                                  
+    46 00000027 68[00000000]                    push dword numar
+    47 0000002C 68[04000000]                    push dword format
+    48 00000031 FF15[00000000]                  call [scanf]
+    49 00000037 83C408                          add ESP,4*2
+    50                                          
+    51 0000003A A1[00000000]                    mov EAX,[numar]
+    52 0000003F 83F821                          cmp EAX,"!"
+    53 00000042 7425                            je transforma 
+    54                                          
+    55                                          
+    56 00000044 66A1[00000000]                  mov AX,word[numar]
+    57 0000004A 66BA0000                        mov DX,0
+    58                                          
+    59 0000004E 66F735[9B010000]                div word[doi]   ; AX cat   DX rest
+    60 00000055 6683FA00                        cmp DX,0
+    61 00000059 740C                            je aici
+    62                                          
+    63 0000005B A1[00000000]                    mov EAX,[numar]
+    64 00000060 AB                              STOSD
+    65 00000061 FF05[B3010000]                  inc dword[contor]
+    66                                        
+    67                                         aici:
+    68 00000067 EBBE                        jmp bucla 
+    69                                      
+    70                                      transforma:
+    71 00000069 8B0D[B3010000]                  mov ECX,dword[contor]
+    72 0000006F 49                              dec ECX
+    73 00000070 BE00000000                      mov ESI,0 
+    74 00000075 FC                              cld 
+    75                                  
+    76                                          repeta:
+    77 00000076 B800000000                          mov EAX,0
+    78 0000007B 8B9E[0B000000]                      mov EBX,[sir+ESI]  
+    79 00000081 8B96[0F000000]                      mov EDX,[sir+ESI+4] 
+    80                                        
+    81 00000087 39D3                                cmp EBX,EDX 
+    82 00000089 720C                                jb next 
+    83                                              
+    84 0000008B 8996[0B000000]                      mov [sir+ESI],EDX 
+    85 00000091 899E[0F000000]                      mov [sir+ESI+4],EBX 
+    86                                              
+    87                                              next:
+    88 00000097 83C604                              add ESI,4
+    89 0000009A E2DA                            loop repeta 
+    90                                          
+    91                                          
+    92 0000009C BE[0B000000]                mov ESI,sir
+    93 000000A1 8B0D[B3010000]              mov ECX,dword[contor]
+    94                                      
+    95                                      rpt1:
+    96 000000A7 B800000000                      mov EAX,0
+    97 000000AC AD                              lodsd 
+    98                                          
+    99 000000AD 51                              push ecx
+   100 000000AE 50                              push dword EAX 
+   101 000000AF 68[07000000]                    push dword format1 
+   102 000000B4 FF15[00000000]                  call[printf]
+   103 000000BA 83C408                          add ESP,4*2
+   104 000000BD 59                              pop ecx 
+   105                                          
+   106 000000BE E2E7                        loop rpt1
+   107                                      
+   108                                      
+   109                                      
+   110 000000C0 FF35[AF010000]              push dword [descriptor_fis]
+   111 000000C6 FF15[00000000]              call [fclose]
+   112 000000CC 83C404                      add ESP,4*1
+   113                                      
+   114                                      final:
+   115                                      
+   116 000000CF 6A00                        push dword 0
+   117 000000D1 FF15[00000000]              call [exit]
+   118                                      

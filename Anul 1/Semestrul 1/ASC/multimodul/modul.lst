@@ -1,0 +1,19 @@
+     1                                  bits 32
+     2                                  
+     3                                  global modul
+     4                                  segment code use 32 class=code public
+     5                                  
+     6                                  modul:
+     7                                      ;[ESP+4] <- valoarea variabilei n
+     8                                      ;[ESP+8] <- valoarea variabilei x
+     9                                      
+    10 00000000 8B442404                    mov EAX,[ESP+4]
+    11 00000004 3B442408                    cmp EAX,[ESP+8]
+    12 00000008 7604                        jbe iesire
+    13                                      
+    14 0000000A 8B442408                    mov EAX,[ESP+8]
+    15                                      
+    16                                      iesire:
+    17 0000000E C3                              ret 
+    18                                         
+    19                                      

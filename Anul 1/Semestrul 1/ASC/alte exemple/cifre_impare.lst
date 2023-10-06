@@ -1,0 +1,84 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit,fopen,fclose,fread,printf               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  import fopen msvcrt.dll
+    11                                  import fclose msvcrt.dll
+    12                                  import fread msvcrt.dll
+    13                                  import printf msvcrt.dll
+    14                                  
+    15                                  ; our data is declared here (the variables needed by our program)
+    16                                  segment data use32 class=data
+    17 00000000 666973696572322E74-             fisier db "fisier2.txt"
+    17 00000009 7874               
+    18 0000000B 7200                            mod_acces db "r",0
+    19 0000000D FFFFFFFF                        descriptor dd -1
+    20                                          max equ 1
+    21 00000011 00                              text db 0
+    22                                          
+    23 00000012 00000000                        contor dd 0
+    24 00000016 256420636966726520-             format db "%d cifre impare",0
+    24 0000001F 696D7061726500     
+    25                                  
+    26                                  ; our code starts here
+    27                                  segment code use32 class=code
+    28                                      start:
+    29                                          ; Se da un fisier text. Sa se citeasca continutul fisierului, sa se contorizeze numarul de cifre impare si
+    30                                          ; sa se afiseze aceasta valoare. Functia va returna in EAX descriptorul fisierului sau 0 in caz de eroare
+    31                                          
+    32 00000000 68[0B000000]                    push dword mod_acces
+    33 00000005 68[00000000]                    push dword fisier
+    34 0000000A FF15[00000000]                  call[fopen]
+    35 00000010 83C408                          add ESP, 4*2
+    36                                          
+    37 00000013 A3[0D000000]                    mov [descriptor],EAX
+    38 00000018 83F800                          cmp EAX,0
+    39 0000001B 743D                            je final
+    40                                          
+    41                                          bucla:
+    42 0000001D FF35[0D000000]                      push dword [descriptor]
+    43 00000023 6A01                                push dword max
+    44 00000025 6A01                                push dword 1  ; 1 octet pt ca sunt caractere
+    45 00000027 68[11000000]                        push dword text
+    46 0000002C FF15[00000000]                      call [fread]
+    47 00000032 83C410                              add ESP, 4*4
+    48                                              
+    49 00000035 83F800                              cmp EAX,0
+    50 00000038 7420                                je final
+    51                                              
+    52 0000003A A0[11000000]                        mov AL,[text]
+    53 0000003F 3C30                                cmp AL,'0'
+    54 00000041 7CDA                                jl bucla
+    55                                              
+    56 00000043 3C39                                cmp AL,'9'
+    57 00000045 7FD6                                jg bucla
+    58                                              
+    59 00000047 B400                                mov AH,0   ;AH- caracterul citit
+    60 00000049 B702                                mov BH,2
+    61 0000004B F6F7                                div BH
+    62                                              
+    63 0000004D 80FC00                              cmp AH,0
+    64 00000050 74CB                                je bucla
+    65                                              
+    66 00000052 FF05[12000000]                      inc dword[contor]
+    67                                              
+    68 00000058 EBC3                            jmp bucla
+    69                                          
+    70                                          final:
+    71 0000005A FF35[12000000]                  push dword [contor]
+    72 00000060 68[16000000]                    push format
+    73 00000065 FF15[00000000]                  call [printf]
+    74 0000006B 83C408                          add ESP, 4*2
+    75                                          
+    76 0000006E FF35[0D000000]                  push dword [descriptor]
+    77 00000074 FF15[00000000]                  call [fclose]
+    78 0000007A 83C404                          add ESP, 4*1
+    79                                          
+    80                                          ; exit(0)
+    81 0000007D 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    82 0000007F FF15[00000000]                  call    [exit]       ; call exit to terminate the program

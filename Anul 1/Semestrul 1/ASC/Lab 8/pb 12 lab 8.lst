@@ -1,0 +1,56 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13                                      ; ... se da un sir A de dublucuvinte. Construiti 2 siruri de octeti:
+    14                                      ;               B1 contine ca elem. partea inferioara a cuvintelor inferioare din A
+    15                                      ;               B2 contine ca elem. partea superioara a cuvintelor superioare din A
+    16                                      
+    17 00000000 785634121678245352-         A dd 12345678h,53247816h,93721452h,84563217h
+    17 00000009 14729317325684     
+    18                                      lA equ ($-A)/4      ; lungimea sirului in dublucuvinte
+    19 00000010 00<rept>                    B1 times lA db 0    ; 78h,16h,52h,17h
+    20 00000014 00<rept>                    B2 times lA db 0    ; 12h,53h,93h,84h
+    21                                  
+    22                                  ; our code starts here
+    23                                  segment code use32 class=code
+    24                                      start:
+    25 00000000 B904000000                      mov ECX,lA
+    26 00000005 BE[00000000]                    mov ESI,A          ; incarcare offset sirului sursa A in ESI
+    27 0000000A BF[10000000]                    mov EDI,B1         ; incarcare offset sir destinatie B1 in EDI      
+    28 0000000F FC                              cld                ; parcurgem sirul de la stanga la dreapta
+    29 00000010 E307                            jecxz Urmatorul
+    30                                          
+    31                                          formeaza_B1:
+    32 00000012 AC                                  LODSB          ;AL <-- octetul de la DS:ESI, inc ESI
+    33 00000013 AA                                  STOSB          ;ES:EDI <-- octetul din AL, inc EDI
+    34 00000014 66AD                                LODSW
+    35 00000016 AC                                  LODSB
+    36 00000017 E2F9                            loop formeaza_B1
+    37                                   
+    38                                          Urmatorul:
+    39 00000019 B904000000                      mov ECX,lA
+    40 0000001E BE[00000000]                    mov ESI,A
+    41 00000023 BF[14000000]                    mov EDI,B2
+    42 00000028 FC                              cld 
+    43 00000029 E307                            jecxz Final
+    44                                          
+    45                                          formeaza_B2:
+    46 0000002B 66AD                                LODSW
+    47 0000002D AC                                  LODSB
+    48 0000002E AC                                  LODSB           ;AL <-- octetul superior de la DS:ESI, inc ESI
+    49 0000002F AA                                  STOSB           ;ES:EDI <-- octetul din AL, inc EDI   
+    50 00000030 E2F9                            loop formeaza_B2
+    51                                          
+    52                                          Final:
+    53                                          ; exit(0)
+    54 00000032 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    55 00000034 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

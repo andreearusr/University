@@ -1,0 +1,3 @@
+5;Andreea;756432189;Familie
+5;Raluca;765431278;Prieteni
+98;Marius;2345871675;Familie

@@ -1,0 +1,94 @@
+     1                                  bits 32 
+     2                                  
+     3                                  global start
+     4                                  extern exit,printf,scanf,fprintf,fopen,fclose
+     5                                  import exit msvcrt.dll
+     6                                  import printf msvcrt.dll
+     7                                  import scanf msvcrt.dll
+     8                                  import fprintf msvcrt.dll
+     9                                  import fopen msvcrt.dll
+    10                                  import fclose msvcrt.dll
+    11                                  
+    12                                  segment data use32 class=data
+    13                                  
+    14 00000000 00<rept>                    sir times 100 db 0
+    15 00000064 00000000                    nr dd 0
+    16 00000068 25642000                    format db "%d ",0
+    17 0000006C 00000000                    contor dd 0
+    18                                      
+    19 00000070 73696D756C61726534-         nume_fis db "simulare4.txt",0
+    19 00000079 2E74787400         
+    20 0000007E 7700                        mod_acces db "w",0
+    21 00000080 FFFFFFFF                    descriptor_fis dd -1
+    22                                  
+    23                                  ; Sa se citeasca de la tastatura mai multe numere pana la citirea valorii 0. Sa se scrie intr-un fisier, separate de spatii, doar acele numere
+    24                                  ;  pozitive care au numar par de biti 1(cu valoarea1)
+    25                                  segment code use32 class=code
+    26                                      start:
+    27                                      
+    28 00000000 68[7E000000]                push dword mod_acces
+    29 00000005 68[70000000]                push dword nume_fis
+    30 0000000A FF15[00000000]              call [fopen]
+    31 00000010 83C408                      add ESP,4*2
+    32                                      
+    33 00000013 83F800                      cmp EAX,0
+    34 00000016 746C                        je final 
+    35                                      
+    36 00000018 A3[80000000]                mov [descriptor_fis],EAX
+    37                                      
+    38 0000001D BF[00000000]                mov EDI,sir
+    39 00000022 FC                          cld
+    40 00000023 B800000000                  mov EAX,0
+    41                                      
+    42                                      repeta:
+    43                                  
+    44 00000028 68[64000000]                    push dword nr
+    45 0000002D 68[68000000]                    push dword format
+    46 00000032 FF15[00000000]                  call [scanf]
+    47 00000038 83C408                          add ESP,4*2
+    48                                          
+    49 0000003B A1[64000000]                    mov EAX,dword[nr]
+    50 00000040 83F800                          cmp EAX,0
+    51 00000043 7409                            je transforma 
+    52                                          
+    53 00000045 AB                              STOSD
+    54 00000046 FF05[6C000000]                  inc dword[contor]
+    55                                          
+    56 0000004C EBDA                        jmp repeta
+    57                                      
+    58                                      transforma:
+    59 0000004E BE[00000000]                mov ESI,sir
+    60 00000053 FC                          cld
+    61 00000054 B800000000                  mov EAX,0
+    62 00000059 8B0D[6C000000]              mov ECX,dword[contor]
+    63                                      
+    64                                      bucla
+    64          ******************       warning: label alone on a line without a colon might be in error [-w+orphan-labels]
+    65 0000005F AD                              LODSD    ;EAX<- numarul curent din sir
+    66 00000060 83F800                          cmp EAX,0
+    67 00000063 7702                            ja verificare 
+    68 00000065 EB1B                            jmp aici
+    69                                          
+    70                                          verificare:
+    71 00000067 7A02                                jp afisare
+    72 00000069 7B17                                jnp aici 
+    73                                              
+    74                                              afisare:
+    75 0000006B 60                                  pushad
+    76 0000006C 50                                      push dword EAX
+    77 0000006D 68[68000000]                            push dword format
+    78 00000072 FF35[80000000]                          push dword [descriptor_fis]
+    79 00000078 FF15[00000000]                          call [fprintf]
+    80 0000007E 83C40C                                  add ESP,4*3
+    81 00000081 61                                  popad
+    82                                          aici:
+    83 00000082 E2DB                        loop bucla
+    84                                          
+    85                                      final:
+    86 00000084 FF35[80000000]                  push dword [descriptor_fis]
+    87 0000008A FF15[00000000]                  call [fclose]
+    88 00000090 83C404                          add ESP,4*1
+    89                                      
+    90                                      
+    91 00000093 6A00                        push dword 0
+    92 00000095 FF15[00000000]              call [exit]

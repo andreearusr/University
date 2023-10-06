@@ -1,0 +1,112 @@
+     1                                  bits 32
+     2                                  
+     3                                  global start      
+     4                                  
+     5                                  extern exit,fopen,fread,fclose,printf,fscanf               
+     6                                  extern dest
+     7                                  
+     8                                  import exit msvcrt.dll    
+     9                                  import fopen msvcrt.dll
+    10                                  import printf msvcrt.dll
+    11                                  import fread msvcrt.dll
+    12                                  import fclose msvcrt.dll
+    13                                  import fscanf msvcrt.dll
+    14                                  
+    15                                  
+    16                                  ; pb 10: Se citeste din fisierul "numere.txt" un sir de numere. Sa se determine sirul destinatie D care contine numerele
+    17                                  ; din sirul initial cu valorile dublate, dar in ordine inversa din sirul initial. Sa se afiseze sirul obtinut pe ecran
+    18                                  segment data use32 class=data public
+    19 00000000 6E756D6572652E7478-             nume_fisier db "numere.txt",0
+    19 00000009 7400               
+    20 0000000B 7200                            mod_acces db "r",0
+    21 0000000D FFFFFFFF                        descriptor_fis dd -1
+    22 00000011 00000000                        numar dd 0
+    23                                  
+    24 00000015 00000000                        nr_citite dd 0 
+    25                                          max equ 100
+    26                                          
+    27 00000019 00<rept>                        sir times max db 0
+    28 0000007D 00<rept>                        sir_final times max db 0
+    29                                  
+    30 000000E1 25642000                        format db "%d ",0
+    31                                      
+    32                                  
+    33                                  segment code use32 class=code public 
+    34                                      start:
+    35                                      
+    36                                          ;fopen(nume_fisier,mod_acces)
+    37 00000000 68[0B000000]                    push dword mod_acces
+    38 00000005 68[00000000]                    push dword nume_fisier
+    39 0000000A FF15[00000000]                  call[fopen]
+    40 00000010 83C408                          add ESP, 4*2
+    41                                          
+    42 00000013 83F800                          cmp EAX,0
+    43 00000016 0F848A000000                    je final
+    44                                          
+    45 0000001C A3[0D000000]                    mov [descriptor_fis],EAX
+    46                                          
+    47 00000021 B964000000                      mov ECX,max
+    48 00000026 BF[19000000]                    mov EDI, sir
+    49 0000002B FC                              cld
+    50                                    
+    51                                          bucla:
+    52                                  
+    53                                              ; fscanf(descriptor_fis, format, numar)
+    54 0000002C 68[11000000]                        push dword numar
+    55 00000031 68[E1000000]                        push dword format
+    56 00000036 FF35[0D000000]                      push dword [descriptor_fis] 
+    57 0000003C FF15[00000000]                      call [fscanf]                   
+    58 00000042 83C40C                              add ESP, 4*3
+    59                                              
+    60 00000045 83F801                              cmp EAX,1
+    61 00000048 750E                                jne cleanup
+    62                                              
+    63 0000004A A1[11000000]                        mov EAX,[numar]
+    64 0000004F AB                                  stosd 
+    65                                              
+    66 00000050 FF05[15000000]                      inc dword [nr_citite] 
+    67                                  
+    68 00000056 E2D4                            loop bucla
+    69                                  
+    70                                          cleanup:
+    71                                          
+    72                                          ;fclose(descriptor_fis)
+    73 00000058 FF35[0D000000]                  push dword[descriptor_fis]
+    74 0000005E FF15[00000000]                  call [fclose]
+    75 00000064 83C404                          add ESP, 4*1
+    76                                          
+    77                                          
+    78 00000067 68[19000000]                    push dword sir 
+    79 0000006C 68[7D000000]                    push dword sir_final
+    80 00000071 FF35[15000000]                  push dword [nr_citite]
+    81 00000077 E8(00000000)                    call dest
+    82 0000007C 83C40C                          add ESP,4*3
+    83                                          
+    84                                  
+    85 0000007F 8B0D[15000000]                  mov ECX,[nr_citite]
+    86 00000085 E31F                            jecxz final
+    87                                  
+    88                                          
+    89 00000087 BE[7D000000]                    mov ESI,sir_final
+    90 0000008C FC                              cld 
+    91                                  
+    92                                          cont:
+    93 0000008D 51                                  push ECX
+    94                                  
+    95 0000008E B800000000                          mov EAX,0
+    96 00000093 AD                                  lodsd
+    97                                              
+    98 00000094 50                                  push dword EAX 
+    99 00000095 68[E1000000]                        push dword format
+   100 0000009A FF15[00000000]                      call [printf]
+   101 000000A0 83C408                              add ESP,4*2
+   102                                              
+   103 000000A3 59                                  pop ECX 
+   104                                              
+   105 000000A4 E2E7                            loop cont 
+   106                                  
+   107                                          
+   108                                          final:
+   109 000000A6 6A00                            push    dword 0      
+   110 000000A8 FF15[00000000]                  call    [exit]       
+   111                                  
