@@ -1,0 +1,9 @@
+﻿  Colectie.cpp
+C:\Users\Admin\Desktop\Semestrul 2\SDA\Laborator\L7p5\L7p5\Colectie.cpp(90,6): warning C4101: 'nou': unreferenced local variable
+C:\Users\Admin\Desktop\Semestrul 2\SDA\Laborator\L7p5\L7p5\Colectie.cpp(254,16): warning C4018: '<': signed/unsigned mismatch
+  IteratorColectie.cpp
+C:\Users\Admin\Desktop\Semestrul 2\SDA\Laborator\L7p5\L7p5\IteratorColectie.cpp(44,19): warning C4018: '<': signed/unsigned mismatch
+  TestExtins.cpp
+  TestScurt.cpp
+  Generating Code...
+  L7p5.vcxproj -> C:\Users\Admin\Desktop\Semestrul 2\SDA\Laborator\L7p5\Debug\L7p5.exe

@@ -1,0 +1,29 @@
+[2021-04-08 19:58:59] [info] Start Program:
+Path:"C:\\Users\\Admin\\Desktop\\Semestrul 2\\SDA\\L3pb19\\Debug\\L3pb19.exe"
+Arguments:
+Working directory: "C:\\Users\\Admin\\Desktop\\Semestrul 2\\SDA\\L3pb19\\L3pb19\\"
+Modules: Selected: C:\Users\Admin\Desktop\Semestrul 2\SDA\L3pb19\Debug\L3pb19.exe Excluded: 
+Sources: Selected: C:\Users\Admin\Desktop\Semestrul 2\SDA\L3pb19\L3pb19 Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: binary C:\Users\Admin\AppData\Local\Temp\c1s34awf.b1d 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2021-04-08 19:58:59] [info] Module: C:\Users\Admin\Desktop\Semestrul 2\SDA\L3pb19\Debug\L3pb19.exe is selected because it matches selected pattern: C:\Users\Admin\Desktop\Semestrul 2\SDA\L3pb19\Debug\L3pb19.exe
+[2021-04-08 19:58:59] [error] 
+
+----------------------------------------------------
+*** Your application has thrown an unhandled exception. Code: 3221225477: EXCEPTION_ACCESS_VIOLATION
+----------------------------------------------------
+If your application was built with optimization enabled, make sure you use --optimized_build
+
+[2021-04-08 19:58:59] [info] ----------------------------------------------------
+[2021-04-08 19:58:59] [info] Coverage binary generated in file: C:\Users\Admin\AppData\Local\Temp\c1s34awf.b1d
+[2021-04-08 19:58:59] [info] ----------------------------------------------------
+[2021-04-08 19:58:59] [error] Your program stop with error code: -1073741819

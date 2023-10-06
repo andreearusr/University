@@ -1,0 +1,87 @@
+# depslib dependency file v1.0
+1616346602 source:c:\users\admin\desktop\semestrul 2\sda\l1pb6\iteratorcolectie.cpp
+	"IteratorColectie.h"
+	"Colectie.h"
+
+1616262260 c:\users\admin\desktop\semestrul 2\sda\l1pb6\iteratorcolectie.h
+	"Colectie.h"
+
+1616346602 c:\users\admin\desktop\semestrul 2\sda\l1pb6\colectie.h
+
+1616347033 source:c:\users\admin\desktop\semestrul 2\sda\l1pb6\main.cpp
+	<iostream>
+	"TestExtins.h"
+	"TestScurt.h"
+
+1615722933 c:\users\admin\desktop\semestrul 2\sda\l1pb6\testscurt.h
+
+1616262861 source:c:\users\admin\desktop\semestrul 2\sda\l1pb6\testscurt.cpp
+	"TestScurt.h"
+	<assert.h>
+	"Colectie.h"
+	"IteratorColectie.h"
+	<stdio.h>
+
+1616346617 source:c:\users\admin\desktop\semestrul 2\sda\l1pb6\colectie.cpp
+	"Colectie.h"
+	"IteratorColectie.h"
+	<exception>
+	<iostream>
+	<stdio.h>
+
+1615727608 c:\users\admin\desktop\semestrul 2\sda\l1pb6\testextins.h
+
+1616346370 source:c:\users\admin\desktop\semestrul 2\sda\l1pb6\testextins.cpp
+	<assert.h>
+	"Colectie.h"
+	"TestExtins.h"
+	"IteratorColectie.h"
+	<iostream>
+	<vector>
+	<exception>
+	"Colectie.h"
+
+1617027843 source:c:\users\admin\desktop\semestrul 2\sda\laborator\l1pb6\colectie.cpp
+	"Colectie.h"
+	"IteratorColectie.h"
+	<exception>
+	<iostream>
+	<stdio.h>
+	<cstring>
+
+1616926558 c:\users\admin\desktop\semestrul 2\sda\laborator\l1pb6\colectie.h
+
+1616923708 c:\users\admin\desktop\semestrul 2\sda\laborator\l1pb6\iteratorcolectie.h
+	"Colectie.h"
+
+1617027924 source:c:\users\admin\desktop\semestrul 2\sda\laborator\l1pb6\iteratorcolectie.cpp
+	"IteratorColectie.h"
+	"Colectie.h"
+	<iostream>
+
+1616879068 source:c:\users\admin\desktop\semestrul 2\sda\laborator\l1pb6\testscurt.cpp
+	"TestScurt.h"
+	<assert.h>
+	"Colectie.h"
+	"IteratorColectie.h"
+	<stdio.h>
+	<iostream>
+
+1615726533 c:\users\admin\desktop\semestrul 2\sda\laborator\l1pb6\testscurt.h
+
+1616923989 source:c:\users\admin\desktop\semestrul 2\sda\laborator\l1pb6\main.cpp
+	<iostream>
+	"TestExtins.h"
+	"TestScurt.h"
+
+1615731208 c:\users\admin\desktop\semestrul 2\sda\laborator\l1pb6\testextins.h
+
+1616925670 source:c:\users\admin\desktop\semestrul 2\sda\laborator\l1pb6\testextins.cpp
+	<assert.h>
+	"Colectie.h"
+	"TestExtins.h"
+	"IteratorColectie.h"
+	<iostream>
+	<vector>
+	<exception>
+

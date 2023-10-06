@@ -1,0 +1,9 @@
+﻿  IteratorMD.cpp
+  MD.cpp
+  TestExtins.cpp
+C:\Users\Admin\Desktop\Semestrul 2\SDA\L3pb19\L3pb19\TestExtins.cpp(232,3): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+C:\Users\Admin\Desktop\Semestrul 2\SDA\L3pb19\L3pb19\TestExtins.cpp(241,3): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+C:\Users\Admin\Desktop\Semestrul 2\SDA\L3pb19\L3pb19\TestExtins.cpp(242,3): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+  TestScurt.cpp
+  Generating Code...
+  L3pb19.vcxproj -> C:\Users\Admin\Desktop\Semestrul 2\SDA\L3pb19\Debug\L3pb19.exe

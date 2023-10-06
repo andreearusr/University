@@ -1,0 +1,7 @@
+﻿  Iterator.cpp
+  LO.cpp
+  TestExtins.cpp
+  TestScurt.cpp
+  Generating Code...
+C:\Users\Admin\Desktop\Semestrul 2\SDA\Laborator\L4pb24\L4pb24\LO.cpp(107): warning C4715: 'LO::sterge': not all control paths return a value
+  L4pb24.vcxproj -> C:\Users\Admin\Desktop\Semestrul 2\SDA\Laborator\L4pb24\Debug\L4pb24.exe
