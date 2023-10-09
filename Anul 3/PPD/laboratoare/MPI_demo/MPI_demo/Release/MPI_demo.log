@@ -1,0 +1,9 @@
+﻿  MPI_demo.cpp
+C:\Users\Admin\Desktop\An 3\Semestrul 1\PPD\MPI_demo\MPI_demo\MPI_demo.cpp(103,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Admin\Desktop\An 3\Semestrul 1\PPD\MPI_demo\MPI_demo\MPI_demo.cpp(99,13): warning C4101: 'status': unreferenced local variable
+  Generating code
+  1 of 12 functions ( 8.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  MPI_demo.vcxproj -> C:\Users\Admin\Desktop\An 3\Semestrul 1\PPD\MPI_demo\Release\MPI_demo.exe
