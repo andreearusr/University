@@ -1,0 +1,13 @@
+Parasinus
+33
+Bayer
+paracetamol
+Nurofen
+33
+Pfizer
+ibusinus
+Tantum
+33
+Moderna
+vitaminC
+
