@@ -1,0 +1,2 @@
+Denumire:VitaminaC,Pret:22,Producator:Bayer,Substanta:acid ascorbic,
+Denumire:Aspirina,Pret:15,Producator:Carl,Substanta:acid acetilsalicilic,
