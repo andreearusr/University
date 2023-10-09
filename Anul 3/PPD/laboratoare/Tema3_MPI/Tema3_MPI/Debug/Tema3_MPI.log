@@ -1,0 +1,4 @@
+﻿  Tema3_MPI.cpp
+C:\Users\Admin\Desktop\An 3\Semestrul 1\PPD\Tema3_MPI\Tema3_MPI\Tema3_MPI.cpp(13,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Admin\Desktop\An 3\Semestrul 1\PPD\Tema3_MPI\Tema3_MPI\Tema3_MPI.cpp(24,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Tema3_MPI.vcxproj -> C:\Users\Admin\Desktop\An 3\Semestrul 1\PPD\Tema3_MPI\Debug\Tema3_MPI.exe
