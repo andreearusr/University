@@ -1,0 +1,4 @@
+﻿  Tema1CPP.cpp
+C:\Users\Admin\Desktop\PPD\Tema1CPP\Tema1CPP\Tema1CPP.cpp(41,11): warning C4101: 'value': unreferenced local variable
+C:\Users\Admin\Desktop\PPD\Tema1CPP\Tema1CPP\Tema1CPP.cpp(86,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Tema1CPP.vcxproj -> C:\Users\Admin\Desktop\PPD\Tema1CPP\Debug\Tema1CPP.exe
