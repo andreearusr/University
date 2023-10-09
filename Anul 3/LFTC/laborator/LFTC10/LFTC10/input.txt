@@ -1,0 +1,4 @@
+S -> aSB
+S -> SbC
+B -> ca
+C -> d
