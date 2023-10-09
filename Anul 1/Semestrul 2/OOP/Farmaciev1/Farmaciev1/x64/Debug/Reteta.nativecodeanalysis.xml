@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+      <FILENAME>domain.h</FILENAME>
+      <LINE>38</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26432</DEFECTCODE>
+    <DESCRIPTION>If you define or delete any default operation in the type 'class Medicament', define or delete them all (c.21).</DESCRIPTION>
+    <FUNCTION>Medicament::{ctor}</FUNCTION>
+    <DECORATED>??0Medicament@@QEAA@AEBV0@@Z</DECORATED>
+    <FUNCLINE>38</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+      <FILENAME>Reteta.h</FILENAME>
+      <LINE>28</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Reteta::n' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Reteta::{ctor}</FUNCTION>
+    <DECORATED>??0Reteta@@QEAA@AEAVRepository@@@Z</DECORATED>
+    <FUNCLINE>28</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>Reteta::n</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+      <FILENAME>Reteta.cpp</FILENAME>
+      <LINE>19</LINE>
+      <COLUMN>19</COLUMN>
+    </SFA>
+    <DEFECTCODE>26493</DEFECTCODE>
+    <DESCRIPTION>Don't use C-style casts (type.4).</DESCRIPTION>
+    <FUNCTION>Reteta::genereaza</FUNCTION>
+    <DECORATED>?genereaza@Reteta@@QEAAXH@Z</DECORATED>
+    <FUNCLINE>16</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+      <FILENAME>Reteta.cpp</FILENAME>
+      <LINE>43</LINE>
+      <COLUMN>24</COLUMN>
+    </SFA>
+    <DEFECTCODE>26489</DEFECTCODE>
+    <DESCRIPTION>Don't dereference a pointer that may be invalid: '*&lt;begin&gt;$L0'. '&lt;begin&gt;$L0' may have been invalidated at line 47 (lifetime.1).</DESCRIPTION>
+    <FUNCTION>Reteta::sterge</FUNCTION>
+    <DECORATED>?sterge@Reteta@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
+    <FUNCLINE>39</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+        <FILENAME>Reteta.cpp</FILENAME>
+        <LINE>47</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT>
+</DEFECTS>

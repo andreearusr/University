@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+      <FILENAME>domain.h</FILENAME>
+      <LINE>38</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26432</DEFECTCODE>
+    <DESCRIPTION>If you define or delete any default operation in the type 'class Medicament', define or delete them all (c.21).</DESCRIPTION>
+    <FUNCTION>Medicament::{ctor}</FUNCTION>
+    <DECORATED>??0Medicament@@QEAA@AEBV0@@Z</DECORATED>
+    <FUNCLINE>38</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+      <FILENAME>Reteta.h</FILENAME>
+      <LINE>28</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Reteta::n' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Reteta::{ctor}</FUNCTION>
+    <DECORATED>??0Reteta@@QEAA@AEAVRepository@@@Z</DECORATED>
+    <FUNCLINE>28</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>Reteta::n</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+      <FILENAME>service.h</FILENAME>
+      <LINE>23</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26455</DEFECTCODE>
+    <DESCRIPTION>Default constructor may not throw. Declare it 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>DTO::{ctor}</FUNCTION>
+    <DECORATED>??0DTO@@QEAA@XZ</DECORATED>
+    <FUNCLINE>23</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+      <FILENAME>service.h</FILENAME>
+      <LINE>32</LINE>
+      <COLUMN>5</COLUMN>
+    </SFA>
+    <DEFECTCODE>26440</DEFECTCODE>
+    <DESCRIPTION>Function 'DTO::get_count' can be declared 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>DTO::get_count</FUNCTION>
+    <DECORATED>?get_count@DTO@@QEAAHXZ</DECORATED>
+    <FUNCLINE>32</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+      <FILENAME>service.cpp</FILENAME>
+      <LINE>169</LINE>
+      <COLUMN>35</COLUMN>
+    </SFA>
+    <DEFECTCODE>26486</DEFECTCODE>
+    <DESCRIPTION>Don't pass a pointer that may be invalid to a function. Parameter 0 '@rez' in call to 'DTO::creste' may be invalid (lifetime.3).</DESCRIPTION>
+    <FUNCTION>Service::producator</FUNCTION>
+    <DECORATED>?producator@Service@@QEAA?AV?$map@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDTO@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@VDTO@@@std@@@2@@std@@XZ</DECORATED>
+    <FUNCLINE>158</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+        <FILENAME>service.cpp</FILENAME>
+        <LINE>163</LINE>
+        <COLUMN>44</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT>
+</DEFECTS>

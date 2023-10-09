@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+      <FILENAME>domain.h</FILENAME>
+      <LINE>38</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26432</DEFECTCODE>
+    <DESCRIPTION>If you define or delete any default operation in the type 'class Medicament', define or delete them all (c.21).</DESCRIPTION>
+    <FUNCTION>Medicament::{ctor}</FUNCTION>
+    <DECORATED>??0Medicament@@QEAA@AEBV0@@Z</DECORATED>
+    <FUNCLINE>38</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+      <FILENAME>repo.cpp</FILENAME>
+      <LINE>25</LINE>
+      <COLUMN>20</COLUMN>
+    </SFA>
+    <DEFECTCODE>26489</DEFECTCODE>
+    <DESCRIPTION>Don't dereference a pointer that may be invalid: '*&lt;begin&gt;$L0'. '&lt;begin&gt;$L0' may have been invalidated at line 29 (lifetime.1).</DESCRIPTION>
+    <FUNCTION>Repository::delete_medicament</FUNCTION>
+    <DECORATED>?delete_medicament@Repository@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
+    <FUNCLINE>21</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+        <FILENAME>repo.cpp</FILENAME>
+        <LINE>29</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+      <FILENAME>repo.cpp</FILENAME>
+      <LINE>68</LINE>
+      <COLUMN>2</COLUMN>
+    </SFA>
+    <DEFECTCODE>26489</DEFECTCODE>
+    <DESCRIPTION>Don't dereference a pointer that may be invalid: 'allotemp.9'. '(temporary 9)' may have been invalidated at line 68 (lifetime.1).</DESCRIPTION>
+    <FUNCTION>Repository::find</FUNCTION>
+    <DECORATED>?find@Repository@@QEAAAEBVMedicament@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
+    <FUNCLINE>53</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+        <FILENAME>repo.cpp</FILENAME>
+        <LINE>68</LINE>
+        <COLUMN>2</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+      <FILENAME>repo.cpp</FILENAME>
+      <LINE>68</LINE>
+      <COLUMN>2</COLUMN>
+    </SFA>
+    <DEFECTCODE>26487</DEFECTCODE>
+    <DESCRIPTION>Don't return a pointer '(53's result)' that may be invalid (lifetime.4).</DESCRIPTION>
+    <FUNCTION>Repository::find</FUNCTION>
+    <DECORATED>?find@Repository@@QEAAAEBVMedicament@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
+    <FUNCLINE>53</FUNCLINE>
+    <PATH>
+      <SFA>
+        <FILEPATH>C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\</FILEPATH>
+        <FILENAME>repo.cpp</FILENAME>
+        <LINE>68</LINE>
+        <COLUMN>2</COLUMN>
+      </SFA>
+    </PATH>
+  </DEFECT>
+</DEFECTS>

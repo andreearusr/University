@@ -1,0 +1,12 @@
+﻿  main.cpp
+  Farmaciev1.vcxproj -> C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\x64\Debug\Farmaciev1.exe
+C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\domain.h(38): warning C26432: If you define or delete any default operation in the type 'class Medicament', define or delete them all (c.21).
+C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\Reteta.h(28): warning C26495: Variable 'Reteta::n' is uninitialized. Always initialize a member variable (type.6).
+C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\service.h(23): warning C26455: Default constructor may not throw. Declare it 'noexcept' (f.6).
+C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\service.h(32): warning C26440: Function 'DTO::get_count' can be declared 'noexcept' (f.6).
+C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\repo.cpp(25): warning C26489: Don't dereference a pointer that may be invalid: '*<begin>$L0'. '<begin>$L0' may have been invalidated at line 29 (lifetime.1).
+C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\repo.cpp(68): warning C26489: Don't dereference a pointer that may be invalid: 'allotemp.9'. '(temporary 9)' may have been invalidated at line 68 (lifetime.1).
+C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\repo.cpp(68): warning C26487: Don't return a pointer '(53's result)' that may be invalid (lifetime.4).
+C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\Reteta.cpp(19): warning C26493: Don't use C-style casts (type.4).
+C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\Reteta.cpp(43): warning C26489: Don't dereference a pointer that may be invalid: '*<begin>$L0'. '<begin>$L0' may have been invalidated at line 47 (lifetime.1).
+C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\service.cpp(169): warning C26486: Don't pass a pointer that may be invalid to a function. Parameter 0 '@rez' in call to 'DTO::creste' may be invalid (lifetime.3).

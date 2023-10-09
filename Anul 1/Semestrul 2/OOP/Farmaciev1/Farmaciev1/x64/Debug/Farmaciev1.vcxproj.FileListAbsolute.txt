@@ -1,0 +1,2 @@
+C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\x64\Debug\Farmaciev1.exe.lastcodeanalysissucceeded
+C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Farmaciev1\Farmaciev1\x64\Debug\NativeCodeAnalysis.read.1.tlog
