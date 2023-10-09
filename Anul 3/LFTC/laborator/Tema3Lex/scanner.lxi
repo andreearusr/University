@@ -1,0 +1,281 @@
+
+/*** Definition Section ***/
+%{
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+int errorFound = 0;
+int lineNumber = 1;
+
+struct atom {
+	char simbol[10];
+	int cod;
+};
+
+struct fip {
+	int codAtom;
+	int codSimbol;
+};
+
+struct nod {
+	char atom[100];
+	int val;
+	struct nod *next;
+};
+
+struct atom atoms[100];
+struct fip FIP[100];
+struct nod *TSidentif=NULL;
+struct nod *TSconst=NULL;
+int numAtoms = 2;
+int numFip;
+int codTSidentif = 0;
+int codTSconst = 0;
+
+int findAtom(char my_Atom[10]){
+	for(int i=0; i<numAtoms; i++){
+			if(strcmp(atoms[i].simbol, my_Atom) == 0){
+				return atoms[i].cod;
+			}
+	}
+	
+	return -1;
+}
+void addAtom(char my_atom[10]) {
+	int codAtom = findAtom(my_atom);
+	if(codAtom != -1){
+		struct fip fipAux;
+		fipAux.codAtom = codAtom;
+		fipAux.codSimbol = -1;
+		FIP[numFip] = fipAux;
+		numFip++;
+		return;
+	}
+		
+	struct atom atomAux;
+	strcpy(atomAux.simbol, my_atom);
+	atomAux.cod = numAtoms;
+	atoms[numAtoms] = atomAux;
+	
+	struct fip fipAux;
+	fipAux.codAtom = numAtoms;
+	fipAux.codSimbol = -1;
+	FIP[numFip] = fipAux;
+	numAtoms++;
+	numFip++;
+}
+
+//cautarea unui nod in lista inlantuita
+int searchTS(struct nod* head, char at[100])
+{
+	struct nod* current = head;
+	while (current != NULL) {
+		if(strcmp(current->atom, at) == 0)
+			return current->val;
+		current = current->next;
+	}
+	return 0;
+}
+
+//creare nod
+struct nod* newNode(char my_atom[100], int value)
+{
+    struct nod* newNode = (struct nod*)malloc(sizeof(struct nod));
+	strcpy(newNode->atom, my_atom);
+    newNode->val = value;
+    newNode->next = NULL;
+    return newNode;
+}
+
+//inserare sortata a unui nod in lista inlantuita
+void sortedInsert(struct nod** head, struct nod* newNode)
+{
+    // special case for the head end
+    if (*head == NULL || strcmp((*head)->atom, newNode->atom) >= 0)
+    {
+        newNode->next = *head;
+        *head = newNode;
+        return;
+    }
+ 
+    // locate the node before the point of insertion
+    struct nod* current = *head;
+    while (current->next != NULL && strcmp(current->next->atom, newNode->atom) < 0) {
+        current = current->next;
+    }
+ 
+    newNode->next = current->next;
+    current->next = newNode;
+}
+
+//numarul elementelor din lista inlantuita
+int getCount(struct nod* head)
+{
+	int count = 0;
+	struct nod* current = head;
+	while (current != NULL) {
+		count++;
+		current = current->next;
+	}
+	return count;
+}
+		
+
+//adaugare un identificator in TS
+int addTSidentif(char atom[100], struct nod** TSidentif, int count) {
+	struct nod* new_node = newNode(atom, count + 1);
+	sortedInsert(TSidentif, new_node);
+	return new_node->val;
+}
+
+//adaugare o constanta in TS
+int addTSconst(char atom[100], struct nod** TSconst, int count) {
+	struct nod* new_node = newNode(atom, count + 1);
+	sortedInsert(TSconst, new_node);
+	return new_node->val;
+}
+
+void addIdentif(char identifier[100]) {
+	codTSidentif = searchTS(TSidentif, identifier);
+	if (codTSidentif == 0) 
+			codTSidentif = addTSidentif(identifier, &TSidentif, getCount(TSidentif));
+						
+	struct fip fipAux;
+	fipAux.codAtom = 0;
+	fipAux.codSimbol = codTSidentif;
+	FIP[numFip] = fipAux;
+	numFip++;
+}
+
+void addConst(char constant[100]) {
+	codTSconst = searchTS(TSconst, constant);
+	if (codTSconst == 0) 
+			codTSconst = addTSconst(constant, &TSconst, getCount(TSconst));
+						
+	struct fip fipAux;
+	fipAux.codAtom = 1;
+	fipAux.codSimbol = codTSconst;
+	FIP[numFip] = fipAux;
+	numFip++;
+}
+
+void printList(struct nod* head)
+{
+	int count = 0;
+	struct nod* current = head;
+	while (current != NULL) {
+		if (current->next != NULL){
+			printf("%d %s %d", current->val, current->atom, current->next->val);
+			printf("\n");
+		}
+		else{
+			printf("%d %s %d", current->val, current->atom, -1);
+			printf("\n");
+			}
+		current = current->next;
+		count++;
+	}
+}
+		
+void printResults() {
+	printf("Atomii:"); printf("\n");
+	for(int i=0; i<numAtoms; i++){
+		printf("%s %d",atoms[i].simbol,atoms[i].cod);
+		printf("\n");
+	}
+	printf("FIP:"); printf("\n");
+	for(int i=0; i<numFip; i++){
+		printf("%d %d",FIP[i].codAtom, FIP[i].codSimbol);
+		printf("\n");
+	}
+	
+	printf("Identificatori:");
+	printf("\n");
+	printList(TSidentif);
+	
+	printf("Constante:");
+	printf("\n");
+	printList(TSconst);
+}
+
+%}
+
+IDENTIFIER [a-zA-Z][a-zA-Z0-9]{0,7}
+REAL_NUMBER   [+-]?(0|[1-9][0-9]*)(\.[0-9]+)?([eE][+-][0-9]*)?
+STRING 	   \".*\"			
+OCTAL 0[0-7]*  				
+HEXAZECIMAL 0(x|X)[0-9A-Ea-e]+([eE][+-][0-9])?		
+BINAR (0b|0B)(0|1)+			
+
+/*** Rule Section ***/
+%%
+"#include"   	{ addAtom(yytext); }
+"<iostream>" 	{ addAtom(yytext); }
+"using"      	{ addAtom(yytext); }
+"namespace"  	{ addAtom(yytext); }
+"std"        	{ addAtom(yytext); }
+"int"        	{ addAtom(yytext); }
+"main"     		{ addAtom(yytext); }
+"const"     	{ addAtom(yytext); }
+"double"     	{ addAtom(yytext); }
+"cin"        	{ addAtom(yytext); }
+"cout"       	{ addAtom(yytext); }
+"if"         	{ addAtom(yytext); }
+"else"       	{ addAtom(yytext); }
+"while"      	{ addAtom(yytext); }
+"return"     	{ addAtom(yytext); }
+"endl"     		{ addAtom(yytext); }
+"endif" {addAtom(yytext);}	
+"+"          	{ addAtom(yytext); }
+"-"          	{ addAtom(yytext); }
+"*"          	{ addAtom(yytext); }
+"/"          	{ addAtom(yytext); }
+"%"          	{ addAtom(yytext); }
+"="          	{ addAtom(yytext); }
+"=="         	{ addAtom(yytext); }
+">="         	{ addAtom(yytext); }
+"<="         	{ addAtom(yytext); }
+"!="         	{ addAtom(yytext); }
+">"          	{ addAtom(yytext); }
+"<"        	 	{ addAtom(yytext); }
+"]"        	 	{ addAtom(yytext); }
+"["         	{ addAtom(yytext); }
+">>"        	{ addAtom(yytext); }
+"<<"         	{ addAtom(yytext); }
+"("          	{ addAtom(yytext); }
+")"          	{ addAtom(yytext); }
+"{"          	{ addAtom(yytext); }
+"}"          	{ addAtom(yytext); }
+";"          	{ addAtom(yytext); }
+","          	{ addAtom(yytext); }
+":"          	{ addAtom(yytext); }
+{IDENTIFIER}	{ addIdentif(yytext); }
+{REAL_NUMBER}	{ addConst(yytext); }
+{OCTAL}			{ addConst(yytext); }
+{HEXAZECIMAL}	{ addConst(yytext); }
+{BINAR}			{ addConst(yytext); }
+{STRING}		{ addConst(yytext); }
+[\r\n]		 	{  lineNumber++;}
+[ \t\n]+        { ; /* eat up whitespace */ }
+. 			 	{ errorFound = 1; printf("Illegal token %s at line %d", yytext, lineNumber); printf("\n");  printResults(); exit(0); }
+%%
+
+int yywrap() {}
+
+int main(int argc, char** argv) {
+
+	FILE *fp;
+	fp = fopen(argv[1], "r");
+	yyin = fp;
+	
+	strcpy(atoms[0].simbol, "ID");
+	atoms[0].cod = 0;
+	strcpy(atoms[1].simbol, "CONST");
+	atoms[1].cod = 1;
+
+	yylex();
+	printResults();
+	
+	return 0;
+}

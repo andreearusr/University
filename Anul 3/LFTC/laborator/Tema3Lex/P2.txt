@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int nr1, nr2 ;
+
+	123e-15
+	0x10AB
+	0b101
+	cout << "Program de calculare a cmmdc-ului a doua numere naturale" << endl;
+	cout << "Dati primul numar:";
+	cin >> nr1;
+	cout << "Dati al doilea numar:";
+	cin >> nr2;
+
+	while (nr1 != nr2) {
+		if (nr1 > nr2) {
+			nr1 = nr1 - nr2;
+		}
+		else {
+			nr2 = nr2 - nr1;
+		}
+		endif
+	}
+	@
+	cout << "CMMDC-ul celor doua numere este:" << nr2;
+	return 0;
+}

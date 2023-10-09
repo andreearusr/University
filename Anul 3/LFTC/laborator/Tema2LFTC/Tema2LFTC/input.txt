@@ -1,0 +1,5 @@
+Q: A B C D
+A: 0 1 2 a b c
+T: A 0 B;A 0 C;B 1 D
+I: A
+F: C D
