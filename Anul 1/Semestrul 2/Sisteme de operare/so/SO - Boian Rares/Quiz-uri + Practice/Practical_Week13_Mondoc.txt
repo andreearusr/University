@@ -1,0 +1,9 @@
+1) Sa se scrie un program care primeste o lista de parametrii din linia de comanda (minim 3). Parametrii pot contine litere, cifre sau simboluri.
+Programul are un tablou global "nr_aparitii", in care se vor calcula nr de aparitii ale fiecarei litere din alfabetul englez.
+Programul va crea cate un thread pentru fiecare parametru. Thread-ul parcurge parametrul respectiv si incrementeaza valoarea corespunzatoare din "nr_aparitii" pentru literele intalnite.
+Programul va afisa caracterul cu numarul maxim de aparitii (in toti parametrii liniei de comanda).
+Folositi mecanismele de sincronizare necesare pentru a asigura calcularea corecta a frecventelor.
+Validati numarul de parametrii ai liniei de comanda.
+
+2) in procesul tata, argument int, prin pipe la fiu argument, fiu crea thread care crea threa care crea..10 theaduri
+Fiecare thread afisa cine 

@@ -1,0 +1,474 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0045)http://www.cs.ubbcluj.ro/~alexandra/lab2.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" nighteyeurl="cs.ubbcluj.ro" nighteye="disabled" class="gr__cs_ubbcluj_ro"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  <title>Laborator 2</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <style>
+  
+  
+  h1 {
+    background-color: #000;
+    color: #FFD;
+    padding: 5px;
+    margin: 0px;
+  }
+  
+  code, pre {
+    background-color: #E6E6E0;
+  }
+  
+  </style>
+</head>
+<body data-gr-c-s-loaded="true">
+<div id="header">
+    <h1 class="title">Lab 2</h1>
+</div>
+
+<h2 id="steps">Basics of C Programming</h2>
+<ul>
+    <li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab2.html#dev-style"> Development style</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab2.html#c-lang"> C Language </a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab2.html#compilation"> Command line compiling</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab2.html#exec"> Command line program execution</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab2.html#debugging"> Debugging</a>
+    </li><li> Detecting memory problems: valgrind
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab2.html#examples">Examples &amp; Problems</a>
+        <ul>
+            <li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab2.html#simple-arr">Simple program. Static Arrays</a>
+            </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab2.html#dyn-arr">Memory allocations. Dynamic Arrays</a>
+            </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab2.html#cmd-line">Parsing arguments from the command line</a>
+            </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab2.html#files">Working with files</a>
+        </li></ul>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab2.html#ref">References</a>
+</li></ul>
+
+<h3 id="dev-style"> Development style</h3>
+<ul>
+    <li> The code must be formatted. Please use consistent formatting: use tabs or spaces, but <strong>not</strong> a combination of them.
+    </li><li> The code should have comments that describe what each block of text does.
+    </li><li> Text editors: the exam server has <em>vim</em> and <em>nano</em> installed. You can use any editor you like as long as you are comfortable using one of the editors installed on the exam server.
+</li></ul>
+
+<h3 id="c-lang"> C Language </h3>
+<ul>
+    <li> Strings end with 0. To be able to work with arrays, you need to store their length somehow.
+    </li><li> C pointers (memory addresses)
+        <ul>
+            <li> <code>&amp;n</code> = the address of variable <code>n</code>
+            </li><li> <code>*p</code> = the content of pointer <code>p</code>
+        </li></ul>
+    </li><li> Command line arguments:
+        <div>&nbsp;&nbsp;&nbsp; To access command line arguments the <code>main</code> function needs to be declared like this: <code>int main(int argc, char** argv)</code></div>
+        <ul>
+            <li> <code>argc</code> = number of command line arguments; the length of the argv array
+            </li><li> <code>argv[0]</code> = name of the current command
+            </li><li> <code>argv[1]</code> = the first argument; <code>argv[2]</code> = the second argument a.s.o.
+                <div><strong>!Note:</strong> All arguments are strings! If you want to use them as numbers, you need to convert them first using a dedicated function.</div>
+        </li></ul>
+    </li><li> Memory
+        <ul>
+            <li> Allocation: <code>malloc</code>
+            </li><li> Deallocation: <code>free</code>
+        </li></ul>
+        
+</li></ul>
+
+<h3 id="compilation">Command line compiling</h3>
+<div>
+To compile your C programs use the following command line:<br>
+  <code>gcc –Wall –g hello.c –o hello </code><br><br>
+What it means:
+<ul>
+    <li> <code>gcc</code> the compiler
+    </li><li> <code>-Wall</code> displays all warnings
+    </li><li> <code>-g</code> includes debug information in the binary - needed for debugging
+    </li><li> <code>hello.c</code> the name of your source file
+    </li><li> <code>-o hello</code> indicates the name of the resulting binary file
+</li></ul>
+
+If the compilation was performed successfully, no message is displayed and the <em>hello</em> ELF binary is generated.<br>
+If there are <strong>only warnings</strong>, the ELF file is generated, but you should still check the warnings out and solve them!<br>
+If there are <strong>any errors</strong>, the ELF file is <strong>not</strong> generated and you must solve all the errors to be able to generate an ELF file.<br>
+ Hint: start with the first error, fix it and re-compile until no more errors occur. Some of the errors may have been caused by the first one and by solving that you may also get rid of others. <br>
+If there are errors related to <strong>LANG</strong> or if the error messages are not readable, run the following command: <code>export LANG=C</code> then re-compile.
+<br><br>
+<strong><font color="red">Important!</font></strong> Every time you edit the source code you need to recompile!
+</div>
+
+<h3 id="exec">Command line program execution</h3>
+<div>
+To execute a program from the command line:
+
+<ul>
+<li> If the program is in the current directory: <code>./hello</code>
+</li><li> If the program is in another directory, you need to specify the path: 
+    <ul>
+        <li> Absolute (full) path: <code>/home/scs/an1/gr211/abir1234/subdir/hello</code>
+        </li><li> Relative path (path relative to the current directory): <code>./subdir/hello</code>
+    </li></ul>
+</li></ul>
+</div>
+
+<h3 id="debugging">Debugging</h3>
+<div>
+Two ways to "debug" programs:
+<ol>
+    <li> Add printf calls to identify where in the code it starts to go wrong.
+    </li><li> Use a debugger: <strong>gdb</strong>
+</li></ol>
+The debugger is used if the program resulted in <em>Segmentation fault</em> (or floating point fault, etc. - any error that ends with <code>(core dumped)</code>.<br>
+To be able to use the debugger the <code>-g</code> has to be used when compiling the program (<code>gcc ... -g ...</code>)<br>
+When running gdb, instead of <em>core dumped</em>, gdb will display the exact location of the error.<br><br>
+<strong>Usage example:</strong> <code>gdb ./progr1</code>
+</div>
+<div>
+<h4>gdb commands</h4>
+<ul>
+<li><code>r</code> - run (starts/resumes the execution)</li>
+<li><code>bt</code> - displays the call stack</li>
+<li><code>frame N</code> - displays / selects the Nth frame in the call stack</li>
+<li><code>print var</code> - displays the value of the var variable in that frame</li>
+<li><code>q</code> - quit (exit)</li>
+</ul>
+</div>
+
+<h3 id="examples">Examples &amp; Problems</h3>
+<ol>
+<li id="simple-arr"><h4>Simple program. Static Arrays</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Example:
+ <div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+
+<span class="co">// define a constant called MAX_LEN with the value 100</span>
+<span class="pp">#define </span><span class="cn">MAX_LEN </span><span class="dv">100</span>
+
+<span class="dt">int</span> main()
+{
+    <span class="co">// declare variables</span>
+    <span class="dt">int</span> <span class="va">i</span>;
+    <span class="dt">int</span> <span class="va">n</span>;
+    <span class="dt">int</span> <span class="va">arr</span>[<span class="cn">MAX_LEN</span>];
+    
+    <span class="co">// read number of elements</span>
+    <span class="fu">printf</span>(<span class="st">"n="</span>);
+    <span class="fu">scanf</span>(<span class="st">"%d"</span>, &amp;<span class="va">n</span>);
+    
+    <span class="co">// our array can only hold MAX_LEN elements; n can't be larger than that</span>
+    <span class="cf">if</span> (<span class="va">n</span> <span class="op">&gt;</span> <span class="cn">MAX_LEN</span>)
+    {
+        <span class="fu">printf</span>(<span class="st">"The length of the array can be max %d elements!\n"</span>, <span class="cn">MAX_LEN</span>);
+        <span class="cf">return</span> <span class="dv">0</span>;
+    }
+    
+    <span class="co">// read the elements of the array</span>
+    <span class="cf">for </span>(<span class="va">i </span><span class="op">= </span><span class="dv">0</span>; <span class="va">i </span><span class="op">&lt; </span><span class="va">n</span>; <span class="va">i</span><span class="op">++</span>)
+    {
+        <span class="fu">printf</span>(<span class="st">"arr[%d] = "</span>,<span class="va"> i</span>);
+        <span class="fu">scanf</span>(<span class="st">"%d"</span>, &amp;<span class="va">arr</span>[<span class="va">i</span>]);
+    }
+    
+    <span class="co">// display the elements of the array</span>
+    <span class="fu">printf</span>(<span class="st">"The elements of the array are: \n"</span>);
+    <span class="cf">for </span>(<span class="va">i </span><span class="op">= </span><span class="dv">0</span>; <span class="va">i </span><span class="op">&lt; </span><span class="va">n</span>; <span class="va">i</span><span class="op">++</span>)
+    {
+        <span class="fu">printf</span>(<span class="st">"%d "</span>,<span class="va"> arr</span>[<span class="va">i</span>]);
+    }
+    <span class="fu">printf</span>(<span class="st">"\n"</span>);
+    
+    <span class="cf">return</span> <span class="dv">0</span>;
+}
+</code></pre></div>
+    </li><li>Problems:
+        <ol>
+            <li>Determine and display the min and the max value in the array.
+            </li><li>Compute the average of the array.
+        </li></ol>
+    </li><li>Practice solving compilation issues.
+        <ol>
+            <li>Remove the include line. Recompile and check the error message. Find the missing header using man.<br>
+            Hint:  If you don't find the manual page you're looking for the first time, check out the SEE ALSO section in the manual and try the command: man 3 printf
+        </li></ol>
+    </li></ol>
+</li>
+<li id="dyn-arr"><h4>Memory allocations. Dynamic Arrays</h4>
+<ol style="list-style-type: lower-alpha;">
+    <li> Example:
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">
+<span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span>
+
+<span class="dt">int</span> main()
+{
+    <span class="co">// declare variables</span>
+    <span class="dt">int</span> <span class="va">i</span>;
+    <span class="dt">int</span> <span class="va">n</span>;
+    <span class="dt">int</span> *<span class="va">arr</span>;
+    
+    <span class="co">// read number of elements</span>
+    <span class="fu">printf</span>(<span class="st">"n="</span>);
+    <span class="fu">scanf</span>(<span class="st">"%d"</span>, &amp;<span class="va">n</span>);
+    
+    <span class="co">// allocate memory for array: n elements of type int</span>
+    <span class="va">arr</span> = (<span class="dt">int</span>*)<span class="fu">malloc</span>(<span class="va">n</span><span class="op"> * </span><span class="fu">sizeof</span>(<span class="dt">int</span>));
+    
+    <span class="co">// check if allocation was successful</span>
+    <span class="co">// always perform this step, otherwise you might dereference a NULL pointer -&gt; segmentation fault</span>
+    <span class="cf">if</span> (<span class="cn">NULL</span><span class="op"> == </span><span class="va">arr</span>)
+    {
+        <span class="fu">printf</span>(<span class="st">"malloc failed!\n"</span>);
+        <span class="cf">return</span> <span class="dv">0</span>;
+    }
+    
+    <span class="co">// read the elements of the array</span>
+    <span class="cf">for </span>(<span class="va">i </span><span class="op">= </span><span class="dv">0</span>; <span class="va">i </span><span class="op">&lt; </span><span class="va">n</span>; <span class="va">i</span><span class="op">++</span>)
+    {
+        <span class="fu">printf</span>(<span class="st">"arr[%d] = "</span>,<span class="va"> i</span>);
+        <span class="fu">scanf</span>(<span class="st">"%d"</span>, &amp;<span class="va">arr</span>[<span class="va">i</span>]);
+    }
+    
+    <span class="co">// display the elements of the array</span>
+    <span class="fu">printf</span>(<span class="st">"The elements of the array are: \n"</span>);
+    <span class="cf">for </span>(<span class="va">i </span><span class="op">= </span><span class="dv">0</span>; <span class="va">i </span><span class="op">&lt; </span><span class="va">n</span>; <span class="va">i</span><span class="op">++</span>)
+    {
+        <span class="fu">printf</span>(<span class="st">"%d "</span>,<span class="va"> arr</span>[<span class="va">i</span>]);
+    }
+    <span class="fu">printf</span>(<span class="st">"\n"</span>);
+    
+    <span class="co">// deallocate memory</span>
+    <span class="fu">free</span>(<span class="va">arr</span>);
+    
+    <span class="cf">return</span> <span class="dv">0</span>;
+}
+</code></pre></div>
+Run the example with valgrind. The output should look like this:
+<code>
+# valgrind ./s
+==7478== Memcheck, a memory error detector
+==7478== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==7478== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==7478== Command: ./s
+==7478== 
+n = 3
+arr[0] = 1
+arr[1] = 2
+arr[2] = 3
+The elements are:
+1 2 3 
+==7478== 
+==7478== HEAP SUMMARY:
+==7478==     in use at exit: 0 bytes in 0 blocks
+==7478==   total heap usage: 1 allocs, 1 frees, 12 bytes allocated
+==7478== 
+==7478== All heap blocks were freed -- no leaks are possible
+==7478== 
+==7478== For counts of detected and suppressed errors, rerun with: -v
+==7478== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 11 from 6)
+</code>
+
+    </li><li> Problems:
+        <ol>
+            <li>Comment out the <strong>free call</strong>. Execute the program with valgrind and notice the changes in the report.
+            </li><li>Read a number N from the keyboard, then N strings of max 20 letters each. Display the strings in alphabetical order.
+            </li><li>Extend the example to allocate a matrix, read its elements and display them. Execute the program with valgrind to ensure there are no memory problems.<br>
+             Hint: Construct the matrix as an array of arrays. 
+        </li></ol>
+
+</li></ol>
+
+</li>
+<li id="cmd-line"><h4>Parsing arguments from the command line</h4>
+<ol style="list-style-type: lower-alpha;">
+<li>Example:
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="dt">int</span> main(<span class="dt">int</span> <span class="va">argc</span>, <span class="dt">char</span> **<span class="va">argv</span>)
+{
+    <span class="co">// declare variables</span>
+    <span class="dt">int</span> <span class="va">i</span>;
+    
+    <span class="co">// display the current command</span>
+    <span class="fu">printf(</span><span class="st">"The current command is: %s\n"</span>, <span class="va">argv</span>[<span class="dv">0</span>]<span class="fu">)</span>;
+    
+    <span class="co">// if the program doesn't have any arguments, display a message and exit</span>
+    <span class="cf">if</span> (<span class="va">argc</span> <span class="op">==</span> <span class="dv">1</span>)
+    {
+        <span class="fu">printf(</span><span class="st">"The program has no command line arguments\n"</span><span class="fu">)</span>;
+        <span class="cf">return</span> <span class="dv">0</span>;
+    }
+    
+    <span class="co">// here - the argument count is greater than 1</span>
+    <span class="co">// display the arguments</span>
+    <span class="fu">printf(</span><span class="st">"The command line arguments are: \n"</span><span class="fu">)</span>;
+    
+    <span class="co">// we iterate from 1 because argv[0] is the command name</span>
+    <span class="cf">for</span>( <span class="va">i </span><span class="op">= </span><span class="dv">1</span>; <span class="va">i </span><span class="op">&lt;</span><span class="va"> argc </span>; <span class="va">i</span><span class="op">++</span>)
+    {
+        <span class="fu">printf(</span><span class="st">"arg. %d is: %s\n"</span>,<span class="va"> i</span>, <span class="va">argv</span>[<span class="va">i</span>]<span class="fu">)</span>;
+    }
+    
+    <span class="cf">return</span> <span class="dv">0</span>;
+}
+</code></pre></div>
+</li><li>Problem: Write a program that receives multiple numbers in the command line. Compute and display the sum of the numbers received as arguments.<br>
+    Hint: Use <em>atoi</em> to convert from string to number.<br>
+    Example: <code>./probr 1 2 3 4 5</code><br>
+     Will display: <code>Sum is: 15</code>
+    
+</li></ol>
+
+</li><li id="files"><h4>Working with files</h4>
+<ol style="list-style-type: lower-alpha;">
+    <li>Example:
+    Read a matrix from an input file given as command line parameter and display it.<br>
+    The input file has the number of rows and columns on the first line, and the elements of the matrix on the next lines.<br>
+    Step-by-step algorithm:<br>
+<ol>
+<li> Check the command line has at least one argument (the input file)
+</li><li> Open file for reading
+</li><li> Read number of rows and columns
+</li><li> Allocate matrix
+</li><li> Read the elements of the matrix from the file
+</li><li> Display the matrix
+</li><li> Deallocate the matrix
+</li><li> Close the file
+</li></ol>    
+    
+    Sample input file: 
+<code>
+7 3     
+1 2 3   
+4 5 6   
+7 8 9   
+10 11 12
+13 14 15
+16 17 18
+19 20 21
+
+</code>
+
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="dt">int</span> main(<span class="dt">int</span> <span class="va">argc</span>, <span class="dt">char</span> **<span class="va">argv</span>)
+{
+    <span class="co">// declare variables</span>
+    <span class="dt">int</span> <span class="va">rows</span>, <span class="va">cols</span>, <span class="va">i</span>, <span class="va">j</span>;
+    <span class="dt">int</span>** <span class="va">m</span>;
+    <span class="dt">FILE</span>* <span class="va">f</span>
+
+    <span class="co">// check the number of command line arguments</span>
+    <span class="cf">if</span> (<span class="va">argc</span> <span class="op">==</span> <span class="dv">1</span>)
+    {
+        <span class="fu">printf</span>(<span class="st">"Usage: %s &lt;input_file_name&gt;\n"</span>, <span class="va">argv</span>[<span class="dv">0</span>]);
+        <span class="cf">return</span> <span class="dv">0</span>;
+    }
+    
+    <span class="co">// open input file for reading</span>
+    <span class="va">f</span> = <span class="fu">fopen</span>(<span class="va">argv</span>[<span class="dv">1</span>], <span class="st">"r"</span>);
+    <span class="co">// check if open was performed successfully</span>
+    <span class="cf">if</span> (<span class="cn">NULL</span> <span class="op">==</span> <span class="va">f</span>)
+    {
+        <span class="fu">printf</span>(<span class="st">"Usage: %s &lt;input_file_name&gt;\n"</span>, <span class="va">argv</span>[<span class="dv">0</span>]);
+        <span class="cf">return</span> <span class="dv">0</span>;
+    }
+    
+    <span class="co">// read number of rows and columns from the first line of the file</span>
+    <span class="fu">fscanf</span>(<span class="va">f</span>, <span class="st">"%d %d"</span>, &amp;<span class="va">rows</span>, &amp;<span class="va">cols</span>);
+    
+    <span class="co">// allocate the matrix: </span>
+    <span class="co">// first allocate an array of int* (arrays of int) </span>
+    <span class="va">m </span><span class="op">= </span>(<span class="dt">int</span>**)<span class="fu">malloc</span>(<span class="va">rows </span><span class="op">*</span><span class="fu"> sizeof</span>(<span class="dt">int</span>*));
+    
+    <span class="co">// then for each element of the main array, allocate an array of int</span>
+    <span class="cf">for </span>(<span class="va">i </span><span class="op">= </span><span class="dv">0</span>; <span class="va">i </span><span class="op">&lt; </span><span class="va">rows</span>; <span class="va">i</span><span class="op">++</span>)
+    {
+        <span class="va">m</span>[<span class="va">i</span>]<span class="op">= </span>(<span class="dt">int</span>*)<span class="fu">malloc</span>(<span class="va">cols </span><span class="op">*</span><span class="fu"> sizeof</span>(<span class="dt">int</span>));
+    }
+    
+    <span class="co">// read the elements of the matrix from the file</span>
+    <span class="cf">for </span>(<span class="va">i </span><span class="op">= </span><span class="dv">0</span>; <span class="va">i </span><span class="op">&lt; </span><span class="va">rows</span>; <span class="va">i</span><span class="op">++</span>)
+    {
+        <span class="cf">for </span>(<span class="va">j </span><span class="op">= </span><span class="dv">0</span>; <span class="va">j </span><span class="op">&lt; </span><span class="va">cols</span>; <span class="va">j</span><span class="op">++</span>)
+        {
+            <span class="fu">fscanf</span>(<span class="va">f</span>, <span class="st">"%d"</span>, &amp;<span class="va">m</span>[<span class="va">i</span>][<span class="va">j</span>]);
+        }
+    }
+    
+    <span class="co">// display the matrix</span>
+    <span class="fu">printf</span>(<span class="st">"The matrix is: \n"</span>);
+    <span class="cf">for </span>(<span class="va">i </span><span class="op">= </span><span class="dv">0</span>; <span class="va">i </span><span class="op">&lt; </span><span class="va">rows</span>; <span class="va">i</span><span class="op">++</span>)
+    {
+        <span class="cf">for </span>(<span class="va">j </span><span class="op">= </span><span class="dv">0</span>; <span class="va">j </span><span class="op">&lt; </span><span class="va">cols</span>; <span class="va">j</span><span class="op">++</span>)
+        {
+            <span class="fu">printf</span>(<span class="st">"%3d"</span>, <span class="va">m</span>[<span class="va">i</span>][<span class="va">j</span>]);
+        }
+    }
+    
+    <span class="co">// deallocate the matrix - this is the reverse of the allocation</span>
+    <span class="co">// first deallocate the secondary arrays</span>
+    <span class="cf">for </span>(<span class="va">i </span><span class="op">= </span><span class="dv">0</span>; <span class="va">i </span><span class="op">&lt; </span><span class="va">rows</span>; <span class="va">i</span><span class="op">++</span>)
+    {
+        <span class="fu">free</span>(<span class="va">m</span>[<span class="va">i</span>]);
+    }
+    
+    <span class="co">// then deallocate the main array</span>
+    <span class="fu">free</span>(<span class="va">m</span>);
+    
+    <span class="co">// close the file</span>
+    <span class="fu">fclose</span>(<span class="va">f</span>);
+    
+    <span class="cf">return</span> <span class="dv">0</span>;
+}
+</code></pre></div>
+    </li><li>Problems:
+        <ol>
+            <li> Extend the example and display the sum of the odd numbers from each column.
+            </li><li> Create a 3-dimensional matrix and fill it with consecutive numbers. Execute the program with valgrind to ensure there are no memory problems.
+        </li></ol>
+</li></ol>
+</li></ol>
+
+<h2 id="ref">References</h2>
+<ul>
+<li><a href="http://www.cs.ubbcluj.ro/~dan/sf/">How to handle <em>Segmentation fault</em></a></li>
+</ul>
+
+
+</body></html>

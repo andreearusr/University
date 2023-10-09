@@ -1,0 +1,298 @@
+char params[25][25];
+		char *token = NULL;
+		char comma[2] = ",";
+		char space[2] = " ";
+
+		int i = 0;
+		while ((opt[i] != ' ') && (i<strlen(opt)))
+		{
+			params[0][i] = opt[i];
+			params[0][i + 1] = '\0';
+			i++;
+		}
+		length++;
+
+		token = strtok(opt, comma);
+		while (token != NULL) {
+			strcpy(&params[length++],token);
+			token = strtok(NULL, comma);
+		}
+
+
+		for (int i = 0; i < length; i++)
+			printf("%s\n", params[i]);
+
+3) Write a C program that receives multiple text files in the command line. Remove all digits from the file (you can use a shell script for this part).
+ Create a separate child process for each file.
+
+//removeDig.sh
+
+#!/bin/bash
+if [ -f $1 ]; then
+        newFile=`sed 's/[0-9]*//g' $1`
+        echo $newFile > $1
+        echo Digits removed from $1
+fi
+
+
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <stdlib.h>
+
+int main(int argc, char** argv)
+{
+        for (int i=1;i<argc;i++)
+        {
+                if (fork()==0)
+                {
+                        if ( execlp("./removeDig.sh", "./removeDig.sh", argv[i], NULL)==-1)
+                                printf("Eroare ma fraere\n");
+                        printf("Removed from argc %d, arvc %s, with the child %d and parent %d\n", i, argv[i], getpid(), getppid());
+                        exit(0);
+                }
+                wait(0);
+        }
+        return 0;
+}
+
+2) Read a command from the keyboard and execute it within a child process (fork) with exec.
+
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+
+int main(int argc, char** argv)
+{
+        char a[200] ="";
+        printf("Give command: ");
+        scanf("%s", a);
+        if (fork() == 0)
+        {
+                printf("Executing from child process\n");
+                execlp(a,a,NULL);
+                exit(0);
+        }
+        wait(0);
+        printf("Message from parent\n");
+
+        return 0;
+}
+
+1) Write a C program to execute the shell command "ls -l".
+
+#include <stdio.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+        char* a[]={"ls","-l",NULL};
+        execvp("ls", a);
+        //execlp("ls","ls","-l",NULL);
+        return 0;
+}
+
+Lab7)
+
+Write the following program:
+create a child process
+the parent reads numbers from the keyboard (until 0) and sends them to the child
+the child receives numbers from the parent and prints those that are prime
+when the child receives 0 from the parent, it will terminate
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+
+int prime(int x)
+{
+        if (x<2)
+                return 0;
+        if (x==2)
+                return 1;
+        if (x%2==0)
+                return 0;
+        for (int i=3;i*i<=x;i=i+2)
+                if (x%i==0)
+                        return 0;
+        return 1;
+}
+
+int main(int argc, char** argv)
+{
+        int conducta[2];
+        int x=1;
+
+        pipe(conducta);
+
+        while (x!=0){
+
+        if (fork()==0){
+                close(conducta[1]);
+                read(conducta[0], &x, sizeof(int));
+                if (prime(x))
+                        printf("Este prim: %d\n", x);
+                else
+                        printf("Nu este prim: %d\n", x);
+                close(conducta[0]);
+                exit(0);
+        }
+
+        printf("x=");
+        scanf("%d", &x);
+        write(conducta[1],&x,sizeof(int));
+        wait(0);
+        close(conducta[0]);
+        close(conducta[1]);
+        }
+        printf("Program finished\n");
+        return 0;
+}
+
+lab9) first program read 2 numbers, the second calculates sum (using fifo)
+
+First Program: ./a
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
+int main()
+{
+        int a=0;
+        int b=0;
+        int f=0;
+
+        printf("a=");
+        scanf("%d",&a);
+        printf("b=");
+        scanf("%d",&b);
+
+        char* fifoName="/tmp/fifomeu";
+        mkfifo(fifoName, 0666);
+        f=open(fifoName,O_WRONLY);
+
+        write(f, &a,sizeof(int));
+        write(f, &b,sizeof(int));
+
+        close(f);
+        unlink(fifoName);
+        return 0;
+}
+
+Second Program: ./b
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+
+#define FIFO_NAME "/tmp/fifomeu"
+
+int main()
+{
+        int a=0;
+        int b=0;
+        int f=0;
+
+        mkfifo(FIFO_NAME, 0666);
+
+        f=open(FIFO_NAME,O_RDONLY);
+
+        read(f, &a, sizeof(int));
+        read(f, &b, sizeof(int));
+
+        int sum=a+b;
+        printf("Sum=%d\n",sum);
+        close(f);
+        return 0;
+}
+
+2) Write 2 programs that communicate using fifo. One of the processes receives multiple words as command line arguments. First, it sends the number of arguments to the second process, then each argument from the command line. The second process computes the total number of vowels in those words.
+
+program: ./b
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <string.h>
+
+int calcVow(char* s)
+{
+        int nr=0;
+        char* c="aeiou";
+        for (int i=0;i<5;i++)
+                for (int j=0;j<strlen(s);j++)
+                        if (c[i] == s[j])
+                                nr++;
+        return nr;
+}
+
+int main(int argc, char** argv)
+{
+        char* fifoName = "/tmp/fifo";
+        mkfifo(fifoName, 0666);
+        int f = open(fifoName, O_RDONLY);
+
+        int n=0, vowel = 0;
+        char* word;
+        word = (char*)malloc(20*sizeof(char));
+
+        read(f, &n, sizeof(int));
+
+        for (int i=1; i<n; i++)
+        {
+                int len=0;
+                read(f, &len, sizeof(int));
+                read(f, word, len*sizeof(char));
+                vowel = vowel + calcVow(word);
+        }
+        printf("Total number of vowels = %d\n", vowel);
+
+        close(f);
+        unlink(fifoName);
+        return 0;
+}
+
+Program ./a
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <string.h>
+
+int main(int argc, char** argv)
+{
+        char* fifoName = "/tmp/fifo";
+        mkfifo(fifoName, 0666);
+        int f = open(fifoName, O_WRONLY);
+
+        write(f, &argc, sizeof(int));
+
+        for (int i=1; i<argc; i++)
+        {
+                int len = strlen(argv[i]) + 1;
+                write(f, &len, sizeof(int));
+                write(f, argv[i], len * sizeof(char));
+        }
+        close(f);
+        unlink(fifoName);
+        return 0;
+}
+
+
+

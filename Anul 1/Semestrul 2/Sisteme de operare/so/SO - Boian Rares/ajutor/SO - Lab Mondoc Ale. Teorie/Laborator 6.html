@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0045)http://www.cs.ubbcluj.ro/~alexandra/lab6.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" nighteyeurl="cs.ubbcluj.ro" nighteye="active" class="gr__cs_ubbcluj_ro"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>a {                            color:rgb(140,140,250);                        }                        *::-webkit-scrollbar-track-piece {                            background-color:rgba(255, 255, 255, 0.2) !important;                        }                        *::-webkit-scrollbar-track {                            background-color:rgba(255, 255, 255, 0.3) !important;                        }                        *::-webkit-scrollbar-thumb {                            background-color:rgba(255, 255, 255, 0.5) !important;                        }                        embed[type="application/pdf"] {                            filter:invert(1);                        }</style><style id="nighteyedefaultcss">html {                            color:#000;                            background-image:none !important;                            background:#fff !important;                        }                        body {                            background-color:#fff;                            background-image:none !important;                        }                        input, select, textarea, button {                            color:#000;                            background-color:#fff;                        }                        font {                            color:#000;                        }</style><style>html {                            filter: contrast(100%) brightness(100%) saturate(100%);                        }                        .NIGHTEYE_Filter {                            width:100%; height:100%;                            position:fixed;                            left:0; top:0;                            pointer-events:none;                            z-index:4000000000;                        }                        .NIGHTEYE_YellowFilter {                            background:rgba(255, 255, 0, 0.15);                            opacity:0;                        }                        .NIGHTEYE_BlueFilter {                            background:rgba(0, 0, 255, 0.15);                            opacity:0;                        }                        .NIGHTEYE_DimFilter {                            background:rgba(0, 0, 0, 0.5);                            opacity:0;                        }                        .NIGHTEYE_TransformZ {                            transform:translateZ(0);                        }</style>
+  
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  <title>Laborator 6</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <style>
+  
+  
+  h1 {
+    background-color: #000;
+    color: #FFD;
+    padding: 5px;
+    margin: 0px;
+  }
+  
+  code, pre {
+    background-color: #E6E6E0;
+  }
+  
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    
+  }
+  
+  </style>
+<link rel="stylesheet" href="chrome-extension://alncdjedloppbablonallfbkeiknmkdi/css/custom-sites.css"></head>
+<body data-gr-c-s-loaded="true">
+<div id="header">
+    <h1 class="title">Lab 6</h1>
+</div>
+
+<h2 id="steps">UNIX Processes</h2>
+<ul>
+    <li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab6.html#intro">Intro to UNIX processes</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab6.html#fork">Creating processes - fork</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab6.html#sig">Signals</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab6.html#exec">Exec system calls</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab6.html#problems">Problems</a>
+</li></ul>
+
+<h3 id="intro">Intro to UNIX processes</h3>
+<ul>
+    <li>A process is a program in execution. Running a program multiple times will result in multiple processes.
+    </li><li>Processes that run simultaneously are said to be concurrent.
+    </li><li>Each process has an unique identifier associated to it - a positive number called process identifier or PID.
+        <ul>
+            <li><code>getpid()</code>
+        </li></ul>
+    </li><li>Each new process is created by an already existing process. This creates a parent-child relationship. ( The only exception is the process which has the PID equal to 0 - this process has no parent, it is created by the operating system at boot time).
+        <ul>
+            <li><code>getppid()</code>
+        </li></ul>
+</li></ul>
+<h3 id="fork">Creating processes - fork</h3>
+<ul>
+    <li>The fork system call is used to create a new process. The child process is a copy of the parent process and contains the same source code. The execution of the child process begins after the fork call returns. The parent continues its execution after the return from the fork call.
+    <div class="sourceCode"><pre class="sourceCode c">    <code class="sourceCode c">...
+    <span class="va">pid</span> = <span class="fu">fork</span>();
+    
+    <span class="co">/* source code executed by both processes */</span>
+    
+    <span class="cf">switch</span> (<span class="va">pid</span>)
+    <span class="cf">case</span> <span class="dv">-1</span>:
+        <span class="co">/* Error! Unsuccesful fork! */</span>
+        <span class="cf">break;</span>
+    <span class="cf">case</span> <span class="dv">0</span>:
+        <span class="co">/* source code executed only by the child*/</span>
+        <span class="cf">break;</span>
+
+    <span class="cf">default:</span>
+        <span class="co">/* source code executed only by the parent*/</span>
+    } 
+    
+    <span class="co">/*source code executed by both processes*/</span>
+    
+    ...
+    </code></pre></div>
+    
+    </li><li>The value of the child process's variables is inherited from the parent process. All the file descriptors are the same as in the parent process.
+    </li><li>The memory of the two processes (parent and child) is distinct. Changing the value of a variable in the parent process will <b>not</b> reflect in the child and vice-versa.
+    </li><li>Parent processes should wait until the termination of the child process (successfully or with an error).
+        <ul>
+            <li><code>wait()</code>
+            </li><li><code>waitpid()</code>
+        </li></ul>
+    </li><li>A process that calls <code>wait()</code> or <code>waitpid()</code> can:
+        <ul>
+            <li>be blocked - if all its children are currently in execution; the blocked process resumes its execution when one of the children terminates;
+            </li><li>receive the termination state of the child - if at least one of the children was terminated before the call of wait;
+            </li><li>receive an error - if it has no child process.
+        </li></ul>
+    </li><li>The main differences between the two system calls are:
+        <ul>
+            <li>wait blocks the calling process until the termination of a child, while waitpid has an option (WNOHANG) which can avoid this (it is stated by the argument opt);
+            </li><li>waitpid does not necessarily blocks just until one of the child processes terminates: one can specify using the argument pid the child process of which termination is waited;
+        </li></ul>
+    </li><li>A process is terminated when: 
+        <ul>
+            <li>when the process voluntarily calls exit()
+            </li><li>after receiving a terminating signal or a signal not processed by the process 
+            </li><li>when the system crashes.
+        </li></ul>
+</li></ul>
+<h4>Practice</h4>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;sys/wait.h&gt;</span>
+
+<span class="dt">int</span> <span class="fu">main</span>() {
+    <span class="dt">int</span> p, i;
+
+    p = <span class="fu">fork</span>();
+
+    <span class="cf">if</span> (p == -1) 
+    {
+        <span class="fu">perror</span>(<span class="st">"fork failed"</span>); 
+        <span class="fu">exit(1)</span>;
+    }
+
+    <span class="cf">if</span> (p == 0) 
+    { 
+        <span class="cf">for</span> (i = 0; i &lt; 10; i++) 
+            <span class="fu">printf</span>(<span class="st">"Child: i=%d pid=%d, ppid=%d\n"</span>, i, <span class="fu">getpid</span>(), <span class="fu">getppid</span>());
+        <span class="fu">exit</span>(0);
+    } 
+    <span class="cf">else</span>
+    { 
+        <span class="cf">for</span> (i = 0; i &lt; 10; i++)
+            <span class="fu">printf</span>(<span class="st">"Parent: i=%d pid=%d ppid=%d\n"</span>, i, <span class="fu">getpid</span>(), <span class="fu">getppid</span>());
+        <span class="fu">wait</span>(0); 
+    }
+    
+    <span class="fu">printf</span>(<span class="st">"Finished; pid=%d ppid=%d\n"</span>, <span class="fu">getpid</span>(), <span class="fu">getppid());
+    
+    <span class="cf">return</span> 0;
+}
+</span></code></pre></div>
+
+<ol>
+    <li>Run the example as is. How many lines are printed?
+    </li><li>Comment the exit(0) call. What happens if you run the program now?
+    </li><li>Comment the wait(0) call. What happens now?
+    </li><li>Comment both exit and wait and change the number of iterations in the for statements to be different (e.g. 5 and 7, 20 and 7)
+</li></ol>
+
+<h3 id="sig">Signals</h3>
+<ul>
+    <li>Signals are mechanisms that interrupt a processes execution and determine it to run a handler (usually a default one) associated with the signal number.
+    </li><li>Ctrl-C actually sends signal number 2, also known as SIGINT to the process, which causes the default handler to get executed, and stop the process.
+    </li><li>A process can assign a custom function to be executed when a certain signal is received.<br>
+    When the program below receives SIGINT (e.g. on CTRL-C) it asks the user if the program should terminate or not.
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;signal.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;string.h&gt;</span>
+
+<span class="dt">void</span> <span class="fu">f</span>(<span class="dt">int</span> <span class="va">sgn</span>) {
+    <span class="dt">char</span> <span class="va">s</span>[32];
+    
+    <span class="fu">printf</span>(<span class="st">"Are you sure you want me to stop [y/N]? "</span>);
+    <span class="fu">scanf</span>(<span class="st">"%s"</span>, <span class="va">s</span>);
+    
+    <span class="cf">if</span> ( <span class="fu">strcmp</span>(<span class="va">s</span>, <span class="st">"y"</span>) == 0 ) 
+    {
+      <span class="fu">exit</span>(0);
+    }
+}
+
+<span class="dt">int</span> <span class="fu">main</span>(<span class="dt">int</span> <span class="va">argc</span>, <span class="dt">char</span>** <span class="va">argv</span>) 
+{
+    <span class="fu">signal</span>(<span class="cn">SIGINT</span>, <span class="fu">f</span>);
+    
+    <span class="cf">while</span>(1);
+    
+    <span class="cf">return</span> 0;
+}
+
+</code></pre></div>
+</li></ul>
+
+<h3 id="exec">Exec system calls</h3>
+<ul>
+    <li>The <em>exec</em> system calls re-use the current process to run the other program. Essentially they wipe out the current process code, and replace it with the code of the new program. If the exec call fails (usually due to the program not being found) the calling process continues to execute.
+    </li><li>
+<table>
+   <tbody><tr><th colspan="2" rowspan="2"></th><th colspan="2">Search PATH for the program</th></tr>
+   <tr><th>Yes</th><th>No</th></tr>
+   <tr><th rowspan="2">Arguments<br> passed as</th><th>Array</th><td><div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">char</span>* <span class="va">a</span>[] = {<span class="st">"grep"</span>,
+             <span class="st">"/an1/gr911/"</span>,
+             <span class="st">"/etc/passwd"</span>,
+             <span class="cn">NULL</span>};
+<span class="fu">execvp</span>(<span class="st">"grep"</span>, <span class="va">a</span>);
+</code></pre></div>
+</td><td><div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">char</span>* <span class="va">a</span>[] = {<span class="st">"/bin/grep"</span>,
+             <span class="st">"/an1/gr911/"</span>,
+             <span class="st">"/etc/passwd"</span>,
+             <span class="cn">NULL</span>};
+<span class="fu">execv</span>(<span class="st">"/bin/grep"</span>, <span class="va">a</span>);
+</code></pre></div>
+</td></tr>
+   <tr><th>List</th><td><div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="fu">execlp</span>(<span class="st">"grep"</span>,
+       <span class="st">"grep"</span>,
+       <span class="st">"/an1/gr911/"</span>,
+       <span class="st">"/etc/passwd"</span>,
+       <span class="cn">NULL</span>);
+</code></pre></div>
+</td><td><div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="fu">execl</span>(<span class="st">"/bin/grep"</span>,
+      <span class="st">"/bin/grep"</span>,
+      <span class="st">"/an1/gr911/"</span>,
+      <span class="st">"/etc/passwd"</span>,
+      <span class="cn">NULL</span>);
+</code></pre></div>
+</td></tr>
+</tbody></table>
+</li></ul>
+<h3 id="problems">Problems</h3>
+<ol>
+    <li>Write a C program to execute the shell command "ls -l".
+    </li><li>Read a command from the keyboard and execute it within a child process (fork) with exec.
+    </li><li>Write a C program that receives multiple text files in the command line. Remove all digits from the file (you can use a shell script for this part). Create a separate child process for each file.
+</li></ol>
+
+
+
+<div class="NIGHTEYE_BlueFilter NIGHTEYE_Filter"></div><div class="NIGHTEYE_YellowFilter NIGHTEYE_Filter"></div><div class="NIGHTEYE_DimFilter NIGHTEYE_Filter"></div></body></html>

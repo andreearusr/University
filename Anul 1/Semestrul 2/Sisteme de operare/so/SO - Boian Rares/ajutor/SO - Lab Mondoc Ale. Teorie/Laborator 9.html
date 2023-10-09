@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0045)http://www.cs.ubbcluj.ro/~alexandra/lab9.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" nighteyeurl="cs.ubbcluj.ro" nighteye="active" class="gr__cs_ubbcluj_ro"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>a {                            color:rgb(140,140,250);                        }                        *::-webkit-scrollbar-track-piece {                            background-color:rgba(255, 255, 255, 0.2) !important;                        }                        *::-webkit-scrollbar-track {                            background-color:rgba(255, 255, 255, 0.3) !important;                        }                        *::-webkit-scrollbar-thumb {                            background-color:rgba(255, 255, 255, 0.5) !important;                        }                        embed[type="application/pdf"] {                            filter:invert(1);                        }</style><style id="nighteyedefaultcss">html {                            color:#000;                            background-image:none !important;                            background:#fff !important;                        }                        body {                            background-color:#fff;                            background-image:none !important;                        }                        input, select, textarea, button {                            color:#000;                            background-color:#fff;                        }                        font {                            color:#000;                        }</style><style>html {                            filter: contrast(100%) brightness(100%) saturate(100%);                        }                        .NIGHTEYE_Filter {                            width:100%; height:100%;                            position:fixed;                            left:0; top:0;                            pointer-events:none;                            z-index:4000000000;                        }                        .NIGHTEYE_YellowFilter {                            background:rgba(255, 255, 0, 0.15);                            opacity:0;                        }                        .NIGHTEYE_BlueFilter {                            background:rgba(0, 0, 255, 0.15);                            opacity:0;                        }                        .NIGHTEYE_DimFilter {                            background:rgba(0, 0, 0, 0.5);                            opacity:0;                        }                        .NIGHTEYE_TransformZ {                            transform:translateZ(0);                        }</style>
+  
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  <title>Laborator 9</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <style>
+  
+  
+  h1 {
+    background-color: #000;
+    color: #FFD;
+    padding: 5px;
+    margin: 0px;
+  }
+  
+  code, pre {
+    background-color: #E6E6E0;
+  }
+  
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    
+  }
+  
+  </style>
+<link rel="stylesheet" href="chrome-extension://alncdjedloppbablonallfbkeiknmkdi/css/custom-sites.css"></head>
+<body data-gr-c-s-loaded="true">
+<div id="header">
+    <h1 class="title">Lab 9</h1>
+</div>
+
+<h2 id="steps">UNIX Inter-Process Communication. POSIX Threads</h2>
+<ul>
+    <li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab9.html#pipe">Pipe &amp; FIFO practice problems</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab9.html#threads">POSIX Threads</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab9.html#problems">Problems</a>
+</li></ul>
+
+<h3 id="pipe">Pipe &amp; FIFO practice problems</h3>
+<ol>
+    <li>Write a program that creates a child process. The parent reads words (from the console) and sends them to the child. The child process computes the total number of vowels in those words. The parent stops reading words when it reads "$" and then displays the total number of vowels computed by the child.
+    </li><li>Write 2 programs that communicate using fifo. One of the processes receives multiple words as command line arguments. First, it sends the number of arguments to the second process, then each argument from the command line. The second process computes the total number of vowels in those words.
+
+</li></ol>
+   
+
+<h3 id="threads">POSIX Threads</h3>
+<h4>General information</h4>
+<ul>
+    <li>Thread operations include:
+        <ul>
+            <li>creation
+            </li><li>termination
+            </li><li>synchronization (joins,blocking)
+            </li><li>scheduling
+            </li><li>data management
+            </li><li>process interaction.
+        </li></ul>
+    </li><li>All threads within a process share the same address space.
+    </li><li>Threads in the same process share:
+        <ul>
+            <li>Process instructions
+            </li><li>Most data
+            </li><li>open files (descriptors)
+            </li><li>signals and signal handlers
+            </li><li>current working directory
+            </li><li>User and group id
+        </li></ul>
+    </li><li>Each thread has a unique:
+        <ul>
+            <li>Thread ID
+            </li><li>set of registers, stack pointer
+            </li><li>stack for local variables, return addresses
+            </li><li>signal mask
+            </li><li>priority
+            </li><li>Return value: errno
+        </li></ul>
+</li></ul>
+
+<h4>Compiling programs that use POSIX threads</h4>
+<code>gcc -pthread -Wall source.c -o output</code>
+
+<h4>C functions for POSIX threads</h4>
+<ul>
+    <li>create a new thread: <code>pthread_create</code>
+    </li><li>wait for termination of another thread: <code>pthread_join</code>
+    </li><li>terminate the calling thread: <code>pthread_exit</code>
+    </li><li>return identifier of current thread: <code>pthread_self</code>
+</li></ul>
+
+<h4>Example - creating threads</h4>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;pthread.h&gt;</span>
+
+
+<span class="co">// define a constant for the number of threads</span>
+#define <span class="cn">THR_COUNT</span> <span class="dv">4</span>
+
+<span class="co">// This function will be executed by each thread</span>
+void* <span class="fu">thread_function</span>(void *param)
+{
+    <span class="fu">printf</span>("I am thread %lu\n", (ulong)pthread_self());
+    
+    <span class="cf">return</span> <span class="dv">0</span>;
+}
+
+int <span class="fu">main</span>()
+{
+    <span class="dt">int</span> i = 0;
+    <span class="dt">pthread_t</span> thr[<span class="cn">THR_COUNT</span>];
+
+    <span class="co">// create threads</span>
+    for (i = 0; i &lt; <span class="cn">THR_COUNT</span>; i++)
+    {
+        <span class="fu">pthread_create</span>(&amp;thr[i], NULL, <span class="fu">thread_function</span>, NULL);
+    }
+
+    <span class="co">// wait for the threads to terminate</span>
+    for (i = 0; i &lt; <span class="cn">THR_COUNT</span>; i++)
+    {
+        <span class="fu">pthread_join</span>(thr[i], NULL);
+    }
+
+    <span class="cf">return</span> <span class="dv">0</span>;
+}
+</code></pre></div>
+
+<h4>Example - sending parameters to threads</h4>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;pthread.h&gt;</span>
+
+
+<span class="co">// define a constant for the number of threads</span>
+#define <span class="cn">THR_COUNT</span> <span class="dv">4</span>
+
+<span class="co">// This function will be executed by each thread</span>
+void* <span class="fu">thread_function</span>(void *param)
+{
+    int nr = *(int*)param;
+    <span class="fu">printf</span>("I am thread %lu and I received the value %d\n", (ulong)pthread_self(), nr);
+    
+    <span class="cf">return</span> <span class="dv">0</span>;
+}
+
+int <span class="fu">main</span>()
+{
+    <span class="dt">int</span> i = 0;
+    <span class="dt">pthread_t</span> thr[<span class="cn">THR_COUNT</span>];
+
+    int thr_param[THR_COUNT];
+
+    for (i = 0; i &lt; <span class="cn">THR_COUNT</span>; i++)
+    {
+        <span class="co">// prepare the parameters</span>
+        thr_param[i] = i;
+
+        <span class="co">// create the threads</span>
+        <span class="fu">pthread_create</span>(&amp;thr[i], NULL, thread_function, (void*)&amp;thr_param[i]);
+    }
+
+   <span class="co">// wait for the threads to terminate</span>
+    for (i = 0; i &lt; <span class="cn">THR_COUNT</span>; i++)
+    {
+        <span class="fu">pthread_join</span>(thr[i], NULL);
+    }
+
+    <span class="cf">return</span> <span class="dv">0</span>;
+}
+
+</code></pre></div>
+
+<h3 id="problems">Problems</h3>
+<ol>
+    
+</ol>
+
+
+
+<div class="NIGHTEYE_BlueFilter NIGHTEYE_Filter"></div><div class="NIGHTEYE_YellowFilter NIGHTEYE_Filter"></div><div class="NIGHTEYE_DimFilter NIGHTEYE_Filter"></div></body></html>

@@ -1,0 +1,10 @@
+Scrieti un script shell care primeste ca prim argument numele 
+unei extensii de fisier (ex: .txt)
+Scriptul va parcurge recursiv directorul curent si va identifica 
+fisierele cu extensia data ca prim argument, care nu contin niciun 
+numar par si au numar impar de cuvinte.
+Se vor afisa numele acelor fisiere si drepturile de acces 
+(scriere/citire/executie) asupra lor.
+Se va valida numarul argumentelor liniei de comanda. Daca nu exista
+ niciun fisier cu extensia data ca prim parametru, se va afisa un 
+mesaj de eroare.

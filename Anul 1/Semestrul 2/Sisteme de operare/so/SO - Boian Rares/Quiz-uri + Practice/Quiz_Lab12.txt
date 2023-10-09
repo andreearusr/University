@@ -1,0 +1,4 @@
+3) Sa se scrie un program care primeste o lista de parametrii in linia de comanda (max 10), care contin litere lowercase si caractere speciale. 
+Programul afiseaza numarul total de vocale si nr total de consoane din acele mesaje. Programul va porni cate un thread pentru fiecare parametru, 
+care va numara cele doua tipuri de caractere cautate: vocale si consoane din mesajul primit ca parametru. Programul afiseaza cele doua valori calculate. 
+Codul trebuie sa complieze corect si sa fie indentat.

@@ -1,0 +1,413 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0045)http://www.cs.ubbcluj.ro/~alexandra/lab3.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" nighteyeurl="cs.ubbcluj.ro" nighteye="disabled" class="gr__cs_ubbcluj_ro"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  <title>Laborator 3 &amp; 4</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <style>
+  
+  
+  h1 {
+    background-color: #000;
+    color: #FFD;
+    padding: 5px;
+    margin: 0px;
+  }
+  
+  code, pre {
+    background-color: #E6E6E0;
+  }
+  
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    
+  }
+  
+  </style>
+</head>
+<body data-gr-c-s-loaded="true">
+<div id="header">
+    <h1 class="title">Labs 3 &amp; 4</h1>
+</div>
+
+<h2 id="steps">Command Line Utilities</h2>
+<ul>
+    <li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab3.html#gen-info">Regular Expressions - General information</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab3.html#reg-exp">Regular expressions - Meaning</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab3.html#grep">Grep</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab3.html#sed">Sed</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab3.html#awk">Awk</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab3.html#groups">Groups of commands</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab3.html#problems">Problems</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab3.html#ref">References</a>
+</li></ul>
+
+<h2 id="gen-info">Regular Expressions - General information</h2>
+<ul>
+    <li>What: compact and flexible language for matching text;
+    </li><li>Rules:
+        <ul>
+            <li>Every character that appears in a regular expression can have two meanings, normal or special, depending on the escape character \ appearing in front of it.<br>
+            For example:
+            <ul>
+                <li><code>.</code> matches any single character;
+                </li><li><code>\.</code> only matches the . (dot) character;
+            </li></ul>
+            </li><li>Depending on the program used to process the regular expressions, a character's special meaning is achieved by escaping it or not.
+        </li></ul>
+</li></ul>
+
+<h2 id="reg-exp">Regular Expressions - Meaning</h2>
+<table>
+  <tbody><tr>
+    <th>Expression</th>
+    <th>Meaning</th> 
+  </tr>
+  <tr><td style="text-align: center;">.</td><td>Matches any single character</td></tr>
+  <tr><td style="text-align: center;">\</td><td>Escape, changes the meaning of the character following it, between normal and special</td></tr>
+  <tr><td style="text-align: center;">[abc]</td><td>Matches any single character that appears in the list (in this case a or b or c)</td></tr>
+  <tr><td style="text-align: center;">[a-z]</td><td>Matches any single character that belongs to the range (in this case any lower-case letter)</td></tr>
+  <tr><td style="text-align: center;">[^0-9]</td><td>Matches any single character that does not belong to the range (in this case anything that is not a digit)</td></tr>
+  <tr><td style="text-align: center;">^</td><td>Beginning of line</td></tr>
+  <tr><td style="text-align: center;">$</td><td>End of line</td></tr>
+  <tr><td style="text-align: center;">\&lt;</td><td>Beginning of word</td></tr>
+  <tr><td style="text-align: center;">\&gt;</td><td>End of word</td></tr>
+  <tr><td style="text-align: center;">\( \)</td><td>Group several characters into an expression</td></tr>
+  <tr><td style="text-align: center;">*</td><td>Previous expression zero or more times</td></tr>
+  <tr><td style="text-align: center;">\+</td><td>Previous expression one or more times</td></tr>
+  <tr><td style="text-align: center;">\?</td><td>Previous expression zero or one times</td></tr>
+  <tr><td style="text-align: center;">\{m,n\}</td><td>Previous expression at least m and at most n times</td></tr>
+  <tr><td style="text-align: center;">\|</td><td>Logical OR between parts of the regular expression</td></tr>
+</tbody></table>
+
+<h2 id="grep">Grep</h2>
+<p>
+Grep is a program that searches through files using regular expressions.
+</p>
+
+<h3>Example of grep command line:</h3>
+<p>
+ <code>grep "pattern" input_file.txt</code><br>
+Hint: always use "" (quotation marks) to surround your pattern / regular expression. They are not needed in most cases, but sometimes they do and you might end up in a strange scenario where your regular expression doesn't match even though it seems correct.
+</p>
+<h3>Simple examples:</h3>
+Create the following text file (in.txt):
+<code>
+Ana are mere   
+si 17 pere     
+hmmmmm         
+Afara e soare. 
+shhh brrr      
+AU!            
+I am trying to tell a story.
+The phone is ringing
+</code>
+<h4>Find all the lines that have a word ending in "ing".</h4>
+ <code>grep "ing\&gt;" in.txt</code><br>
+<code>\&gt;</code> means end of a word
+<h4>Find all the lines that end in a word ending in "ing".</h4>
+ <code>grep "ing\&gt;$" in.txt</code><br>
+<code>$</code> means end of the line
+<h4>Find all the lines that contain a digit:</h4>
+ <code>grep "[0123456789]" in.txt</code><br>
+<strong>Explanation:</strong> "[]" matches any character inside the square brackets.<br>
+If we don't feel like writing all the digits, we can specify a range:<br>
+ <code>grep "[0-9]" in.txt</code><br>
+Note: Space is also a character :) if you add it in a list, grep will try to match it<br>
+ <code>grep "[0-9 ]" in.txt</code><br>
+Will match any lines containing a digit between 0 and 9, <strong>and space</strong>.
+<h4> Find all the lines that do not contain a vowel</h4>
+Try the following command:<br>
+ <code>grep "[^aeiou]" in.txt</code><br>
+Which lines were displayed and which were not? Why? Because all the lines contain at least one character that is not a vowel.<br>
+Try another command:<br>
+ <code>grep "^[^aeiou]*$" in.txt</code><br>
+What does this regular expression mean? Match if all of the following conditions are met: 
+<ol>
+<li>the line starts (indicated by the <code>^</code> character)
+</li><li>the line contains any character that is not one of aeiou (indicated by the <code>[^aeiou]</code> expression)
+</li><li>the expression at 2. repeats any number of times (indicated the <code>*</code> character), 
+</li><li>the line ends (indicated by the <code>$</code> character).
+</li></ol>
+The role of the line start (^) and line end ($) characters is to ensure the line only consists of the characters from item 2.
+Which lines were displayed this time? <br>
+Grep is <strong>Case sensitive</strong>! We need to take that into account when writing the regular expression.<br>
+The final command can look like this:<br>
+ <code>grep "^[^aeiouAEIOU]*$" in.txt</code><br>
+Alternatively, you can use the <code>-i</code> option.
+
+<h2 id="sed">Sed</h2>
+<p>
+Sed is a program for processing text by performing search/replace, transliterations, line deletion, etc.<br>
+By default, it does not modify the file, but displays the result of processing the input file.<br>
+We will mostly use the <em>search/replace</em> feature.<br>
+</p>
+<h3>Example of sed command line:</h3>
+<p>
+ <code>sed "s/regex/replacement/flags" file.txt</code><br>
+Meaning:
+</p><ul>
+<li> <code>s</code> - is the search/replace command
+</li><li> <code>/</code> - the separator
+</li><li> the <code>flags</code> at the end can be <code>g</code>, <code>i</code> or both. A sed command is also valid without any flags. 
+<ul>
+    <li><code>g</code> - perform the replacement everywhere on the line. Without it, only the first appearance will be replaced
+    </li><li><code>i</code> - perform a case-insensitive search
+</li></ul>
+</li></ul>
+<strong>Note:</strong>For sed command lines, if you want to use braces {} as regex you need to escape them -&gt; \{\}
+<p></p>
+<h3>Simple examples:</h3>
+Create the following text file (in.txt):
+<code>
+Ana are 10 mere, 27 pere, 39 portocale si miere.
+Maria vrea 30 bomboane.
+Am vazut o oaie.
+</code>
+<h4>Replace all the digits in the file with the 'X' character.</h4>
+Compare the output for the following commands:<br>
+ <code>sed "s/[0-9]/X/" in.txt</code><br>
+ <code>sed "s/[0-9]/X/g" in.txt</code><br>
+
+<h4>Replace the <em>first</em> four letter word on each line with <em>zzzz</em></h4>
+ <code>sed "s/\&lt;[a-zA-Z]\{4\}\&gt;/zzzz/" in.txt</code><br>
+Regex meaning:
+<ul>
+<li><code>\&lt;</code> - word start
+</li><li><code>[a-zA-Z]</code> - any lowercase or uppercase letter
+</li><li><code>\{4\}</code> - exactly 4 times (remember that braces need to be escaped for sed)
+</li><li><code>\&gt;</code> - word ends
+</li></ul>
+
+<h4>Surround each sequence of 2 or more vowels with *.</h4>
+ <code>sed "s/\([aeiou]\{2,\}\)/*\1*/gi" in.txt</code><br>
+Command line meaning:
+<ul>
+<li>Regex meaning:
+<ul>
+<li><code>[aeiou]</code> - any vowel
+</li><li><code>\{2,\}</code> - at least 2 times
+</li><li><code>\(...\)</code> - round brackets define a group; we can then reference this group by its ordinal (i.e. the first group is \1; the second is \2; etc) in the "replace" part of the sed command
+</li></ul>
+</li><li><code>\1</code> - is a placeholder for the group of characters matched by the pattern in the regex part of the command that is surrounded by the first set of round brackets.
+</li><li><code>g</code> - replace for all occurences
+</li><li><code>i</code> - case insensitive
+</li></ul>
+
+<h4>Search for each sequence of 2 digits and replace their order.</h4>
+ <code>sed "s/\([0-9]\)\([0-9]\)/\2\1/g" in.txt</code>
+
+<h2 id="awk">Awk</h2>
+<ul>
+    <li>Treats the input text as a table:
+        <ul>
+            <li>Default separator: space
+            </li><li>Each line is a <u>row</u>
+            </li><li>Each token is a <u>field</u>
+        </li></ul>
+    </li><li>Processes the input based on a program written in a simple C-like language
+    </li><li>A program is a sequence of instruction blocks, prefixed by an optional selector
+    </li><li>Each block in the program is applied to every line of input matching its selector. If the block does not have a selector, it is applied to every line of input
+    </li><li>A selector is any valid conditional expression, or one of the following two special selectors
+        <ul>
+            <li><b>BEGIN</b> – the block associated with this selector is executed before any input has been processed
+            </li><li><b>END</b> – the block associated with this selector is executed after all input has been processed
+        </li></ul>
+    </li><li>Special variables
+        <ul>
+            <li><b>NR</b> – number of the current line of input
+            </li><li><b>NF</b> – the number of fields on the current line
+            </li><li><b>$0</b> – the entire input line
+            </li><li><b>$1, $2, ... $i </b>– the fields of the current line
+        </li></ul>
+    </li><li>The AWK program can be written in a file, or provided directly on the command line between apostrophes
+</li></ul>
+<h3>Example of awk command line:</h3>
+<p>
+ <code>awk -F: '{print $5}' /etc/passwd</code><br>
+Meaning:
+</p><ul>
+<li> <code>-F:</code> use <b>:</b> as separator to tokenize line into fields
+</li><li> <code>'{print $5}'</code> display the 5th token on each line (in the case of /etc/passwd - the user's full name)
+</li></ul>
+<p></p>
+
+<h3>Simple examples:</h3>
+Consider <a href="http://www.cs.ubbcluj.ro/~alexandra/input.txt">this</a> input file. It's part of a movie rental's inventory.
+The columns are:
+<ol>
+    <li>MovieID
+    </li><li>Title
+    </li><li>Format
+    </li><li>DateReceived
+    </li><li>Cost
+</li></ol>
+You can download it with wget.
+
+<h4>Compute and display the average rental price</h4>
+ <code>awk -F* -f p.awk input.txt</code><br>
+Meaning:
+<ul>
+<li> <code>-F*</code> use <b>*</b> as separator to tokenize line into fields
+</li><li> <code>-f p.awk</code> indicates the file containing the awk source code
+</li></ul>
+p.awk
+<code>
+BEGIN {         
+    s=0         
+}               
+{               
+    s+=$5       
+}               
+END {           
+    print s/NR  
+}               
+</code>
+
+<h4>Compute and display the average rental prices for DVDs</h4>
+<code>
+BEGIN {                                                             
+    s=0    
+    i=0    
+}                                                                   
+$3 ~ /DVD/{                                                         
+    s+=$5                                                           
+    i+=1
+}                                                                   
+END {                                                               
+    print "Total sum: ", s, "Number of rows", i, "average: ", s/i 
+}                                                                   
+</code>
+
+<h2 id="groups">Groups of commands (part 1)</h2>
+
+You can use pipe (symbol:<b> | </b>) to send data from one program to the other.<br>
+Especially useful when you need to use multiple commands to obtain the result you need.<br>
+For example, to display all the files in the current directory in reverse alphabetical order, you can use:
+<ul>
+    <li><code>ls</code> to list the files
+    </li><li><code>sort -r</code> to sort something in reverse alphabetical order
+</li></ul>
+Using pipes, you can redirect the output of a command as input for the next, like this:<br>
+ <code>ls | sort -r</code><br><br>
+
+<b>Hint: </b>When using pipes to join multiple commands, check that each command works the way you expect it to before adding another one!
+
+<h4>ls -l output explained</h4>
+For example, the following output:<br>
+<code>
+total 12                                                    
+-rw-r--r-- 1 alexandra student 2290 Mar 17 19:32 input.txt  
+-rw-r--r-- 1 alexandra student   55 Mar 17 19:28 p.awk      
+drwxr-xr-x 2 alexandra student 4096 Mar 17 19:59 test_folder
+</code><br>
+can be split into the following fields:<br>
+<table>
+    <tbody><tr><th>File<br>type</th><th>Permissions</th><th>No. of<br>links</th><th>Owner<br>Username</th><th>Group<br>Name</th><th>Size<br>(bytes)</th><th>Last modified<br>date</th><th>File Name</th></tr>
+    <tr><td style="text-align: center;">-</td><td>rw-r--r--</td><td style="text-align: center;">1</td><td>alexandra</td><td>student</td><td style="text-align: right;">2290</td><td>Mar 17 19:32</td><td>input.txt  </td></tr>
+    <tr><td style="text-align: center;">-</td><td>rw-r--r--</td><td style="text-align: center;">1</td><td>alexandra</td><td>student</td><td style="text-align: right;">  55</td><td>Mar 17 19:28</td><td>p.awk  </td></tr>
+    <tr><td style="text-align: center;">d</td><td>rwxr-xr-x</td><td style="text-align: center;">2</td><td>alexandra</td><td>student</td><td style="text-align: right;">4096</td><td>Mar 17 19:59</td><td>test_folder</td></tr>
+</tbody></table>
+
+<h3>Examples:</h3>
+<h4>Display the size of files (not including directories) in the current directory:</h4>
+<b>Step 1:</b> Display the content of the current directory: <br>
+ <code>ls -l</code><br>
+<b>Step 2:</b> Select only files (the first character on the line needs to be -):<br>
+ <code>ls -l | grep "^-"</code><br>
+<b>Step 3:</b> Display the file size (the 5th field)<br>
+ <code>ls -l| grep "^-" | awk '{print $5}'</code>
+
+<h4>Find how many unique file extensions are in the current directory</h4>
+<b>Step 1:</b> Display the content of the current directory: <br>
+ <code>ls -l</code><br>
+<b>Step 2:</b> Select only files (the first character on the line needs to be -):<br>
+ <code>ls -l | grep "^-"</code><br>
+<b>Step 3:</b> Select the file name (the 9th field)<br>
+ <code>ls -l| grep "^-" | awk '{print $9}'</code><br>
+<b>Step 4:</b> Select the file extension (separator is .)<br>
+ <code>ls -l| grep "^-" | awk '{print $9}' | awk -F. '{print $2}'</code><br>
+<b>Step 5:</b> Sort the output<br>
+ <code>ls -l| grep "^-" | awk '{print $9}' | awk -F. '{print $2}' | sort</code><br>
+<b>Step 6:</b> Remove duplicates<br>
+ <code>ls -l| grep "^-" | awk '{print $9}' | awk -F. '{print $2}' | sort | uniq</code><br>
+<b>Step 7:</b> Count the number of resulting lines<br>
+ <code>ls -l| grep "^-" | awk '{print $9}' | awk -F. '{print $2}' | sort | uniq | wc -l</code><br>
+<h2 id="problems">Problems</h2>
+If you are working on the ubb linux server use the /etc/passwd file; If you are working on your local linux, use <a href="https://www.cs.ubbcluj.ro/~rares/course/os/res/gsa/passwd.fake">this</a> file.<br>
+<ol>
+<li>Grep
+    <ol>
+        <li>Find all the lines where the student's username is even (hint: ends with 0, 2, 4, 6 or 8);
+        </li><li>Find all the lines where the student's name is Dan;
+        </li><li>Find all the lines where the student has two given names, with a hyphen (ex: Elena-Ioana); 
+        </li><li>Find all the lines where the student's family name is exactly 9 characters long.
+        </li><li>Find all the lines where the student's family name is 9 characters or longer.
+    </li></ol>
+</li><li>Sed
+    <ol>
+        <li>Display the content of /etc/passwd, removing all uppercase letters (hint: replace them with nothing).
+        </li><li>Display the content of /etc/passwd surrounding with parentheses any sequence of 3 or more vowels.
+    </li></ol>
+</li><li>Awk
+    <ol>
+        <li>Display the full names (but only the full names) of the students belonging to group 211
+        </li><li>Display only the last name of each user in /etc/passwd, considering the last name to be the first word in the 5th field, and accepting it only if it starts with a capital letter
+        
+    </li></ol>
+</li><li>Pipes
+    <ol>  
+        <li>Find all the files in the current directory whose names contain a digit.
+        </li><li>Extend the command from Awk problem 2 to only show the top 10 most frequent last names, ordered descending by their popularity.<br>
+            Hint: use sort, uniq, head
+        </li><li>Display the usernames with the most logins in the system<br>
+            Hint: use last, cut, leses
+    </li></ol>
+</li></ol>
+<h2 id="ref">References</h2>
+<ul>
+<li><a href="http://www.cs.ubbcluj.ro/~rares/course/os/res/gsa/gsa.html">Grep Sed Awk Practice problems</a></li>
+</ul>
+
+
+</body></html>

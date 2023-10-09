@@ -1,0 +1,398 @@
+
+<!-- saved from url=(0046)http://www.cs.ubbcluj.ro/~alexandra/lab12.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" nighteyeurl="cs.ubbcluj.ro" nighteye="active" class="gr__cs_ubbcluj_ro"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>a {                            color:rgb(140,140,250);                        }                        *::-webkit-scrollbar-track-piece {                            background-color:rgba(255, 255, 255, 0.2) !important;                        }                        *::-webkit-scrollbar-track {                            background-color:rgba(255, 255, 255, 0.3) !important;                        }                        *::-webkit-scrollbar-thumb {                            background-color:rgba(255, 255, 255, 0.5) !important;                        }                        embed[type="application/pdf"] {                            filter:invert(1);                        }</style><style id="nighteyedefaultcss">html {                            color:#000;                            background-image:none !important;                            background:#fff !important;                        }                        body {                            background-color:#fff;                            background-image:none !important;                        }                        input, select, textarea, button {                            color:#000;                            background-color:#fff;                        }                        font {                            color:#000;                        }</style><style>html {                            filter: contrast(100%) brightness(100%) saturate(100%);                        }                        .NIGHTEYE_Filter {                            width:100%; height:100%;                            position:fixed;                            left:0; top:0;                            pointer-events:none;                            z-index:4000000000;                        }                        .NIGHTEYE_YellowFilter {                            background:rgba(255, 255, 0, 0.15);                            opacity:0;                        }                        .NIGHTEYE_BlueFilter {                            background:rgba(0, 0, 255, 0.15);                            opacity:0;                        }                        .NIGHTEYE_DimFilter {                            background:rgba(0, 0, 0, 0.5);                            opacity:0;                        }                        .NIGHTEYE_TransformZ {                            transform:translateZ(0);                        }</style>
+  
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  <title>Laborator 12</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <style>
+  
+  h1, h2, h3, h4, p, li {
+    font-family: Ubuntu, "Trebuchet MS", Verdana, sans-serif;
+  }
+  
+  h1 {
+    background-color: #000;
+    color: #FFD;
+    padding: 5px;
+    margin: 0px;
+  }
+  
+  code, pre {
+    background-color: #E6E6E0;
+  }
+  
+  </style>
+<link rel="stylesheet" href="chrome-extension://alncdjedloppbablonallfbkeiknmkdi/css/custom-sites.css"></head>
+<body data-gr-c-s-loaded="true">
+<div id="header">
+<h1 class="title">Laborator 12</h1>
+</div>
+
+<h2> Thread Synchronization </h2>
+<h3> Condition Variables </h3>
+<ul>
+    <li>Declare: <code>pthread_cond_t</code>
+    </li><li>Initialize: <code>pthread_cond_init</code>
+    </li><li>Wait and signal:
+        <ul>
+        <li><code>pthread_cond_wait</code> - blocks the calling thread until the specified condition is signalled. This routine should be called while mutex is locked, and it will automatically release the mutex while it waits. After signal is received and thread is awakened, mutex will be automatically locked for use by the thread. The programmer is then responsible for unlocking mutex when the thread is finished with it.
+        </li><li><code>pthread_cond_signal</code> - routine is used to signal (or wake up) another thread which is waiting on the condition variable. It should be called after mutex is locked, and must unlock mutex in order for pthread_cond_wait() routine to complete.
+        </li><li><code>pthread_cond_broadcast</code> - routine should be used instead of pthread_cond_signal() if more than one thread is in a blocking wait state.
+        </li></ul>
+    </li><li>Destroy: <code>pthread_cond_destroy</code>
+    </li><li><a href="https://computing.llnl.gov/tutorials/pthreads/#ConditionVariables">External tutorial</a>
+    
+</li></ul>
+<h4> Usage example</h4>
+<ul>
+    <li>Main Thread 
+        <ul>
+            <li>initialize global variables (e.g. count)
+            </li><li>initialize a mutex and a condition variable
+            </li><li>create threads A and B
+            </li><li>wait for the threads
+        </li></ul>
+    </li><li>Thread A
+        <ul>
+            <li>(opt) Perform operations until a certain condition is met (e.g. until <i>count</i> has a certain value)
+            </li><li>lock the mutex and check the value of the global variable
+            </li><li>call <code>pthread_cond_wait</code> to wait for a signal from another thread. pthread_cond_wait automatically unlocks the mutex associated with the condition variable
+            </li><li>when the signal is received, the mutex is already locked
+            </li><li>explicitly unlock the mutex
+            </li><li>continue
+        </li></ul>
+    </li><li>Thread B
+        <ul>
+            <li>Perform operations
+            </li><li>Lock the mutex
+            </li><li>Update the value of the variable thread A wait
+            </li><li>Check if the value of the variable is equal to the one A expects; If so, signal A
+            </li><li>Unlock the mutex
+            </li><li>continue
+        </li></ul>
+</li></ul>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">
+#include &lt;pthread.h&gt;
+
+int contor = 0;
+
+pthread_mutex_t mutcontor = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t condcontor = PTHREAD_COND_INITIALIZER;
+
+int thid[3] = { 0, 1, 2 };
+
+void incContor (int *id) {
+    int i; 
+    printf ("\nSTART incContor %d\n", *id);
+    for (i = 0; i &lt; 7; i++) {
+        sleep(random() % 3);
+        pthread_mutex_lock (&amp;mutcontor);
+        contor++;
+        printf("\n incContor: thread %d contor vechi %d contor nou %d", *id, contor - 1, contor);
+        if (contor == 12)
+            pthread_cond_signal (&amp;condcontor);
+        pthread_mutex_unlock (&amp;mutcontor);
+    }
+        printf ("\nSTOP incContor %d\n", *id);
+}
+
+void verifContor (int *id) {
+    printf ("\nSTART verifContor \n");
+    pthread_mutex_lock (&amp;mutcontor);
+    while (contor &lt;= 12) {
+        pthread_cond_wait (&amp;condcontor, &amp;mutcontor);
+        printf ("\n verifContor: thread %d contor %d", *id, contor);
+        break;
+    }
+    pthread_mutex_unlock (&amp;mutcontor);
+    printf ("\nSTOP verifContor \n");
+}
+
+main () {
+    pthread_t th[3];
+    int i;
+    
+    //creaaza cele 3 thread-uri
+    pthread_create ((pthread_t *) &amp; th[0], NULL, (void *) verifContor, &amp;thid[0]);
+    pthread_create ((pthread_t *) &amp; th[1], NULL, (void *) incContor, &amp;thid[1]);
+    pthread_create ((pthread_t *) &amp; th[2], NULL, (void *) incContor, &amp;thid[2]);
+
+    //asteapta terminarea thread-urilor
+    for (i = 0; i &lt; 3; i++)
+        pthread_join (th[i], NULL);
+}
+</code>
+</pre></div>
+
+<h3> R/W Locks </h3>
+<ul>
+<li>Sunt 1000 de oameni care verifica pretul unor bilete de avion si 10 oameni care cumpara. Pretul se calculeaza in functie de nr de locuri, dupa formula: pret = pret_baza * (2-nr_locuri/100).
+<br>
+Un program care creaza 1000 de thread-uri care verifica pretul (readers) si 10 thread-uri care "cumpara" bilete, modificand astfel pretul (writers).
+</li></ul>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">
+#include &lt;stdio.h&gt;
+#include &lt;pthread.h&gt;
+
+// definim doua constante pentru nr de readers si writers
+#define R 1000
+#define W 10
+
+// declaram lock-ul
+pthread_rwlock_t rwl;
+
+// intializam variabilele pt nr de locuri si pretul de baza
+int locuri = 100;
+float pret = 75.0f;
+
+// functia de thread pentru readers
+void* consulta(void* a) {
+  // transformam parametrul primit in int
+  int k = (int)a;
+  
+  // obtinem lock-ul pentru read
+  pthread_rwlock_rdlock(&amp;rwl);
+  
+  // afisam nr thread-ului, numarul de locuri si pretul curent dupa formula magica
+  printf("R%d: Locuri %d, pret %f\n", k, locuri, pret*(2-locuri/100.0f));
+  
+  // eliberam lock-ul
+  pthread_rwlock_unlock(&amp;rwl);
+  
+  return NULL;
+}
+
+// functia de thread pentru writers
+void* cumpara(void* a) {
+  // transformam parametrul primit in int
+  int k = (int)a;
+  
+  // obtinem lock-ul pentru write
+  pthread_rwlock_wrlock(&amp;rwl);
+  
+  // afisam nr thread-ului, numarul locului cumparat si pretul dupa formula magica
+  printf("W%d: Locul meu este %d, pret %f\n", k, locuri, pret*(2-locuri/100.0f));
+  
+  // modificam numarul de locuri
+  locuri--;
+  
+  // eliberam lock-ul
+  pthread_rwlock_unlock(&amp;rwl);
+  
+  return NULL;
+}
+
+int main() {
+  pthread_t tr[R], tw[W];
+  int i;
+
+  // initializare RW Lock
+  pthread_rwlock_init(&amp;rwl, NULL);
+  
+  // creare thread-uri care consulta pretul - readers
+  for(i=0; i&lt;R; i++) {
+    // trimitem ca parametru pentru thread un nr = al catelea thread a fost creat
+    pthread_create(&amp;tr[i], NULL, consulta, (void*)i);
+  }
+  
+  // creare thread-uri care cumpara - writers
+  for(i=0; i&lt;W; i++) {
+    pthread_create(&amp;tw[i], NULL, cumpara, (void*)i);
+  }
+
+  // asteptam dupa thread-urile create 
+  // readers
+  for(i=0; i&lt;R; i++) {
+    pthread_join(tr[i], NULL);
+  }
+  
+  // writers
+  for(i=0; i&lt;W; i++) {
+    pthread_join(tw[i], NULL);
+  }
+  
+  // distrugem lock-ul
+  pthread_rwlock_destroy(&amp;rwl);
+  
+  return 0;
+}
+</code>
+</pre></div>
+
+<h3> Bariere </h3>
+<p>
+Barierele sunt un mecanism de sincronizare, utile in situatiile in care un grup de thread-uri trebuie sa lucreze in etape si fiecare etapa poate incepe doar cand toate thread-urile au incheiat-o pe cea precedenta. 
+</p>
+<p>
+Bariera se initializeaza cu numarul de thread-uri implicat intr-o etapa. 
+Thread-urile realizeaza task-uri si asteapta la bariera pana cand toate thread-urile implicate ajung la bariera. Cand ultimul thread ajunge la bariera, toate thread-urile isi rezuma executia.
+</p>
+<h4> Utilizare </h4>
+<ul>
+<li> declarare: <code>pthread_barrier_t barrier;</code>
+</li><li> initializare: <code>pthread_barrier_init(pthread_barrier_t *barrier, pthread_barrierattr_t *attr, unsigned count)</code>
+	<ul>
+		<li> <i>barrier</i> - pointer catre bariera care va fi initializata
+		</li><li> <i>attr</i> - pointer catre atributele care vor fi folosite pentru initializarea barierei (poate sa fie NULL)
+		</li><li> <i>count</i> - numarul minim de thread-uri care trebuie sa ajunga la bariera inainte ca oricare dintre thread-urile in asteptare sa isi reia executia
+	</li></ul>
+</li><li> asteptare: <code>pthread_barrier_wait(pthread_barrier_t *barrier)</code>
+</li><li> distrugere: <code>pthread_barrier_destroy(pthread_barrier_t *barrier);</code>
+</li></ul>
+
+<h4> Exemplu bariere</h4>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="ot">#include &lt;stdio.h&gt;</span>
+<span class="ot">#include &lt;time.h&gt;</span>
+<span class="ot">#include &lt;math.h&gt;</span>
+<span class="ot">#include &lt;pthread.h&gt;</span>
+
+<span class="co">// definim o constanta pentru numarul de thread-uri </span>
+<span class="ot">#define NTHREADS 10</span>
+
+<span class="co">// declararea variabilei de tip barrier</span>
+pthread_barrier_t barrier;
+
+<span class="co">// functia executata de thread-uri</span>`
+<span class="dt">void</span> *thr_func(<span class="dt">void</span> *arg)
+{
+    <span class="co">// obtinem valoarea parametrului transmis thread-ului intr-o variabila locala </span>
+    <span class="dt">int</span> thid = *(<span class="dt">int</span>*)arg;
+    
+    <span class="co">// calculam un numar random de secunde (intre 1 si 3) pentru care thread-ul va face sleep</span>
+    <span class="dt">int</span> wait_sec = 1 + rand() % 3;
+    
+    <span class="co">// afisam un mesaj si apoi sleep</span>
+    printf(<span class="st">"Thread %d: wait for %d seconds</span><span class="ch">\n</span><span class="st">"</span>, thid, wait_sec);
+    sleep(wait_sec);
+    
+    printf(<span class="st">"Thread %d: I am ready!</span><span class="ch">\n</span><span class="st">"</span>, thid);
+    
+    <span class="co">// asteptam la bariera ca toate thread-urile sa ajunga in acest stadiu</span>
+    pthread_barrier_wait(&amp;barrier);
+
+    printf(<span class="st">"Thread %d: Done!</span><span class="ch">\n</span><span class="st">"</span>, thid);
+
+
+    <span class="kw">return</span> NULL;
+}
+
+<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> *argv[])
+{
+    pthread_t threads[NTHREADS];
+    <span class="dt">int</span> thread_args[NTHREADS];
+
+    <span class="co">// initializare bariera; 
+    // ultimul parametru = nr de thread-uri care trebuie sa ajunga la bariera</span>
+    pthread_barrier_init(&amp;barrier, NULL, NTHREADS);
+   
+    <span class="co">// creare thread-uri</span>
+    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; NTHREADS; i++)
+    {
+        thread_args[i] = i;
+        pthread_create(&amp;threads[i], NULL, thr_func, &amp;thread_args[i]);
+    }
+
+    <span class="co">// asteptare ca thread-urile sa isi finalizeze executia</span>
+    <span class="kw">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; NTHREADS; i++)
+    {
+        pthread_join(threads[i], NULL);
+	
+    }
+    
+    <span class="co">// distrugerea barierei</span>
+    pthread_barrier_destroy(&amp;barrier);
+    
+    <span class="kw">return</span> <span class="dv">0</span>;
+}
+</code>
+</pre></div>
+
+<h3> Semafoare </h3>
+<p>
+Semafoarele sunt un mecanism de sincronizare care pot fi folosite atat pentru sincronizarea thread-urilor cat si pentru sincronizarea proceselor.
+</p>
+<p>
+Un semafor este un intreg a carui valoare nu poate sa scada niciodata sub 0.
+</p>
+<p>
+Pot fi efectuate doua operatii principale:
+</p><ul>
+<li> decrementarea semaforului cu 1, folosind functia <code>sem_wait(...)</code>; are ca efect obtinerea accesului la regiunea critica
+</li><li> incrementarea semaforului cu 1, folosind functia <code>sem_post(...)</code>; are ca efect eliberarea resursei blocate
+</li></ul>
+<h4> Utilizare pentru thread-uri</h4>
+<ul>
+    <li> header: <code>semaphore.h</code>
+    </li><li> declarare: <code>sem_t sem;</code>
+    </li><li> initializare: <code>int sem_init(sem_t *sem, int pshared, unsigned int value);</code>
+        <ul>
+            <li><i>sem</i>: pointer la semaforul care va fi initializat
+            </li><li><i>pshared</i>: indica daca acest semafor va fi folosit (shared) de thread-urile unui proces sau de mai multe procese diferite. Pentru a folosi un semafor de catre mai multe <u>thread-uri</u>, pshared va avea <u>valoarea 0</u>
+            </li><li><i>value</i>: valoarea cu care va fi initializat semaforul; de exemplu:
+                <ul>
+                    <li> value = 1 -&gt; un singur thread va putea accesa regiunea protejata de semafor
+                    </li><li> value = 4 -&gt; cel mult 4 thread-uri vor putea accesa regiunea protejata de semafor
+                    </li><li> valoarea maxima cu care poate fi initializat un semafor este data de macro-ul SEM_VALUE_MAX
+                </li></ul>
+        </li></ul>
+    </li><li> blocare: <code>sem_wait(sem_t *sem);</code> - Decrementeaza semaforului - obtinere lock;
+        <ul>
+            <li> Daca valoarea semaforului este <u>mai mare ca 0</u>, se realizeaza decrementarea si functia returneaza imediat;
+            </li><li> Daca valoarea semaforului <u>este 0</u>, apelul functiei este blocat (asteapta) pana cand fie semaforul poate fi decrementat, fie se primeste un semnal de intrerupere.
+        </li></ul>
+    </li><li> eliberare: <code>sem_post(sem_t *sem);</code> - Incrementeaza semaforul - elibereaza lock-ul;
+    </li><li> distrugere: <code>sem_destroy(sem_t *sem);</code> - Distrugerea unui semafor
+</li></ul>
+
+<h4>Mai multe despre valoarea de initializare</h4>
+<ul>
+    <li> Initializarea unui semafor cu o valoare <b>X</b> (X &gt; 0) permite unui numar de maxim <b>X</b> thread-uri sa acceseze zona protejata de semafor. 
+    </li><li> Exemplu de scenariu in care acest mecanism e util: un program proceseaza mai multe fisiere, fiecare fisier fiind procesat de un thread distinct si vrem sa limitam numarul maxim de fisiere care pot fi deschise in acelasi timp la X. Putem proteja zona de cod care efectueaza deschiderea fisierelor cu un semafor initializat cu valoarea X.
+</li></ul>
+
+<h3>Referinte suplimentare</h3>
+<ul>
+    <li> <a href="https://see.stanford.edu/materials/icsppcs107/23-Concurrency-Examples.pdf">Semaphores</a>
+</li></ul>
+
+
+<div class="NIGHTEYE_BlueFilter NIGHTEYE_Filter"></div><div class="NIGHTEYE_YellowFilter NIGHTEYE_Filter"></div><div class="NIGHTEYE_DimFilter NIGHTEYE_Filter"></div></body></html>

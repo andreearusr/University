@@ -1,0 +1,85 @@
+
+<!-- saved from url=(0046)http://www.cs.ubbcluj.ro/~alexandra/lab13.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" nighteye="disabled" class="gr__cs_ubbcluj_ro"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  <title>Laborator 13</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <style>
+  
+  h1, h2, h3, h4, p, li {
+    font-family: Ubuntu, "Trebuchet MS", Verdana, sans-serif;
+  }
+  
+  h1 {
+    background-color: #000;
+    color: #FFD;
+    padding: 5px;
+    margin: 0px;
+  }
+  
+  code, pre {
+    background-color: #E6E6E0;
+  }
+  
+  </style>
+</head>
+<body data-gr-c-s-loaded="true">
+<div id="header">
+<h1 class="title">Laborator 13</h1>
+</div>
+
+<h2> Practice problems </h2>
+<ul>
+    <li>Sa se scrie un program care primeste o lista de parametrii din linia de comanda (minim 5). Fiecare parametru reprezinta un numar natural.<br>
+Programul citeste de la tastatura 3 numere naturale (x, y, z) si are un tablou global "nr_divizori", corespunzand celor 3 numere citite de la tastatura.<br>
+Programul va porni cate un thread penru fiecare parametru din linia de comanda. Fiecare thread va determina daca parametrul primit este divizor pentru cele 3 numere citite. Daca parametrul curent este divizor pentru unul din cele 3 numere, se va incrementa nr de divizori ai acelui numar.<br>
+Programul va afisa numarul cu cei mai multi divizori (in toti parametrii liniei de comanda).<br>
+Folositi mecanismele de sincronizare necesare pentru a asigura calcularea corecta a divizorilor.<br>
+Validati numarul de parametrii ai liniei de comanda.<br>
+Ex: <program> 2 3 5 7 13<br>
+ x = 105; y = 6; z = 2<br>
+ Se va afisa 105 (deoarece x are 3 divizori; y are 2; z are 1)<br>
+    </program></li><li>Scrieti un program care determina valoarea maxima dintr-un sir de 100 000 de elemente. Sirul va fi parcurs folosind 10 thread-uri.
+    </li><li>Sa se scrie un program care citeste un nr N de la tastatura, si creeaza 2 threaduri (pot fi descrise de doua functii diferite, sau de aceeasi functie). Unul dintre ele va genera un numar par aleator pe care sa il adauge intr-un sir primit ca parametru de la threadul principal, iar celalalt va face acelasi lucru, generand in schimb numere impare. Intre cele 2 threaduri trebuie implementata o sincronizare care sa asigure ca in sir se adauga alternativ cate un numar par, respectiv impar, pana la lungimea maxima N.
+</li></ul>
+
+</body></html>

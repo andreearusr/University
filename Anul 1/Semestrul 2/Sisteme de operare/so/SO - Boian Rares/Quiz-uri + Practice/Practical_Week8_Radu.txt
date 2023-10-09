@@ -1,0 +1,9 @@
+Primeai cuvinte ca parametrii/argumente.
+
+Citeai intr-una nume de fisiere ce contineau cuvinte.
+Te opreai cand gaseai toate cuvintele (despartite de spatiu,
+ impartite oricum in fisiere)
+
+"Ana are mere"
+f1 Ana
+f2 are fbasjkdf mere

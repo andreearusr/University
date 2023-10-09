@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0048)http://www.cs.ubbcluj.ro/~alexandra/lab5.html#sh -->
+<html xmlns="http://www.w3.org/1999/xhtml" nighteyeurl="cs.ubbcluj.ro" nighteye="disabled" class="gr__cs_ubbcluj_ro"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  <title>Laborator 5</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <style>
+  
+  
+  h1 {
+    background-color: #000;
+    color: #FFD;
+    padding: 5px;
+    margin: 0px;
+  }
+  
+  code, pre {
+    background-color: #E6E6E0;
+  }
+  
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    
+  }
+  
+  </style>
+</head>
+<body data-gr-c-s-loaded="true">
+<div id="header">
+    <h1 class="title">Lab 5</h1>
+</div>
+
+<h2 id="steps">UNIX Shell Programming</h2>
+<ul>
+    <li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab5.html#redir">I/O Redirections</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab5.html#sh">Shell Scripts</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab5.html#problems">Problems</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab5.html#ref">References</a>
+</li></ul>
+
+<h3 id="redir">I/O Redirections</h3>
+<ul>
+    <li> stdout - standard output
+        <ul>
+            <li><code>ls</code> - displays the results in the standard output (stdout);
+            </li><li><code>ls &gt; file_list.txt</code> - the result is written in the <em>file_list.txt</em> file; with each call, the content of the file is overwritten;
+            </li><li><code>ls &gt;&gt; file_list.txt</code> - the result is <em>added</em> to the <em>file_list.txt</em> file; if it does not exit, it will be created;
+        </li></ul>
+    </li><li>stdin - standard input
+        <ul>
+            <li><code>sort</code> - sorts the text written in the console;
+            </li><li><code>sort &lt; file_list.txt</code> - sorts the content of the <em>file_list.txt</em> file;
+            </li><li><code>sort &lt; file_list.txt &gt; sorted_list.txt</code>sorts the content of the <em>file_list.txt</em> file and writes the result in the <em>sorted_list.txt</em> file;
+        </li></ul>
+    
+</li></ul>
+
+<h3 id="sh">Shell Scripts</h3>
+<h4>Structure of a .sh file</h4>
+<ul>
+    <li>The first line of the file specifies the interpreter. One of:
+        <ul>
+            <li><code>#!/bin/sh</code>
+            </li><li><code>#!/bin/bash</code>
+        </li></ul>
+    </li><li><code># Comments are preceded by the # character</code><br>
+    Some versions recognize comments only if they are written at the beggining of the line
+    </li><li>Example:<br>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">#!/bin/bash                
+# Classic hello world stuff
+echo "Hello world"         
+</code></pre></div>
+</li></ul>
+
+<h4>Running a .sh script</h4>
+<ol>
+    <li>Set execute permissions on the file: <code>chmod 744 file.sh</code>;
+    </li><li>Run the file: <code>./file.sh</code>
+</li></ol>
+
+<h4>Command Line Arguments</h4>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">
+    command arg1 arg2 ... arg9 ... $argn
+       $0    $1   $2       $9
+</code></pre></div>
+The name of the command and the first 9 arguments can be used in a .sh script:
+<ul>
+    <li><code>$0</code> - the command
+    </li><li><code>$1</code> - arg1
+    </li><li><code>$2</code> - arg2
+    </li><li>...
+    </li><li><code>$9</code> - arg9
+</li></ul>
+If the command line has less than 9 arguments, the absent ones are equal to the empty string.<br>
+If there are more than 9, only the first 9 can be accessed directly (based on their ordinal)<br>
+
+<ul>
+    <li><code>$#</code> - the number of command line arguments
+    </li><li><code>$*</code> - all the command line arguments, as a <b>single string</b>: "$1 $2 $3 ..."
+    </li><li><code>$@</code> - all the command line arguments, as a <b>list of strings</b>: "$1" "$2" "$3" ...
+    </li><li><code>$-</code> - the argument that contains the command line options
+    </li><li><code>$?</code> - the exit (return) code of the previous command (0 = success)
+</li></ul>
+
+<b>Note:</b> command line arguments are separated by spaces. To have a single command line argument that contains spaces, surround it with '...' or "..."
+
+<h4>Problem:</h4>
+Display the second argument of the command line. 
+
+<h4>shift</h4>
+The command shifts the arguments to the <b>left</b> with one or multiple positions.<br>
+In fact, it renames the arguments.
+<ul>
+    <li><code>shift</code> - shift arguments by one<br>
+     the value of $0 is lost; the following assignments are made: <br>
+      $0 = $1; $1 = $2 a.s.o. until the last argument;<br>
+     the value of $# is decreased by 1
+    </li><li><code>shift n</code> - shift the arguments by n<br>
+     the value of the first n arguments is lost; the following assignments are made:<br>
+      $0 = $n; $1 = $n+1 a.s.o.
+</li></ul>
+
+<h4>Problems:</h4>
+<ol>
+    <li>Display the 12th argument of the command line
+    </li><li>Display the content of a file given as command line argument
+    </li><li>Display the number of lines of a file given as command line argument
+</li></ol>
+
+<h4>Variables</h4>
+Variables are used without specifying their type. A variable may contain: a number, a character, an array of characters.<br>
+Variables don't need to be declared beforehand - to add a variable to a script simply assign a value to it.<br>
+<b>Note:</b> do not add spaces around the assignment operator (=)!<br>
+<br>
+Example:
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">#!/bin/bash                
+a=3
+echo $a        
+</code></pre></div>
+
+
+<h4>Expressions</h4>
+When <code>$</code> precedes the names of variables, commands, expressions:
+<ul>
+<li><code>$name</code> or <code>${name}</code> is replaced with the content of the <code>name</code> variable
+</li><li><code>$(command)</code> or <code>`command`</code> is replaced with the result of executing that command (e.g. <code>`ls`</code> or <code>$(ls)</code>
+</li><li><code>$((expression))</code> is replaced with the result of the expression (e.g. echo $((2+3)))
+</li></ul>
+
+Shell will expand certain expressions: <br>
+ <code>*.txt</code> &lt;=&gt; all the files with the txt extension<br>
+ <code>cat *.txt</code> - display the content of all the files in the current directory with the .txt extension <br>
+ <code>ls *.c</code> - list all files with the .c extension from the current directory
+
+<h4>IF Statements</h4>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">
+if [ expression ];
+    then
+        &lt; list of commands &gt;
+elif [ expression ];
+    then
+        &lt; list of commands &gt;
+...
+elif [ expression ];
+    then
+        &lt; list of commands &gt;
+else
+    &lt; list of commands&gt;
+fi
+</code></pre></div>
+
+The expression evaluated by if can be a custom expression, one of the standard expressions or a combination of both
+<ul>
+    <li><code>[ -f file_name ]</code> - TRUE if file_name exists and is a standard file
+    </li><li><code>[ -e file_name ]</code> - TRUE if file_list exists
+    </li><li><code>[ string1 == string2 ]</code> - TRUE if the two strings are equal
+    </li><li>Expressions with arithmetic operators: <code>[ ARG1 OP ARG2 ]</code>, where OP is one of: -eq, -ne, -lt, -le, -gt, -ge
+        <ul>
+            <li><code>-eq</code>: equal
+            </li><li><code>-ne</code>: not equal
+            </li><li><code>-gt</code>: greater than
+            </li><li>...
+        </li></ul>
+    </li><li>
+</li></ul>
+
+<h4>for, while, until</h4>
+<b>for - 1st form</b><br>
+<u>sort_files.sh</u>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">for file_name
+    do
+        sort &lt; $file_name | more
+    done
+</code></pre></div>
+<u>Command line:</u> <code>./sort_files.sh file_1 file_2 file_3   </code><br>
+<u>Equivalent to:</u> sort &lt; file_1 | more ; sort &lt; file_2 | more ; sort &lt; file_3 | more<br>
+<br><br>
+
+<b>for - 2nd form</b><br>
+<u>sort_files.sh</u>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">for file_name in file_1 file_2 file_3
+    do
+        sort &lt; $file_name | more
+    done
+</code></pre></div>
+<u>Command line:</u> <code>./sort_files.sh file_1 file_2 file_3   </code><br>
+<u>Equivalent to:</u> sort &lt; file_1 | more ; sort &lt; file_2 | more ; sort &lt; file_3 | more<br><br>
+<br>
+<br>
+<b>Example: compute the sum of all the command line arguments</b>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">#!/bin/bash
+sum=0
+
+for a in $*
+  do
+     sum=`expr $sum + $a`
+  done
+
+  echo $sum
+</code></pre></div>
+<br>
+<b>while</b>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">while commandsLst
+    do
+        # stuff
+    done
+
+</code></pre></div>
+
+<br>
+<b>until</b>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">until commandsLst
+    do
+        #stuff
+    done
+
+</code></pre></div>
+
+<h3 id="ex">Examples</h3>
+<ol>
+<li> Find all the files in the current directory that contain at least a digit.
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">for filename in `find .`
+do
+  if [ -f $filename ]
+  then
+     if grep -q "[0-9]" $filename
+     then
+         echo $filename
+     fi
+  fi
+done
+</code></pre></div>
+
+</li><li>Find recursively in a directory all ".c" files having more than 10 lines. Stop after finding 5 such files.
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c">count=0
+for filename in `find -name "*.c"`
+do
+  if [ -f $filename ]
+  then
+     nr_lines=`cat $filename|wc -l`
+     if [ $nr_lines -gt 10 ]
+     then
+         echo $filename
+         count=`expr $count + 1`
+     fi
+     if [ $count -eq 3 ]
+     then
+         break
+     fi
+  fi
+done
+
+</code></pre></div>
+</li></ol>
+
+<h3 id="problems">Problems</h3>
+<ol>
+    <li>Find all the files in a directory received as command line argument that contain numbers greater than 1000. If the command line doesn't contain any arguments, display a message and exit.
+    </li><li>Compute and display the average number of lines in all the text files in the current directory.
+    </li><li>For all the arguments in the command line:
+    <ul>
+        <li>if the argument is a file - display the name and the number of characters and the number of lines in that file
+        </li><li>if the argument is a directory - display the name and the number of files in that directory (recursively)
+    </li></ul>
+    If the command line doesn't contain any arguments, display a message and exit.
+    </li><li>Find recursively all the file types in the current directory and display a report showing how many files of each type are there.<br>
+     useful commands: file, sort, uniq ...
+    
+
+
+</li></ol>
+
+<h2 id="ref">References</h2>
+
+<ul>
+<li><a href="http://www.cs.ubbcluj.ro/~rares/course/os/res/gsa/gsa.html">Grep Sed Awk Practice problems</a></li>
+</ul>
+
+
+</body></html>

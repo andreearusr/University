@@ -1,0 +1,47 @@
+1. Folosind GREP afisati numarul linilor si linile dintr-un fisier care contin cel putin
+un cuvant care este alcatuit doar din litere, prima litera mare iar
+restul mici si se afla intre paranteze.
+
+ex:
+input:
+ana are mere
+Ana (are) mere
+ana (Are) mere
+(Ana ) are (mere)
+( Ana) are (Mere)
+
+output:
+3:ana (Are) mere
+5:( Ana) are (Mere)
+
+2. Folosind SED inlocuiti toate vocalele dintr-un fisier cu upparcase-ul
+acestora.
+
+3. Folosind AWK afisati pe o singura linie toate cuvintele dintr-un fisier care
+apar de cel putin 2 ori in fisier.
+
+ex:
+input:
+ana ana
+are
+mere
+pere cirese
+mere
+
+output:
+ana mere
+
+
+1. Avand ca input rezultatul unui apel al comenzii find afisati pe ecran
+numele tuturor directorelor si subdirectoarelor din din directorul curent,
+care nu sunt ascunse.
+Informati utile:
+- directoarele ascunse sunt cele a caror nume incepe cu caracterul .
+
+2. Folosind SED stergeti primele 2 si ultimele 3 caractere de pe fiecare
+linie dintr-un fisier.
+
+3. Se da un fisier cu numere intregi. Folosind AWK afisati pe ecran pe cate
+o linie media aritmetica a numerelor de pe fiecare linue, dupa care afisati
+pe o singura linie numarul linilor (indexul acestora in fisier) care contin
+un numar par de numere.

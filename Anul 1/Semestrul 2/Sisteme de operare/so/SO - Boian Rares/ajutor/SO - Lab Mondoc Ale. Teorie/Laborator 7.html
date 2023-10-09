@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0045)http://www.cs.ubbcluj.ro/~alexandra/lab7.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" nighteyeurl="cs.ubbcluj.ro" nighteye="active" class="gr__cs_ubbcluj_ro"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>a {                            color:rgb(140,140,250);                        }                        *::-webkit-scrollbar-track-piece {                            background-color:rgba(255, 255, 255, 0.2) !important;                        }                        *::-webkit-scrollbar-track {                            background-color:rgba(255, 255, 255, 0.3) !important;                        }                        *::-webkit-scrollbar-thumb {                            background-color:rgba(255, 255, 255, 0.5) !important;                        }                        embed[type="application/pdf"] {                            filter:invert(1);                        }</style><style id="nighteyedefaultcss">html {                            color:#000;                            background-image:none !important;                            background:#fff !important;                        }                        body {                            background-color:#fff;                            background-image:none !important;                        }                        input, select, textarea, button {                            color:#000;                            background-color:#fff;                        }                        font {                            color:#000;                        }</style><style>html {                            filter: contrast(100%) brightness(100%) saturate(100%);                        }                        .NIGHTEYE_Filter {                            width:100%; height:100%;                            position:fixed;                            left:0; top:0;                            pointer-events:none;                            z-index:4000000000;                        }                        .NIGHTEYE_YellowFilter {                            background:rgba(255, 255, 0, 0.15);                            opacity:0;                        }                        .NIGHTEYE_BlueFilter {                            background:rgba(0, 0, 255, 0.15);                            opacity:0;                        }                        .NIGHTEYE_DimFilter {                            background:rgba(0, 0, 0, 0.5);                            opacity:0;                        }                        .NIGHTEYE_TransformZ {                            transform:translateZ(0);                        }</style>
+  
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <meta name="generator" content="pandoc">
+  <title>Laborator 7</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <style>
+  
+  
+  h1 {
+    background-color: #000;
+    color: #FFD;
+    padding: 5px;
+    margin: 0px;
+  }
+  
+  code, pre {
+    background-color: #E6E6E0;
+  }
+  
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    
+  }
+  
+  </style>
+<link rel="stylesheet" href="chrome-extension://alncdjedloppbablonallfbkeiknmkdi/css/custom-sites.css"></head>
+<body data-gr-c-s-loaded="true">
+<div id="header">
+    <h1 class="title">Lab 7</h1>
+</div>
+
+<h2 id="steps">UNIX Processes</h2>
+<ul>
+    <li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab7.html#pipe">Pipe</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab7.html#fifo">FIFO</a>
+    </li><li><a href="http://www.cs.ubbcluj.ro/~alexandra/lab7.html#problems">Problems</a>
+</li></ul>
+
+<h3 id="pipe">Pipe</h3>
+<ul>
+    <li>Pipes are a unidirectional data channel that can be used for interprocess communication.
+    </li><li>There are 2 channels: 
+        <ul><li>one for reading
+            </li><li>one for writing </li></ul>
+    </li><li>Each process opens both channels.
+    </li><li>Each process must close both channels; they can be closed at different times based on a "is-needed" scenario.
+    </li><li><b>Important:</b> two processes can use pipes for inter-process communication only if they share a common ancestor that created the pipes.
+    </li><li>Two initiate bi-directional communication (i.e. the parent sends data - the child receives it and the child sends data - the parent is the recipient) <b>two distinct pipes</b> are needed! 
+    </li><li>Steps:
+        <ol>
+            <li>Create pipe
+            </li><li>Read / Write
+            </li><li>Close pipe
+        </li></ol>
+    
+    </li><li>Creating a pipe:
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span>
+
+<span class="co">// declare an array of integers with 2 elements</span>
+int pipefd[2];
+
+<span class="co">// call the pipe API to create the pipes</span>
+pipe(pipefd);
+</code></pre></div>
+                <ul>
+                    <li>The array <em>pipefd</em> is used to return two file descriptors referring to the ends of the pipe. 
+                    </li><li>pipefd[0] - the read end of the pipe
+                    </li><li>pipefd[1] - the write end of the pipe
+                    </li><li>Data written to the write end of the pipe is buffered by the kernel until it is read from the read end of the pipe.
+                </li></ul> 
+    </li><li>Read:
+        <ul><li><div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span>
+
+ssize_t read(int fd, void *buf, size_t count);
+</code></pre></div>
+        </li><li>Attempts to read up to <em>count</em> bytes from file descriptor <em>fd</em> into the buffer starting at <em>buf</em>.
+        </li><li>On success, the number of bytes read is returned.
+        </li></ul>
+        
+    </li><li>Write:
+        <ul><li><div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span>
+
+ssize_t write(int fd, const void *buf, size_t count);
+</code></pre></div>
+        </li><li>Writes up to <em>count</em> bytes from the buffer pointed <em>buf</em> to the file referred to by the file descriptor <em>fd</em>.
+        </li><li>On success, the number of bytes written is returned.
+        </li></ul>
+    </li><li>Closing pipe handles:
+        <ul>
+            <li>Each channel (read &amp; write) needs to be closed by each process that uses the pipes.
+            </li><li><div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span>
+
+<span class="co">// close the read channel</span>
+<span class="fu">close</span>(pipefd[0]);
+
+<span class="co">// close the write channel</span>
+<span class="fu">close</span>(pipefd[1]);
+</code></pre></div>
+        </li></ul>
+        
+    </li><li>Example: a program that creates a child process and communicates with it through a pipe. <br>
+    The parent process send to the child two integer numbers through the pipe.<br>
+    The child returns the sum of those numbers to the parent.
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;unistd.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;sys/wait.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;sys/types.h&gt;</span>
+
+int main()
+{
+    int p2c[2];
+    int a = 0;
+    int b = 0;
+    int sum = 0;
+    int res = 0;
+
+    <span class="co">// create pipe</span>
+    <span class="fu">pipe</span>(p2c);
+
+    <span class="co">// create child process</span>
+    res = <span class="fu">fork</span>();
+    switch(res)
+    {
+        case -1:
+            <span class="fu">perror</span>("fork failed!");
+            <span class="fu">exit</span>(0);
+        case 0:
+            <span class="co">// child process</span>
+            
+            <span class="co">// read first number from pipe</span>
+            <span class="fu">read</span>(p2c[0], &amp;a, sizeof(int));
+         
+            <span class="co">// read second number from pipe</span>
+            <span class="fu">read</span>(p2c[0], &amp;b, sizeof(int));
+
+            <span class="co">// compute and display sum</span>
+            sum = a + b;
+            <span class="fu">printf</span>("Sum is: %d\n", sum);
+
+            <span class="co">// close pipes</span>
+            <span class="fu">close</span>(p2c[0]);
+            <span class="fu">close</span>(p2c[1]);
+
+            <span class="co">// child is done</span>
+            <span class="fu">exit</span>(0);
+        default:
+            <span class="co">// parent process</span>
+
+            <span class="co">// read numbers from console</span>
+            <span class="fu">printf</span>("a=");
+            <span class="fu">scanf</span>("%d",&amp;a);
+
+            <span class="fu">printf</span>("b=");
+            <span class="fu">scanf</span>("%d",&amp;b);
+
+            <span class="co">// send numbers to child</span>
+            <span class="fu">write</span>(p2c[1], &amp;a, sizeof(int));
+            <span class="fu">write</span>(p2c[1], &amp;b, sizeof(int));
+
+            <span class="co">// wait for child process to terminate</span>
+            <span class="fu">wait</span>(0);
+
+            <span class="co">// close pipes</span>
+            <span class="fu">close</span>(p2c[0]);
+            <span class="fu">close</span>(p2c[1]);
+    }
+
+    return 0;
+}
+</code></pre></div>
+</li></ul>
+
+<h3 id="fifo">FIFO</h3>
+<ul>
+    <li>A FIFO special file (a named pipe) is similar to a pipe, except that it is accessed as part of the filesystem; (ls -l shows pipes marked with the file type 'p')
+    </li><li>It has a name, making it a non-anonymous communications channel.
+    </li><li>Because it has a name it can be accessed by multiple processes (they need to know the name for the file).
+    </li><li>Can be opened for reading or for writting like a regular file
+    </li><li>Steps:
+        <ol>
+            <li>Create the FIFOs - only needs to be done once, can be used multiple times (multiple runs of the same program).
+            </li><li>Open the FIFO
+            </li><li>Read
+            </li><li>Write
+            </li><li>Close
+        </li></ol>
+    </li><li>Creating a FIFO
+        <ol>
+            <li>mkfifo API (C) - creates a FIFO with the name <em>pathname</em>; <em>mode</em> specifies the FIFO's permissions.
+            <div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;sys/types.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;sys/stat.h&gt;</span>
+       int mkfifo(const char *pathname, mode_t mode);
+</code></pre></div>
+            </li><li>mkfifo command (shell) - creates a FIFO with the given <em>pathname</em>; <em>mode</em> specifies the FIFO's permissions<br>
+            <code>mkfifo [-m mode] &lt;pathname&gt; </code>
+            
+        </li></ol>
+
+    </li><li>Example: Two distinct processes that communicate using fifo. <br>
+    The first process reads two numbers from the keyboard and sends them to the other process.<br>
+    The second process computes the sum of those numbers and displays it.
+    <ol>
+    <li><div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;stdlib&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;unistd&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;fcntl&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;sys/types&gt;</span>
+
+int main()
+{
+    int a = 0;
+    int b = 0;
+    int f = 0;
+    
+    <span class="co">// read numbers from console</span>
+    <span class="fu">printf</span>("a=");
+    <span class="fu">scanf</span>("%d",&amp;a);
+
+    <span class="fu">printf</span>("b=");
+    <span class="fu">scanf</span>("%d",&amp;b);
+
+    <span class="co">// open fifo for writing</span>
+    f = <span class="fu">open</span>("/tmp/fifo1", O_WRONLY);
+
+    <span class="co">// send numbers to other process</span>
+    <span class="fu">write</span>(f, &amp;a, sizeof(int));
+    <span class="fu">write</span>(f, &amp;b, sizeof(int));
+
+    <span class="co">// close fifo</span>
+    <span class="fu">close</span>(f);
+         
+    return 0;
+} 
+</code></pre></div>
+    </li><li><div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="pp">#include </span><span class="im">&lt;stdio&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;stdlib&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;unistd&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;fcntl&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;sys/types&gt;</span>
+
+int main()
+{
+    int a = 0;
+    int b = 0;
+    int sum = 0;
+    int f = 0;
+
+    <span class="co">// open fifo for reading</span>
+    f = <span class="fu">open</span>("/tmp/fifo1", O_RDONLY);
+
+    <span class="co">// read numbers from the other process</span>
+    <span class="fu">read</span>(f, &amp;a, sizeof(int));
+    <span class="fu">read</span>(f, &amp;b, sizeof(int));
+
+    <span class="co">// compute and display sum</span>
+    sum = a + b;
+    <span class="fu">printf</span>("Sum = %d\n", sum);
+
+    <span class="co">// close fifo</span>
+    <span class="fu">close</span>(f);
+         
+    return 0;
+} 
+
+</code></pre></div>
+
+    </li></ol>
+<h3 id="problems">Problems</h3>
+<ol>
+    <li>Write the following program:
+        <ul>
+            <li>create a child process
+            </li><li>the parent reads numbers from the keyboard (until 0) and sends them to the child
+            </li><li>the child receives numbers from the parent and prints those that are prime
+            </li><li>when the child receives 0 from the parent, it will terminate
+        </li></ul>
+</li></ol>
+
+
+
+</li></ul><div class="NIGHTEYE_BlueFilter NIGHTEYE_Filter"></div><div class="NIGHTEYE_YellowFilter NIGHTEYE_Filter"></div><div class="NIGHTEYE_DimFilter NIGHTEYE_Filter"></div></body></html>

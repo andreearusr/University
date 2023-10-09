@@ -1,0 +1,12 @@
+
+ENUNTURI
+-------------------------------------------------------------------------------------
+
+1. Generati 100.000 de numere aleatoare si calculati suma lor utilizand 100 thread-uri.
+
+2. Cititi 100.000 de numere dintr-un fisier binar cu numere aleatoare si determinati
+numarul de divizori ai lui 5 utilizand 100 thread-uri.
+
+Generarea unui fisier binar cu numere aleatoare:
+
+dd if=/dev/urandom of=random-file.bin bs=2 count=100000
