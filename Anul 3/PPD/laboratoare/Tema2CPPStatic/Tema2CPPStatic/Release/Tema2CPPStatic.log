@@ -1,0 +1,9 @@
+﻿  Tema2CPPStatic.cpp
+C:\Users\Admin\Desktop\An 3\Semestrul 1\PPD\Tema2CPPStatic\Tema2CPPStatic\Tema2CPPStatic.cpp(39,9): warning C4101: 'value': unreferenced local variable
+C:\Users\Admin\Desktop\An 3\Semestrul 1\PPD\Tema2CPPStatic\Tema2CPPStatic\Tema2CPPStatic.cpp(90,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating code
+  53 of 410 functions (12.9%) were compiled, the rest were copied from previous compilation.
+    51 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Tema2CPPStatic.vcxproj -> C:\Users\Admin\Desktop\An 3\Semestrul 1\PPD\Tema2CPPStatic\Release\Tema2CPPStatic.exe

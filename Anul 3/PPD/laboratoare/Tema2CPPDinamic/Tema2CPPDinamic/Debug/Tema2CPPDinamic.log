@@ -1,0 +1,4 @@
+﻿  Tema2CPPDinamic.cpp
+C:\Users\Admin\Desktop\An 3\Semestrul 1\PPD\Tema2CPPDinamic\Tema2CPPDinamic\Tema2CPPDinamic.cpp(39,9): warning C4101: 'value': unreferenced local variable
+C:\Users\Admin\Desktop\An 3\Semestrul 1\PPD\Tema2CPPDinamic\Tema2CPPDinamic\Tema2CPPDinamic.cpp(95,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Tema2CPPDinamic.vcxproj -> C:\Users\Admin\Desktop\An 3\Semestrul 1\PPD\Tema2CPPDinamic\Debug\Tema2CPPDinamic.exe
