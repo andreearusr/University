@@ -1,0 +1,7 @@
+﻿  Analizator.cpp
+C:\Users\Admin\Desktop\An 3\Semestrul 1\LFTC\Lab\Analizator\Analizator\Analizator.cpp(87,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Admin\Desktop\An 3\Semestrul 1\LFTC\Lab\Analizator\Analizator\Analizator.cpp(89,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Admin\Desktop\An 3\Semestrul 1\LFTC\Lab\Analizator\Analizator\Analizator.cpp(164,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Admin\Desktop\An 3\Semestrul 1\LFTC\Lab\Analizator\Analizator\Analizator.cpp(330,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Admin\Desktop\An 3\Semestrul 1\LFTC\Lab\Analizator\Analizator\Automat.cpp(253): warning C4715: 'Automat::celMaiLungPrefix': not all control paths return a value
+  Analizator.vcxproj -> C:\Users\Admin\Desktop\An 3\Semestrul 1\LFTC\Lab\Analizator\Debug\Analizator.exe

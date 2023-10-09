@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std ;
+
+int main ( )
+{
+	int nr1 , nr2 ;
+
+	cout << "Programdecalculareacmmdc-uluiadouanumerenaturale" << endl ;
+	cout << "Datiprimulnumar:" ;
+	cin >> nr1 ;
+	cout << "Datialdoileanumar:" ;
+	cin >> nr2 ;
+
+	while ( nr1 != nr2 ) {
+		if ( nr1 > nr2 ) {
+			nr1 = nr1 - nr2 ;
+		}
+		else {
+			nr2 = nr2 - nr1 ;
+		}
+	}
+
+	cout << "CMMDC-ulcelordouanumereeste:" << nr2 ;
+	return 0 ;
+}

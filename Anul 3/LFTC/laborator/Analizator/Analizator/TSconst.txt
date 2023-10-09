@@ -1,0 +1,5 @@
+4 "CMMDC-ulcelordouanumereeste:" 3
+3 "Datialdoileanumar:" 2
+2 "Datiprimulnumar:" 1
+1 "Programdecalculareacmmdc-uluiadouanumerenaturale" 5
+5 0 -1
