@@ -1,0 +1,4 @@
+flex analizator.l
+bison -d analizator.y
+cc lex.yy.c analizator.tab.c -o exe -lfl
+ ./exe input.txt
