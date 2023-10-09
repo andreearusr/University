@@ -1,0 +1,22 @@
+[2021-03-29 10:52:12] [info] Start Program:
+Path:"C:\\Users\\Admin\\Desktop\\Semestrul 2\\OOP\\Laborator\\Lab2-4\\Debug\\Lab2-4.exe"
+Arguments:
+Working directory: "C:\\Users\\Admin\\Desktop\\Semestrul 2\\OOP\\Laborator\\Lab2-4\\Debug"
+Modules: Selected: C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Lab2-4\Debug\Lab2-4.exe Excluded: 
+Sources: Selected: C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Lab2-4\Lab2-4 Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: binary C:\Users\Admin\AppData\Local\Temp\ptvg55vs.hzn 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2021-03-29 10:52:12] [info] Module: C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Lab2-4\Debug\Lab2-4.exe is selected because it matches selected pattern: C:\Users\Admin\Desktop\Semestrul 2\OOP\Laborator\Lab2-4\Debug\Lab2-4.exe
+[2021-03-29 11:14:02] [info] ----------------------------------------------------
+[2021-03-29 11:14:02] [info] Coverage binary generated in file: C:\Users\Admin\AppData\Local\Temp\ptvg55vs.hzn
+[2021-03-29 11:14:02] [info] ----------------------------------------------------
+[2021-03-29 11:14:02] [error] Your program stop with error code: 1

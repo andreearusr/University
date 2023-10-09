@@ -1,0 +1,163 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct
+{
+	char* tip, adresa;
+	double suprafata, pret;
+}Oferta;
+
+typedef struct
+{
+	char* text;
+	int cod;
+}Informatii;
+
+typedef struct
+{
+	Oferta* v;
+	int i, n;
+}Repo;
+
+Informatii validare(char tip[], double suprafata, char adresa[], double pret)
+{
+	char text[100] = {0};
+	Informatii eroare;
+	if (strlen(tip) == 0 || (strlen(tip) > 0 && (strcmp(tip, "teren") != 0 && strcmp(tip, "casa") != 0 && strcmp(tip, "apartament") != 0)))
+		strcat(text, "Tip invalid !\n");
+	if (suprafata <= 0.0)
+		strcat(text, "Suprafata invalida !\n");
+	if (strlen(adresa) == 0)
+		strcat(text, "Adresa invalida !\n");
+	if (pret <= 0.0)
+		strcat(text, "Pret invalid !\n");
+	if (strlen(text) == 0)
+	{
+		eroare.cod = 0;
+		eroare.text = (char*)malloc(strlen("Comanda realizata cu succes !\n") + 1);
+		if (eroare.text)
+			strcpy(eroare.text, "Comanda realizata cu succes !\n");
+	}
+	else
+	{
+		eroare.cod = 1;
+		eroare.text = (char*)malloc(strlen(text) + 1);
+		if (eroare.text)
+			strcpy(eroare.text, text);
+	}
+	return eroare;
+}
+
+Informatii SRV_adauga(char tip[], double suprafata, char adresa[], double pret, Repo repo)
+{
+	Informatii info;
+	info = validare(tip, suprafata, adresa, pret);
+	if (info.cod == 1)
+		return info;
+	int i;
+	for (i = 0; i < repo.i; i++)
+	{
+		if (strcmp(repo.v[i].adresa, adresa) == 0)
+		{
+			info.cod = 2;
+			info.text = (char*)malloc(strlen("Oferta deja existenta la aceasta adresa !\n") + 1);
+			if (info.text)
+				strcpy(info.text, "Oferta deja existenta la aceasta adresa !\n");
+			return info;
+		}
+	}
+	if (repo.i == repo.n)
+	{
+		repo.n = repo.n * 2;
+		repo.v = (Oferta*)realloc(repo.v, repo.n * sizeof(Oferta));
+	}
+	repo.v[repo.i].pret = pret;
+	repo.v[repo.i].suprafata = suprafata;
+
+	repo.v[repo.i].adresa = (char*)malloc(strlen(adresa) + 1);
+	if (repo.v[repo.i].adresa)
+		strcpy(repo.v[repo.i].adresa, adresa);
+
+	repo.v[repo.i].tip = (char*)malloc(strlen(tip) + 1);
+	if (repo.v[repo.i].tip)
+		strcpy(repo.v[repo.i].tip, tip);
+
+	repo.i++;
+	return info;
+}
+
+void UI_adauga(Repo repo)
+{
+	int x;
+	double suprafata, pret;
+	char tip[10], adresa[100];
+
+	printf("Introduceti tipul (teren, casa, apartament): ");
+	x = scanf("\n%[^\n]",tip);
+
+	printf("Introduceti suprafata: ");
+	x = scanf("%lf", &suprafata);
+
+	printf("Introduceti adresa: ");
+	x = scanf("\n%[^\n]", adresa);
+
+	printf("Introduceti pretul: ");
+	x = scanf("%lf", &pret);
+
+	Informatii info;
+	info = SRV_adauga(tip, suprafata, adresa, pret, repo);
+	if (info.cod != 0)
+	{
+		printf("%s", info.text);
+		free(info.text);
+	}
+	else
+		printf("Totul a fost ok !\n");
+}
+
+void meniu(Repo repo)
+{
+	int running = 1, cmd, x;
+	while (running)
+	{
+		printf(">>>");
+		x = scanf("%d", &cmd);
+		//x = scanf("%c");
+		switch (cmd)
+		{
+			case 0:
+			{
+				running = 0;
+				free(repo.v);
+				break;
+			}
+			case 1:
+			{
+				UI_adauga(repo);
+				break;
+			}
+			case 9:
+			{
+				int i;
+				for (i = 0; i < repo.i; i++)
+					printf("%s %lf %s %lf\n", repo.v[i].tip, repo.v[i].suprafata, repo.v[i].adresa, repo.v[i].pret);
+				break;
+			}
+			default:
+				printf("Comanda invalida !\n");
+				break;
+		}
+	}
+}
+
+int main()
+{
+	Repo repo;
+	repo.i = 0;
+	repo.n = 4;
+	repo.v = (Oferta*)malloc(repo.n * sizeof(Oferta));
+	meniu(repo);
+	return 0;
+}
