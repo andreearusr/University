@@ -1,0 +1,1 @@
+n = 100;f1 = @(x)(exp(-x.*x).*sin(x));f2 = @(x)(exp(-x.*x).*cos(x));[nodes, coeff] = Gauss_Hermite(n);I1 = eval_integrala(nodes, coeff, f1)I2 = eval_integrala(nodes, coeff, f2)

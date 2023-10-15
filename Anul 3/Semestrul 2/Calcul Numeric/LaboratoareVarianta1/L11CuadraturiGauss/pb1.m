@@ -1,0 +1,9 @@
+n = 6;
+a = 2;
+b = 3;
+[nodes_legendre, coeff_legendre] = Gauss_Legendre(n)
+[nodes_cheb1, coeff_ceb1] = Gauss_Ceb1(n)
+[nodes_cheb2, coeff_ceb2] = Gauss_Ceb2(n)
+[nodes_jacobi, coeff_jacobi] = Gauss_Jacobi(n, a, b)
+[nodes_laguerre, coeff_laguerre] = Gauss_Laguerre(n, a)
+[nodes_hermite, coeff_hermite] = Gauss_Hermite(n)
