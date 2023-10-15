@@ -1,0 +1,3 @@
+1. Sa se comporte conform specificatilor si sa gestioneze situatii inafara specificatiilor
+2. Se face o relatie de tip One to One dintre clasa de baza si clasa care mosteneste printr-o cheie straina.
+3. Uitati-va pe bilet2.jpeg

@@ -1,0 +1,23 @@
+1. Se folosesc pentru a scapa de ambiguitate si de a identifica clase sau obiecte omise - etapa de analiza
+Cu ajutorul diagramelor de interactiune, ca cea de secventa si de comunicare, putem observa mai usor unde se afla ambiguitatile 
+deoarece observam parcurgerea mesajelor si cum sunt primite.
+2. A se vedea A10.jpeg
+3. Numele de roluri devin atribute pentru codul sursa, iar in functie de multiplicitatea capetelor:
+one - devine un simplu atribut
+many - devine o colectie / set ( depinde de problema)
+
+Pentru diagrama de clase, a se vedea A10.jpeg
+
+class Carte
+{
+	private String nume;
+	private int an_aparitie;
+	// getter, setter, constructor
+}
+
+class Biblioteca
+{
+	private String nume;
+	private Collection<Carte> carti;
+	// getter, setter, constructor
+}

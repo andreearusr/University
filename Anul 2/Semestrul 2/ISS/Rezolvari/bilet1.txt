@@ -1,0 +1,13 @@
+A1. Pentru etapa de colectare trebuie sa fie identificate urmatoarele lucruri:
+cerinte functionale, nefunctionale, actori, cazuri de utilizare, scenarii si 
+model conceptual.
+   Pentru etapa de analiza are scopul de a realiza un model al sistemului prin:
+modelul obiectual ( diagrama de clase), modelul dinamic (diagrama de interactiune
+si de tranzitie).
+A2.Proprietatile unei asocieri sunt: nume, roluri, multiplicitati
+Pentru explicatii vezi A10.txt exercitiul 2
+A3. Sablonul Adapter este folosit pentru a permite comunicarea dintre 2 clase incompatibile.
+A4. Diagrama de clase - Vedeti Bilet1.jpeg
+context Carte
+	inv nrPaginiValidate:
+		self.capitole->forAll(c: Capitol | c.nrPagini > 0)

@@ -1,0 +1,54 @@
+A1. Colectarea cerintelor
+Analiza cerintelor 
+Proiectarea de sistem
+Proiectarea obiectuala
+Implementarea
+Testarea
+A2. A se vedea bilet2.jpeg
+
+class Materie {
+	private Set<Student> studenti;
+	private String nume_materie;
+
+	public Student(String nume_materie) {
+		this.nume_materie = nume_materie;
+		studenti = new Set<Student>();
+	}
+
+	public addStudent(Student student) {
+		if(!studenti.contains(student))
+		{
+			studenti.add(student);
+			student.addInternalMaterie(this);
+		}
+	}
+
+	public addInternalStudent(Student student) {
+		studenti.add(student);
+	}
+}
+class Student {
+	private Set<Materie> materii;
+	private String nume_student;
+
+	public Student(String nume_student) {
+		this.nume_student = nume_student;
+		materii = new Set<Materie>();
+	}
+
+	public addMaterie(Materie materie) {
+		if(!materii.contains(materie))
+		{
+			materii.add(materie);
+			materie.internalAddStudent(this);
+		}
+	}
+	public addInternalMaterie(Materie materie) {
+		materii.add(materie);
+	}
+}
+A3. Sablonul Proxy asigura, pentru un obiect  un înlocuitor, în scopul controlarii accesului la acesta.
+A4. A se vedea bilet2.jpeg
+context Baller::adaugaMingeNoua(minge: Minge)
+	pre preAdaugareMinge:
+		self.mingi->exists(m : Minge | m.volum < minge.volum)

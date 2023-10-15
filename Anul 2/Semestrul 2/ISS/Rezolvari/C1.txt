@@ -1,0 +1,5 @@
+1. Open Closed inseamna sa fie deschis la noi functionalitati, dar inchis la modificari.
+2. Pentru relatiile 1 - 1, si 1 - n ( adica One to One, si One to Many) se va folosi o cheie straina.
+Pentru relatia m-n se va folosi o tabela intermediara cu doua chei straine ( de la tabelele pe care le vom lega), si aditional, 
+se va crea o cheie primara dubla.
+3. Vezi bilet 1.txt exercitiul 4

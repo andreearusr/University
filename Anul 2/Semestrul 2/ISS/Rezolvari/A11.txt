@@ -1,0 +1,6 @@
+1. Modelul structural de analiza descrie conceptele din domeniul problemei relevante pentru sistemul studiat
+Modelul structural de proiectare - rafinare a modelului conceptual, ce include descrieri ale interfetelor subsistemelor
+2. Da, de obicei trebuie descompusa. Este foarte utila in momentul in care doresti sa pui atributele intr-o baza de date.
+Tabelul se face prin ... (aici trebuie sa completati voi)
+Vezi A11.jpeg
+3. Vezi A10.txt
