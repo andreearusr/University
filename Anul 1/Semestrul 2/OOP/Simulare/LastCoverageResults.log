@@ -1,0 +1,21 @@
+[2021-05-17 13:34:36] [info] Start Program:
+Path:"C:\\Qt\\Simulare\\x64\\Debug\\Simulare.exe"
+Arguments:
+Working directory: "C:\\Qt\\Simulare\\Simulare\\"
+Modules: Selected: C:\Qt\Simulare\x64\Debug\Simulare.exe Excluded: 
+Sources: Selected: C:\Qt\Simulare\Simulare Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: binary C:\Users\Admin\AppData\Local\Temp\4t3fggqx.mkd 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2021-05-17 13:34:36] [info] Module: C:\Qt\Simulare\x64\Debug\Simulare.exe is selected because it matches selected pattern: C:\Qt\Simulare\x64\Debug\Simulare.exe
+[2021-05-17 13:34:36] [info] ----------------------------------------------------
+[2021-05-17 13:34:36] [info] Coverage binary generated in file: C:\Users\Admin\AppData\Local\Temp\4t3fggqx.mkd
+[2021-05-17 13:34:36] [info] ----------------------------------------------------
