@@ -1,0 +1,14 @@
+C:\Users\Admin\source\repos\Lab4SGBD\Lab4SGBD\bin\Debug\Lab4SGBD.exe.config
+C:\Users\Admin\source\repos\Lab4SGBD\Lab4SGBD\bin\Debug\Lab4SGBD.exe
+C:\Users\Admin\source\repos\Lab4SGBD\Lab4SGBD\bin\Debug\Lab4SGBD.pdb
+C:\Users\Admin\source\repos\Lab4SGBD\Lab4SGBD\obj\Debug\Lab4SGBD.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\Lab4SGBD\Lab4SGBD\obj\Debug\Lab4SGBD.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\Lab4SGBD\Lab4SGBD\obj\Debug\Lab4SGBD.exe
+C:\Users\Admin\source\repos\Lab4SGBD\Lab4SGBD\obj\Debug\Lab4SGBD.pdb
+C:\Users\Admin\Desktop\An 2\Semestrul 2\SGBD\Lab4SGBD\Lab4SGBD\bin\Debug\Lab4SGBD.exe.config
+C:\Users\Admin\Desktop\An 2\Semestrul 2\SGBD\Lab4SGBD\Lab4SGBD\bin\Debug\Lab4SGBD.exe
+C:\Users\Admin\Desktop\An 2\Semestrul 2\SGBD\Lab4SGBD\Lab4SGBD\bin\Debug\Lab4SGBD.pdb
+C:\Users\Admin\Desktop\An 2\Semestrul 2\SGBD\Lab4SGBD\Lab4SGBD\obj\Debug\Lab4SGBD.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\An 2\Semestrul 2\SGBD\Lab4SGBD\Lab4SGBD\obj\Debug\Lab4SGBD.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\An 2\Semestrul 2\SGBD\Lab4SGBD\Lab4SGBD\obj\Debug\Lab4SGBD.exe
+C:\Users\Admin\Desktop\An 2\Semestrul 2\SGBD\Lab4SGBD\Lab4SGBD\obj\Debug\Lab4SGBD.pdb
