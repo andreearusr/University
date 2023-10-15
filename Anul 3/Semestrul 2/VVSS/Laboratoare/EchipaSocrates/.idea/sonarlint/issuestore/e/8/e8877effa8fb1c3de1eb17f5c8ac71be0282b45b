@@ -1,0 +1,25 @@
+
+’
+java:S1120"wMake this line start after 2 spaces instead of 4 in order to indent the code consistently. (Indentation level is at 2.)(”ºš±ûÿÿÿÿ
+’
+java:S1120"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(€ê±Õúÿÿÿÿ
+“
+java:S1120
+"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(ïù°¶úÿÿÿÿ
+m	java:S109"SAssign this magic number 10 to a well-named constant, and use the constant instead.(æğŒêøÿÿÿÿ
+W
+java:S1106"AMove this left curly brace to the beginning of next line of code.(›üâ£
+\
+java:S1106"AMove this left curly brace to the beginning of next line of code.(”ºš±ûÿÿÿÿ
+W
+java:S1106	"AMove this left curly brace to the beginning of next line of code.(á¢–¬
+4
+java:S1451"&Add or update the header of this file.
+P
+java:S1118":Add a private constructor to hide the implicit public one.(›üâ£
+n	java:S122"TAt most one statement is allowed per line, but 2 statements were found on this line.(æğŒêøÿÿÿÿ
+i	java:S122"TAt most one statement is allowed per line, but 2 statements were found on this line.(ñŞ¶”
+J
+java:S6212"/Declare this local variable with "var" instead.(€ê±Õúÿÿÿÿ
+.	java:S121"Missing curly brace.(æğŒêøÿÿÿÿ
+)	java:S121"Missing curly brace.(ñŞ¶”

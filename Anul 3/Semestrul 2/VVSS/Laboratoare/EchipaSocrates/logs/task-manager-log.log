@@ -1,0 +1,329 @@
+2023-03-08 11:23:12 INFO  Main:36 - saved data reading
+2023-03-08 11:23:12 INFO  Main:41 - application start
+2023-03-08 11:23:13 INFO  Controller:74 - Main controller initializing
+2023-03-15 20:07:22 INFO  Main:36 - saved data reading
+2023-03-15 20:07:22 INFO  Main:41 - application start
+2023-03-15 20:07:22 INFO  Controller:74 - Main controller initializing
+2023-03-15 20:07:43 INFO  NewEditController:90 - new/edit window initializing
+2023-03-15 20:07:49 INFO  NewEditController:90 - new/edit window initializing
+2023-03-15 20:13:29 INFO  Main:36 - saved data reading
+2023-03-15 20:13:29 INFO  Main:41 - application start
+2023-03-15 20:13:30 INFO  Controller:74 - Main controller initializing
+2023-03-15 20:13:56 INFO  Main:36 - saved data reading
+2023-03-15 20:13:56 INFO  Main:41 - application start
+2023-03-15 20:13:56 INFO  Controller:74 - Main controller initializing
+2023-03-15 20:14:02 INFO  NewEditController:90 - new/edit window initializing
+2023-03-15 20:14:15 INFO  Main:36 - saved data reading
+2023-03-15 20:14:15 INFO  Main:41 - application start
+2023-03-15 20:14:16 INFO  Controller:74 - Main controller initializing
+2023-03-30 16:08:58 INFO  Main:36 - saved data reading
+2023-03-30 16:08:58 INFO  Main:41 - application start
+2023-03-30 16:08:58 INFO  Controller:74 - Main controller initializing
+2023-03-30 16:09:02 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:33:27 INFO  Main:36 - saved data reading
+2023-03-30 16:33:27 INFO  Main:41 - application start
+2023-03-30 16:33:27 INFO  Controller:74 - Main controller initializing
+2023-03-30 16:33:31 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:34:15 INFO  Main:36 - saved data reading
+2023-03-30 16:34:15 INFO  Main:41 - application start
+2023-03-30 16:34:15 INFO  Controller:74 - Main controller initializing
+2023-03-30 16:34:18 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:34:24 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:34:53 INFO  Main:36 - saved data reading
+2023-03-30 16:34:53 INFO  Main:41 - application start
+2023-03-30 16:34:53 INFO  Controller:74 - Main controller initializing
+2023-03-30 16:34:58 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:35:20 INFO  Main:36 - saved data reading
+2023-03-30 16:35:20 INFO  Main:41 - application start
+2023-03-30 16:35:21 INFO  Controller:74 - Main controller initializing
+2023-03-30 16:35:25 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:36:10 INFO  Main:36 - saved data reading
+2023-03-30 16:36:10 INFO  Main:41 - application start
+2023-03-30 16:36:11 INFO  Controller:78 - Main controller initializing
+2023-03-30 16:36:14 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:38:06 INFO  Main:36 - saved data reading
+2023-03-30 16:38:06 INFO  Main:41 - application start
+2023-03-30 16:38:06 INFO  Controller:78 - Main controller initializing
+2023-03-30 16:38:09 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:44:50 INFO  Main:36 - saved data reading
+2023-03-30 16:44:50 INFO  Main:41 - application start
+2023-03-30 16:44:50 INFO  Controller:78 - Main controller initializing
+2023-03-30 16:44:54 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:47:08 INFO  Main:36 - saved data reading
+2023-03-30 16:47:08 INFO  Main:41 - application start
+2023-03-30 16:47:09 INFO  Controller:78 - Main controller initializing
+2023-03-30 16:47:11 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:48:12 INFO  Main:36 - saved data reading
+2023-03-30 16:48:12 INFO  Main:41 - application start
+2023-03-30 16:48:12 INFO  Controller:78 - Main controller initializing
+2023-03-30 16:48:17 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:48:48 INFO  Main:36 - saved data reading
+2023-03-30 16:48:48 INFO  Main:41 - application start
+2023-03-30 16:48:48 INFO  Controller:78 - Main controller initializing
+2023-03-30 16:48:51 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:49:19 INFO  Main:36 - saved data reading
+2023-03-30 16:49:19 INFO  Main:41 - application start
+2023-03-30 16:49:20 INFO  Controller:78 - Main controller initializing
+2023-03-30 16:49:23 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:49:40 INFO  Main:36 - saved data reading
+2023-03-30 16:49:40 INFO  Main:41 - application start
+2023-03-30 16:49:41 INFO  Controller:78 - Main controller initializing
+2023-03-30 16:49:45 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:50:18 INFO  Main:36 - saved data reading
+2023-03-30 16:50:18 INFO  Main:41 - application start
+2023-03-30 16:50:19 INFO  Controller:78 - Main controller initializing
+2023-03-30 16:50:22 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:51:05 INFO  Main:36 - saved data reading
+2023-03-30 16:51:05 INFO  Main:41 - application start
+2023-03-30 16:51:05 INFO  Controller:78 - Main controller initializing
+2023-03-30 16:51:08 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:52:02 INFO  Main:36 - saved data reading
+2023-03-30 16:52:02 INFO  Main:41 - application start
+2023-03-30 16:52:03 INFO  Controller:78 - Main controller initializing
+2023-03-30 16:52:06 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:53:19 INFO  Main:36 - saved data reading
+2023-03-30 16:53:19 INFO  Main:41 - application start
+2023-03-30 16:53:20 INFO  Controller:78 - Main controller initializing
+2023-03-30 16:53:22 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:54:19 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:55:01 INFO  Main:36 - saved data reading
+2023-03-30 16:55:01 ERROR TaskIO:92 - IO exception reading or writing file
+2023-03-30 16:55:01 INFO  Main:41 - application start
+2023-03-30 16:55:01 INFO  Controller:78 - Main controller initializing
+2023-03-30 16:55:05 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 16:55:31 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 19:03:16 INFO  Main:36 - saved data reading
+2023-03-30 19:03:16 ERROR TaskIO:92 - IO exception reading or writing file
+2023-03-30 19:03:16 INFO  Main:41 - application start
+2023-03-30 19:03:16 INFO  Controller:78 - Main controller initializing
+2023-03-30 19:03:20 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 19:03:36 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 19:03:37 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 19:03:43 INFO  TaskInfoController:25 - task info window initializing
+2023-03-30 19:03:43 ERROR Controller:131 - error loading task-info.fxml
+2023-03-30 19:03:45 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 19:03:59 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 19:06:23 INFO  Main:36 - saved data reading
+2023-03-30 19:06:23 ERROR TaskIO:92 - IO exception reading or writing file
+2023-03-30 19:06:23 INFO  Main:41 - application start
+2023-03-30 19:06:24 INFO  Controller:78 - Main controller initializing
+2023-03-30 19:06:25 INFO  NewEditController:90 - new/edit window initializing
+2023-03-30 19:09:21 INFO  Main:36 - saved data reading
+2023-03-30 19:09:21 ERROR TaskIO:92 - IO exception reading or writing file
+2023-03-30 19:09:21 INFO  Main:41 - application start
+2023-03-30 19:09:21 INFO  Controller:78 - Main controller initializing
+2023-03-30 19:11:01 INFO  Main:36 - saved data reading
+2023-03-30 19:11:01 INFO  Main:41 - application start
+2023-03-30 19:11:02 INFO  Controller:78 - Main controller initializing
+2023-03-30 19:11:05 INFO  NewEditController:89 - new/edit window initializing
+2023-03-30 19:23:52 INFO  Main:36 - saved data reading
+2023-03-30 19:23:52 INFO  Main:41 - application start
+2023-03-30 19:23:52 INFO  Controller:78 - Main controller initializing
+2023-03-30 19:23:55 INFO  NewEditController:89 - new/edit window initializing
+2023-03-30 19:23:55 ERROR Controller:108 - Error loading new-edit-task.fxml
+2023-03-30 19:24:46 INFO  Main:36 - saved data reading
+2023-03-30 19:24:46 INFO  Main:41 - application start
+2023-03-30 19:24:46 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:24:50 INFO  NewEditController:92 - new/edit window initializing
+2023-03-30 19:24:53 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 19:26:08 INFO  Main:36 - saved data reading
+2023-03-30 19:26:09 INFO  Main:41 - application start
+2023-03-30 19:26:09 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:26:11 INFO  NewEditController:92 - new/edit window initializing
+2023-03-30 19:26:12 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 19:26:12 ERROR NewEditController:190 - error loading field-validator.fxml
+2023-03-30 19:26:27 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 19:26:27 ERROR NewEditController:190 - error loading field-validator.fxml
+2023-03-30 19:26:36 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 19:26:36 ERROR NewEditController:190 - error loading field-validator.fxml
+2023-03-30 19:27:24 INFO  NewEditController:92 - new/edit window initializing
+2023-03-30 19:27:27 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 19:27:27 ERROR NewEditController:190 - error loading field-validator.fxml
+2023-03-30 19:27:52 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 19:27:52 ERROR NewEditController:190 - error loading field-validator.fxml
+2023-03-30 19:28:01 INFO  Main:36 - saved data reading
+2023-03-30 19:28:01 INFO  Main:41 - application start
+2023-03-30 19:28:02 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:28:04 INFO  NewEditController:92 - new/edit window initializing
+2023-03-30 19:28:07 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 19:28:07 ERROR NewEditController:190 - error loading field-validator.fxml
+2023-03-30 19:28:48 INFO  Main:36 - saved data reading
+2023-03-30 19:28:48 INFO  Main:41 - application start
+2023-03-30 19:28:48 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:28:51 INFO  NewEditController:92 - new/edit window initializing
+2023-03-30 19:28:52 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 19:28:52 ERROR NewEditController:190 - error loading field-validator.fxml
+2023-03-30 19:29:12 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 19:29:12 ERROR NewEditController:190 - error loading field-validator.fxml
+2023-03-30 19:30:23 INFO  Main:36 - saved data reading
+2023-03-30 19:30:23 INFO  Main:41 - application start
+2023-03-30 19:30:24 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:31:00 INFO  NewEditController:92 - new/edit window initializing
+2023-03-30 19:31:03 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 19:31:03 ERROR NewEditController:190 - error loading field-validator.fxml
+2023-03-30 19:31:35 INFO  Main:36 - saved data reading
+2023-03-30 19:31:35 INFO  Main:41 - application start
+2023-03-30 19:31:36 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:31:38 INFO  NewEditController:92 - new/edit window initializing
+2023-03-30 19:32:59 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 19:33:05 INFO  Main:36 - saved data reading
+2023-03-30 19:33:05 INFO  Main:41 - application start
+2023-03-30 19:33:06 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:33:12 INFO  NewEditController:92 - new/edit window initializing
+2023-03-30 19:33:17 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 19:33:17 ERROR NewEditController:190 - error loading field-validator.fxml
+2023-03-30 19:33:31 INFO  Main:36 - saved data reading
+2023-03-30 19:33:31 INFO  Main:41 - application start
+2023-03-30 19:33:31 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:33:37 INFO  NewEditController:92 - new/edit window initializing
+2023-03-30 19:35:54 INFO  Main:36 - saved data reading
+2023-03-30 19:35:54 INFO  Main:41 - application start
+2023-03-30 19:35:55 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:35:57 INFO  NewEditController:92 - new/edit window initializing
+2023-03-30 19:36:04 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 19:36:04 ERROR NewEditController:190 - error loading field-validator.fxml
+2023-03-30 19:36:15 INFO  Main:36 - saved data reading
+2023-03-30 19:36:15 INFO  Main:41 - application start
+2023-03-30 19:36:16 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:36:19 INFO  NewEditController:92 - new/edit window initializing
+2023-03-30 19:40:51 INFO  Main:36 - saved data reading
+2023-03-30 19:40:51 INFO  Main:41 - application start
+2023-03-30 19:40:51 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:40:54 INFO  NewEditController:92 - new/edit window initializing
+2023-03-30 19:41:29 INFO  Main:36 - saved data reading
+2023-03-30 19:41:29 ERROR TaskIO:92 - IO exception reading or writing file
+2023-03-30 19:41:29 INFO  Main:41 - application start
+2023-03-30 19:41:29 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:42:42 INFO  Main:36 - saved data reading
+2023-03-30 19:42:42 INFO  Main:41 - application start
+2023-03-30 19:42:43 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:42:45 INFO  NewEditController:92 - new/edit window initializing
+2023-03-30 19:43:49 INFO  Main:36 - saved data reading
+2023-03-30 19:43:49 ERROR TaskIO:92 - IO exception reading or writing file
+2023-03-30 19:43:49 INFO  Main:41 - application start
+2023-03-30 19:43:50 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:49:10 INFO  Main:36 - saved data reading
+2023-03-30 19:49:10 INFO  Main:41 - application start
+2023-03-30 19:49:11 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:49:13 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 19:51:57 INFO  Main:36 - saved data reading
+2023-03-30 19:51:57 INFO  Main:41 - application start
+2023-03-30 19:51:57 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:52:00 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 19:52:48 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 19:53:20 INFO  Main:36 - saved data reading
+2023-03-30 19:53:20 ERROR TaskIO:92 - IO exception reading or writing file
+2023-03-30 19:53:20 INFO  Main:41 - application start
+2023-03-30 19:53:20 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:53:22 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 19:53:44 INFO  Main:36 - saved data reading
+2023-03-30 19:53:44 ERROR TaskIO:92 - IO exception reading or writing file
+2023-03-30 19:53:44 INFO  Main:41 - application start
+2023-03-30 19:53:44 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:53:46 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 19:55:04 INFO  Main:36 - saved data reading
+2023-03-30 19:55:04 ERROR TaskIO:92 - IO exception reading or writing file
+2023-03-30 19:55:04 INFO  Main:41 - application start
+2023-03-30 19:55:05 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:55:23 INFO  Main:36 - saved data reading
+2023-03-30 19:55:23 INFO  Main:41 - application start
+2023-03-30 19:55:23 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:55:26 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 19:56:28 INFO  Main:36 - saved data reading
+2023-03-30 19:56:28 ERROR TaskIO:92 - IO exception reading or writing file
+2023-03-30 19:56:28 INFO  Main:41 - application start
+2023-03-30 19:56:28 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:56:47 INFO  Main:36 - saved data reading
+2023-03-30 19:56:47 INFO  Main:41 - application start
+2023-03-30 19:56:47 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:56:52 INFO  Main:36 - saved data reading
+2023-03-30 19:56:52 INFO  Main:41 - application start
+2023-03-30 19:56:52 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:56:54 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 19:57:54 INFO  Main:36 - saved data reading
+2023-03-30 19:57:54 ERROR TaskIO:92 - IO exception reading or writing file
+2023-03-30 19:57:54 INFO  Main:41 - application start
+2023-03-30 19:57:55 INFO  Controller:80 - Main controller initializing
+2023-03-30 19:57:57 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 20:00:19 INFO  Main:36 - saved data reading
+2023-03-30 20:00:19 INFO  Main:41 - application start
+2023-03-30 20:00:19 INFO  Controller:80 - Main controller initializing
+2023-03-30 20:00:21 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 20:00:38 INFO  Main:36 - saved data reading
+2023-03-30 20:00:38 ERROR TaskIO:92 - IO exception reading or writing file
+2023-03-30 20:00:38 INFO  Main:41 - application start
+2023-03-30 20:00:38 INFO  Controller:80 - Main controller initializing
+2023-03-30 20:00:40 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 20:01:36 INFO  Main:36 - saved data reading
+2023-03-30 20:01:36 ERROR TaskIO:92 - IO exception reading or writing file
+2023-03-30 20:01:36 INFO  Main:41 - application start
+2023-03-30 20:01:36 INFO  Controller:80 - Main controller initializing
+2023-03-30 20:01:41 INFO  Main:36 - saved data reading
+2023-03-30 20:01:41 ERROR TaskIO:92 - IO exception reading or writing file
+2023-03-30 20:01:41 INFO  Main:41 - application start
+2023-03-30 20:01:41 INFO  Controller:80 - Main controller initializing
+2023-03-30 20:01:43 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 20:02:23 INFO  Main:36 - saved data reading
+2023-03-30 20:02:23 INFO  Main:41 - application start
+2023-03-30 20:02:24 INFO  Controller:80 - Main controller initializing
+2023-03-30 20:02:26 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 20:02:31 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 20:02:33 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 20:04:07 INFO  Main:36 - saved data reading
+2023-03-30 20:04:07 INFO  Main:41 - application start
+2023-03-30 20:04:07 INFO  Controller:80 - Main controller initializing
+2023-03-30 20:04:09 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 20:04:10 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 20:05:20 INFO  Main:36 - saved data reading
+2023-03-30 20:05:20 INFO  Main:41 - application start
+2023-03-30 20:05:21 INFO  Controller:80 - Main controller initializing
+2023-03-30 20:05:23 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 20:05:24 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 20:12:16 INFO  Main:36 - saved data reading
+2023-03-30 20:12:16 INFO  Main:41 - application start
+2023-03-30 20:12:16 INFO  Controller:80 - Main controller initializing
+2023-03-30 20:12:18 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 20:12:19 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 20:13:08 INFO  Main:36 - saved data reading
+2023-03-30 20:13:08 INFO  Main:41 - application start
+2023-03-30 20:13:08 INFO  Controller:80 - Main controller initializing
+2023-03-30 20:13:10 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 20:13:10 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 20:13:11 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 20:13:40 INFO  Main:36 - saved data reading
+2023-03-30 20:13:40 INFO  Main:41 - application start
+2023-03-30 20:13:40 INFO  Controller:80 - Main controller initializing
+2023-03-30 20:13:43 INFO  NewEditController:91 - new/edit window initializing
+2023-03-30 20:13:43 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 20:13:45 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 20:15:50 INFO  Main:36 - saved data reading
+2023-03-30 20:15:50 INFO  Main:41 - application start
+2023-03-30 20:15:50 INFO  Controller:80 - Main controller initializing
+2023-03-30 20:15:52 INFO  NewEditController:87 - new/edit window initializing
+2023-03-30 20:15:53 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 20:15:59 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 20:16:20 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 20:16:59 INFO  Main:36 - saved data reading
+2023-03-30 20:16:59 INFO  Main:41 - application start
+2023-03-30 20:16:59 INFO  Controller:80 - Main controller initializing
+2023-03-30 20:17:01 INFO  NewEditController:87 - new/edit window initializing
+2023-03-30 20:17:02 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 20:27:26 INFO  Main:36 - saved data reading
+2023-03-30 20:27:26 INFO  Main:41 - application start
+2023-03-30 20:27:26 INFO  Controller:80 - Main controller initializing
+2023-03-30 20:27:28 INFO  NewEditController:87 - new/edit window initializing
+2023-03-30 20:27:34 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 20:27:38 INFO  ErrorController:16 - new/edit window initializing
+2023-03-30 21:58:08 INFO  Main:36 - saved data reading
+2023-03-30 21:58:08 INFO  Main:41 - application start
+2023-03-30 21:58:09 INFO  Controller:80 - Main controller initializing
+2023-03-30 21:58:11 INFO  NewEditController:87 - new/edit window initializing
+2023-03-30 21:58:17 INFO  ErrorController:16 - new/edit window initializing
+2023-04-03 18:19:50 INFO  Main:36 - saved data reading
+2023-04-03 18:19:50 INFO  Main:41 - application start
+2023-04-03 18:19:50 INFO  Controller:80 - Main controller initializing
+2023-04-03 18:19:53 INFO  NewEditController:87 - new/edit window initializing
+2023-04-03 19:02:51 INFO  Main:36 - saved data reading
+2023-04-03 19:02:51 INFO  Main:41 - application start
+2023-04-03 19:02:52 INFO  Controller:80 - Main controller initializing
+2023-04-03 19:02:54 INFO  NewEditController:87 - new/edit window initializing

@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: tasks.services.DateServiceTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0 s <<< FAILURE! - in tasks.services.DateServiceTest
+getLocalDateValueFromDate  Time elapsed: 0 s  <<< ERROR!
+java.lang.reflect.InaccessibleObjectException: Unable to make tasks.services.DateServiceTest() accessible: module tasks does not "opens tasks.services" to unnamed module @505fc5a4
+
+getDateValueFromLocalDate  Time elapsed: 0 s  <<< ERROR!
+java.lang.reflect.InaccessibleObjectException: Unable to make tasks.services.DateServiceTest() accessible: module tasks does not "opens tasks.services" to unnamed module @505fc5a4
+

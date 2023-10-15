@@ -1,0 +1,13 @@
+
+±
+java:S3577"šRename class "RTasksOperationsTestMockito" to match the regular expression: '^((Test|IT)[a-zA-Z0-9_]+|[A-Z][a-zA-Z0-9_]*(Test|Tests|TestCase|IT|ITCase))$'(¹õ»â
+h
+java:S3578)"RRename this method name to match the regular expression: '^test[A-Z][a-zA-Z0-9]*$'(¹ä§Æ
+q
+java:S3415-"VSwap these 2 arguments so they are in the correct order: expected value, actual value.(ùÔİ²øÿÿÿÿ
+;
+java:S2698-" Add a message to this assertion.(ùÔİ²øÿÿÿÿ
+m
+java:S35781"RRename this method name to match the regular expression: '^test[A-Z][a-zA-Z0-9]*$'(ıÙƒÿÿÿÿÿ
+;
+java:S26986" Add a message to this assertion.(Ïš“çùÿÿÿÿ

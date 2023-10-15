@@ -1,0 +1,186 @@
+
+Z
+java:S1105P"?Move this left curly brace to the end of previous line of code.(ÒÌâ–øÿÿÿÿ
+’
+java:S1120"wMake this line start after 2 spaces instead of 4 in order to indent the code consistently. (Indentation level is at 2.)(À¤Ÿìøÿÿÿÿ
+’
+java:S1120"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(œöÕÿÿÿÿÿ
+’
+java:S1120"wMake this line start after 2 spaces instead of 4 in order to indent the code consistently. (Indentation level is at 2.)(¥©òàıÿÿÿÿ
+’
+java:S1120"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(¼Œíàúÿÿÿÿ
+“
+java:S1120"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(š­¨ÿÿÿÿÿ
+
+java:S1120 "xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(‰˜»Ö
+“
+java:S1120!"xMake this line start after 8 spaces instead of 16 in order to indent the code consistently. (Indentation level is at 2.)(¿‰£¢ùÿÿÿÿ
+
+java:S1120+"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(—ä–º
+“
+java:S1120,"xMake this line start after 8 spaces instead of 16 in order to indent the code consistently. (Indentation level is at 2.)(í˜Ëƒşÿÿÿÿ
+’
+java:S11208"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(¿Æ³šûÿÿÿÿ
+’
+java:S1120@"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(üõÉúÿÿÿÿ
+
+java:S1120A"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(˜ü¾à
+“
+java:S1120I"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(×úëûÿÿÿÿ
+“
+java:S1120Q"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(úŸƒäıÿÿÿÿ
+’
+java:S1120Z"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(Š²Ìıÿÿÿÿÿ
+
+java:S1120^"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(ó¹–‚
+
+java:S1120_"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(ØÑã«
+
+java:S1120e"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(îÜ
+’
+java:S1120m"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(âÄ¼°ûÿÿÿÿ
+
+java:S1120u"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(ş´Ûƒ
+
+java:S1120x"wMake this line start after 2 spaces instead of 4 in order to indent the code consistently. (Indentation level is at 2.)(åŠ¼“
+
+java:S1120y"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(³´Û¸
+
+java:S1120~"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(†Ö¬{
+”
+java:S1120‚"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(Œ¦ãßşÿÿÿÿ
+”
+java:S1120†"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(¦íé¨ùÿÿÿÿ
+”
+java:S1120‹"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(—‰’úÿÿÿÿ
+”
+java:S1120"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(ŠÕÓ¦şÿÿÿÿ
+”
+java:S1120“"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(âç•üúÿÿÿÿ
+“
+java:S1120™"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(×æ©Êùÿÿÿÿ
+
+java:S1120›"xMake this line start after 6 spaces instead of 14 in order to indent the code consistently. (Indentation level is at 2.)(¸®Ã'
+
+java:S1120£"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(¦á§Ş
+
+java:S1120¤"xMake this line start after 8 spaces instead of 16 in order to indent the code consistently. (Indentation level is at 2.)(¸®Ã'
+
+java:S1120­"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(’Õìœ
+
+java:S1120´"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(®´öÇ
+“
+java:S1120»"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(øˆÒşÿÿÿÿ
+”
+java:S1120½"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(ë‡ıÈùÿÿÿÿ
+N
+java:S12133"8Move this variable to comply with Java Code Conventions.(”›‹¶
+S
+java:S12134"8Move this variable to comply with Java Code Conventions.(š§æäùÿÿÿÿ
+W
+java:S1213…";Move this constructor to comply with Java Code Conventions.(¼‘ë‡üÿÿÿÿ
+[
+java:S1312"@Rename the "log" logger to comply with the format "LOG(?:GER)?".(À¤Ÿìøÿÿÿÿ
+W
+java:S1106"AMove this left curly brace to the beginning of next line of code.(šÜµ—
+W
+java:S1106"AMove this left curly brace to the beginning of next line of code.(À„®
+\
+java:S1106"AMove this left curly brace to the beginning of next line of code.(¥©òàıÿÿÿÿ
+\
+java:S1106"AMove this left curly brace to the beginning of next line of code.(ñ×™íúÿÿÿÿ
+W
+java:S1106"AMove this left curly brace to the beginning of next line of code.(£‚÷İ
+W
+java:S1106 "AMove this left curly brace to the beginning of next line of code.(‰˜»Ö
+\
+java:S1106*"AMove this left curly brace to the beginning of next line of code.(¦³üëûÿÿÿÿ
+W
+java:S1106+"AMove this left curly brace to the beginning of next line of code.(—ä–º
+\
+java:S11067"AMove this left curly brace to the beginning of next line of code.(Ô¢ò‘ÿÿÿÿÿ
+W
+java:S1106?"AMove this left curly brace to the beginning of next line of code.(™¶ßØ
+\
+java:S1106@"AMove this left curly brace to the beginning of next line of code.(üõÉúÿÿÿÿ
+\
+java:S1106H"AMove this left curly brace to the beginning of next line of code.(´Ü©Áùÿÿÿÿ
+W
+java:S1106Y"AMove this left curly brace to the beginning of next line of code.(‚¨—£
+\
+java:S1106]"AMove this left curly brace to the beginning of next line of code.(®•îûşÿÿÿÿ
+W
+java:S1106^"AMove this left curly brace to the beginning of next line of code.(ó¹–‚
+W
+java:S1106d"AMove this left curly brace to the beginning of next line of code.(ç¸è
+\
+java:S1106l"AMove this left curly brace to the beginning of next line of code.(şŒâşÿÿÿÿ
+W
+java:S1106t"AMove this left curly brace to the beginning of next line of code.(ÛèÖØ
+W
+java:S1106x"AMove this left curly brace to the beginning of next line of code.(åŠ¼“
+\
+java:S1106}"AMove this left curly brace to the beginning of next line of code.(µ×•ûÿÿÿÿ
+X
+java:S1106"AMove this left curly brace to the beginning of next line of code.(ÍÌéí
+]
+java:S1106…"AMove this left curly brace to the beginning of next line of code.(¼‘ë‡üÿÿÿÿ
+X
+java:S1106Š"AMove this left curly brace to the beginning of next line of code.(Ê£Š”
+]
+java:S1106"AMove this left curly brace to the beginning of next line of code.(®’™Œşÿÿÿÿ
+X
+java:S1106’"AMove this left curly brace to the beginning of next line of code.(µİŠ‰
+]
+java:S1106˜"AMove this left curly brace to the beginning of next line of code.(İ¢êÍıÿÿÿÿ
+]
+java:S1106š"AMove this left curly brace to the beginning of next line of code.(ÛÇõµúÿÿÿÿ
+W
+java:S1106¢"AMove this left curly brace to the beginning of next line of code.(ø‰F
+X
+java:S1106£"AMove this left curly brace to the beginning of next line of code.(¦á§Ş
+X
+java:S1106¬"AMove this left curly brace to the beginning of next line of code.(ğÜşŠ
+X
+java:S1106³"AMove this left curly brace to the beginning of next line of code.(Á»›ê
+]
+java:S1106º"AMove this left curly brace to the beginning of next line of code.(Óıôîûÿÿÿÿ
+X
+java:S1106¼"AMove this left curly brace to the beginning of next line of code.(û¦´õ
+U
+java:S2057"?Add a "static final long serialVersionUID" field to this class.(šÜµ—
+A
+java:S19484"&Make "last" transient or serializable.(š§æäùÿÿÿÿ
+V	java:S125"<This block of commented-out lines of code should be removed.(˜¹§şÿÿÿÿ
+`
+java:S3052"ERemove this initialization to "0", the compiler will do that for you.(¼Œíàúÿÿÿÿ
+y
+java:S2972"^Reduce this class from 27 lines to the maximum allowed 25 or externalize it in a public class.(¥©òàıÿÿÿÿ
+i	java:S122;"TAt most one statement is allowed per line, but 2 statements were found on this line.(ÜĞÔ”
+E
+java:S62129"/Declare this local variable with "var" instead.(ÁóË£
+J
+java:S6212:"/Declare this local variable with "var" instead.(•€ïÌúÿÿÿÿ
+)	java:S121;"Missing curly brace.(ÜĞÔ”
+i	java:S122F"TAt most one statement is allowed per line, but 2 statements were found on this line.(…ì÷ÿ
+i	java:S122L"TAt most one statement is allowed per line, but 2 statements were found on this line.(Ùı×”
+n	java:S122N"TAt most one statement is allowed per line, but 2 statements were found on this line.(Ã²¿úÿÿÿÿ
+Y
+java:S1695B"DThrow some other exception here, such as "IllegalArgumentException".(Ã•º:
+E
+java:S6212E"/Declare this local variable with "var" instead.(ÁóË£
+)	java:S121F"Missing curly brace.(…ì÷ÿ
+.	java:S121N"Missing curly brace.(Ã²¿úÿÿÿÿ
+)	java:S121n"Missing curly brace.(´Ùæ˜
+J
+java:S2974x"4Make this class "final" or add a public constructor.(åŠ¼“
+o	java:S122 "TAt most one statement is allowed per line, but 2 statements were found on this line.(„½É”şÿÿÿÿ
+o	java:S122™"TAt most one statement is allowed per line, but 2 statements were found on this line.(×æ©Êùÿÿÿÿ
+K
+java:S6212¡"/Declare this local variable with "var" instead.(ùó›Ìøÿÿÿÿ
+o
+java:S2975º"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Óıôîûÿÿÿÿ
+K
+java:S6212»"/Declare this local variable with "var" instead.(øˆÒşÿÿÿÿ
+d
+java:S1182º"HUse super.clone() to create and seed the cloned instance to be returned.(Óıôîûÿÿÿÿ

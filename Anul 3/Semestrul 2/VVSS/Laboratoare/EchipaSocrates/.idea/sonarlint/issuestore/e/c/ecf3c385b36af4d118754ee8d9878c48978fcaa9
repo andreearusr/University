@@ -1,0 +1,135 @@
+
+”
+java:S1120"wMake this line start after 2 spaces instead of 4 in order to indent the code consistently. (Indentation level is at 2.)(½å•8°Ôšó0
+”
+java:S1120?"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(ÜŒˆ’8±Ôšó0
+–
+java:S1120H"yMake this line start after 18 spaces instead of 20 in order to indent the code consistently. (Indentation level is at 2.)(„Áß½8±Ôšó0
+™
+java:S1120P"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(É±Àÿÿÿÿÿ8±Ôšó0
+”
+java:S1120V"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(Ø€ö­8±Ôšó0
+”
+java:S1120["wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(è¶–8±Ôšó0
+•
+java:S1120_"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(ã¯›ğ8±Ôšó0
+•
+java:S1120p"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(ÀÏ–¾8±Ôšó0
+™
+java:S1120u"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(¦ºÙ¥ùÿÿÿÿ8±Ôšó0
+™
+java:S1120{"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(¡»¢üùÿÿÿÿ8±Ôšó0
+š
+java:S1120|"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(ƒÑÀ·ùÿÿÿÿ8±Ôšó0
+›
+java:S1120‡"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(‰ø‘şüÿÿÿÿ8±Ôšó0
+•
+java:S1120Œ"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(ãÎ×8±Ôšó0
+š
+java:S1120–"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(ó¹´÷ùÿÿÿÿ8±Ôšó0
+•
+java:S1120œ"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(÷ÌÃò8±Ôšó0
+\
+java:S1213""?Move this static variable to comply with Java Code Conventions.(¿‰‚×8±Ôšó0
+a
+java:S1213#"?Move this static variable to comply with Java Code Conventions.(ßÏ¬Üùÿÿÿÿ8±Ôšó0
+\
+java:S1213%"?Move this static variable to comply with Java Code Conventions.(ãÖĞ·8±Ôšó0
+u	java:S109"TAssign this magic number 550 to a well-named constant, and use the constant instead.(µáĞ–ûÿÿÿÿ8±Ôšó0
+u	java:S109"TAssign this magic number 350 to a well-named constant, and use the constant instead.(µáĞ–ûÿÿÿÿ8±Ôšó0
+L
+java:S3740%"/Provide the parametrized type for this generic.(ãÖĞ·8²Ôšó0
+K
+java:S3740,"/Provide the parametrized type for this generic.(›ƒÆg8²Ôšó0
+]
+java:S1312"@Rename the "log" logger to comply with the format "LOG(?:GER)?".(½å•8²Ôšó0
+¯
+java:S1200"‘Split this class into smaller and more specialized ones to reduce its dependencies on other classes from 24 to the maximum authorized 20 or less.(Øó´Ÿ8²Ôšó0
+G
+java:S1166o"%Either log or rethrow this exception.(©œ¡ÿÿÿÿÿ8²Ôšó0
+H
+java:S1166†"%Either log or rethrow this exception.(©œ¡ÿÿÿÿÿ8²Ôšó0
+w
+java:S1104"UMake tasksList a static final constant or non-public and provide accessors if needed.(ß·Š¢ÿÿÿÿÿ8²Ôšó0
+u
+java:S1104""XMake editNewStage a static final constant or non-public and provide accessors if needed.(¿‰‚×8²Ôšó0
+w
+java:S1104#"UMake infoStage a static final constant or non-public and provide accessors if needed.(ßÏ¬Üùÿÿÿÿ8²Ôšó0
+r
+java:S1104%"UMake mainTable a static final constant or non-public and provide accessors if needed.(ãÖĞ·8²Ôšó0
+O
+java:S1444""2Make this "public static editNewStage" field final(¿‰‚×8²Ôšó0
+Q
+java:S1444#"/Make this "public static infoStage" field final(ßÏ¬Üùÿÿÿÿ8²Ôšó0
+L
+java:S1444%"/Make this "public static mainTable" field final(ãÖĞ·8²Ôšó0
+;	java:S113"'Add a new line at the end of this file.8²Ôšó0
+^
+java:S1106"AMove this left curly brace to the beginning of next line of code.(Øó´Ÿ8¶Ôšó0
+c
+java:S1106>"AMove this left curly brace to the beginning of next line of code.(¼ÁÁ±üÿÿÿÿ8¶Ôšó0
+c
+java:S1106O"AMove this left curly brace to the beginning of next line of code.(·òşÿÿÿÿ8·Ôšó0
+^
+java:S1106U"AMove this left curly brace to the beginning of next line of code.(ƒÑ»¨8·Ôšó0
+^
+java:S1106Z"AMove this left curly brace to the beginning of next line of code.(ñÛ‘ì8·Ôšó0
+c
+java:S1106^"AMove this left curly brace to the beginning of next line of code.(¡»¢üùÿÿÿÿ8·Ôšó0
+c
+java:S1106o"AMove this left curly brace to the beginning of next line of code.(©œ¡ÿÿÿÿÿ8·Ôšó0
+^
+java:S1106t"AMove this left curly brace to the beginning of next line of code.(Ç¸û—8·Ôšó0
+^
+java:S1106z"AMove this left curly brace to the beginning of next line of code.(úíÌ’8·Ôšó0
+c
+java:S1106{"AMove this left curly brace to the beginning of next line of code.(¡»¢üùÿÿÿÿ8·Ôšó0
+d
+java:S1106†"AMove this left curly brace to the beginning of next line of code.(©œ¡ÿÿÿÿÿ8·Ôšó0
+d
+java:S1106‹"AMove this left curly brace to the beginning of next line of code.(û„ù•şÿÿÿÿ8·Ôšó0
+d
+java:S1106•"AMove this left curly brace to the beginning of next line of code.(–İåâûÿÿÿÿ8·Ôšó0
+_
+java:S1106›"AMove this left curly brace to the beginning of next line of code.(í€’¸8·Ôšó0
+J
+java:S2208".Explicitly import the specific classes needed.(ßõ8ĞÔšó0
+W
+java:S1258":Add a constructor to the class, or provide default values.(Øó´Ÿ8ĞÔšó0
+r	java:S116("VRename this field "SCENE_WIDTH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ñ´æ 8ĞÔšó0
+x	java:S116)"WRename this field "SCENE_HEIGHT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½ĞÈÂüÿÿÿÿ8ĞÔšó0
+>
+java:S1170("!Make this final field static too.(Ñ´æ 8ĞÔšó0
+C
+java:S1170)"!Make this final field static too.(½ĞÈÂüÿÿÿÿ8ĞÔšó0
+R
+java:S2039"0Explicitly declare the visibility for "service".(†‚¤÷úÿÿÿÿ8ĞÔšó0
+Q
+java:S2039"4Explicitly declare the visibility for "dateService".(–÷ İ8ĞÔšó0
+Z
+java:S2039 "8Explicitly declare the visibility for "errorController".(·àë¬şÿÿÿÿ8ĞÔšó0
+X
+java:S2696E"6Make the enclosing method "static" or remove this set.(ôé½ºûÿÿÿÿ8ÑÔšó0
+l
+java:S3242Z"OUse 'java.util.EventObject' here; it is a more general type than 'ActionEvent'.(ñÛ‘ì8ÜÔšó0
+k
+java:S1107o"IMove this "catch" on the same line that the previous closing curly brace.(©œ¡ÿÿÿÿÿ8İÔšó0
+S
+java:S2696_"6Make the enclosing method "static" or remove this set.(ã¯›ğ8İÔšó0
+Q
+java:S6212a"/Declare this local variable with "var" instead.( œîÊúÿÿÿÿ8İÔšó0
+]	java:S125b"<This block of commented-out lines of code should be removed.(ÁÄûöşÿÿÿÿ8àÔšó0
+l
+java:S1107†"IMove this "catch" on the same line that the previous closing curly brace.(©œ¡ÿÿÿÿÿ8àÔšó0
+Q
+java:S6212|"/Declare this local variable with "var" instead.(ƒÑÀ·ùÿÿÿÿ8àÔšó0
+Q
+java:S6212}"/Declare this local variable with "var" instead.(­Ş’Ğüÿÿÿÿ8©×ş›ó0
+S
+java:S2696ƒ"6Make the enclosing method "static" or remove this set.(–ÌJ8àÔšó0
+M
+java:S6212Œ"/Declare this local variable with "var" instead.(ãÎ×8àÔšó0
+R
+java:S6212"/Declare this local variable with "var" instead.(°èù²øÿÿÿÿ8àÔšó0
+R
+java:S6212–"/Declare this local variable with "var" instead.(ó¹´÷ùÿÿÿÿ8àÔšó0

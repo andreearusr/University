@@ -1,0 +1,47 @@
+
+™
+java:S1120"wMake this line start after 2 spaces instead of 4 in order to indent the code consistently. (Indentation level is at 2.)(¸çÙ×úÿÿÿÿ8±½›ó0
+™
+java:S1120"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(–İĞÔøÿÿÿÿ8±½›ó0
+™
+java:S1120"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(Ô¥“²ùÿÿÿÿ8²½›ó0
+”
+java:S1120"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(ñ¤‘ù8å¤ ›ó0
+”
+java:S1120("wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(Ç—³±8²½›ó0
+^
+java:S1106"AMove this left curly brace to the beginning of next line of code.(à¹ŠŒ8¶½›ó0
+c
+java:S1106"AMove this left curly brace to the beginning of next line of code.(ÔÏÖúúÿÿÿÿ8¶½›ó0
+c
+java:S1106"AMove this left curly brace to the beginning of next line of code.(©—ÈÉüÿÿÿÿ8·½›ó0
+^
+java:S1106"AMove this left curly brace to the beginning of next line of code.(„„ş˜8·½›ó0
+c
+java:S1106"AMove this left curly brace to the beginning of next line of code.(áÜéªûÿÿÿÿ8·½›ó0
+^
+java:S1106'"AMove this left curly brace to the beginning of next line of code.(¼Ê8·½›ó0
+l	java:S103"KSplit this 130 characters long line (which is greater than 120 authorized).(áÜéªûÿÿÿÿ8»½›ó0
+l	java:S103 "KSplit this 126 characters long line (which is greater than 120 authorized).(—íùÿÿÿÿ8ù¤ ›ó0
+£
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÔÏÖúúÿÿÿÿ8¼½›ó0
+W	java:S139"6Move this trailing comment on the previous empty line.(©—ÈÉüÿÿÿÿ8Â½›ó0
+Q
+java:S6212"/Declare this local variable with "var" instead.(Ô¥“²ùÿÿÿÿ8Ä½›ó0
+R	java:S139"6Move this trailing comment on the previous empty line.(„„ş˜8Ä½›ó0
+u	java:S122 "TAt most one statement is allowed per line, but 2 statements were found on this line.(—íùÿÿÿÿ8„¥ ›ó0
+W	java:S139"6Move this trailing comment on the previous empty line.(áÜéªûÿÿÿÿ8Å½›ó0
+Q
+java:S6212"/Declare this local variable with "var" instead.(ÃŠ˜Üùÿÿÿÿ8…¥ ›ó0
+Q
+java:S6212"/Declare this local variable with "var" instead.(ğ½Şùùÿÿÿÿ8†¥ ›ó0
+5	java:S121 "Missing curly brace.(—íùÿÿÿÿ8†¥ ›ó0
+L
+java:S6212!"/Declare this local variable with "var" instead.(Ç—³±8Å½›ó0
+[
+java:S3252!">Use static access with "java.util.Calendar" for "getInstance".(Ç—³±8Å½›ó0
+L
+java:S6212("/Declare this local variable with "var" instead.(Ç—³±8Æ½›ó0
+R	java:S139'"6Move this trailing comment on the previous empty line.(¼Ê8Æ½›ó0
+[
+java:S3252(">Use static access with "java.util.Calendar" for "getInstance".(Ç—³±8Æ½›ó0

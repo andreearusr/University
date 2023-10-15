@@ -1,0 +1,90 @@
+
+
+java:S1120"wMake this line start after 2 spaces instead of 4 in order to indent the code consistently. (Indentation level is at 2.)(©Ù§š
+
+java:S1120"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(¯ÅòÁ
+
+java:S1120"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(€ğğ¿
+
+java:S1120"xMake this line start after 6 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(€²ªâ
+“
+java:S1120"xMake this line start after 8 spaces instead of 16 in order to indent the code consistently. (Indentation level is at 2.)(åº™òøÿÿÿÿ
+
+java:S1120"yMake this line start after 10 spaces instead of 20 in order to indent the code consistently. (Indentation level is at 2.)(„©·†
+”
+java:S1120!"yMake this line start after 12 spaces instead of 24 in order to indent the code consistently. (Indentation level is at 2.)(™ÓÆ¤ùÿÿÿÿ
+”
+java:S1120%"yMake this line start after 14 spaces instead of 28 in order to indent the code consistently. (Indentation level is at 2.)(œ¿…Âùÿÿÿÿ
+”
+java:S1120)"yMake this line start after 12 spaces instead of 24 in order to indent the code consistently. (Indentation level is at 2.)(é¹ÿüÿÿÿÿ
+
+java:S1120*"yMake this line start after 14 spaces instead of 28 in order to indent the code consistently. (Indentation level is at 2.)(ÈĞÚ¨
+”
+java:S1120+"yMake this line start after 16 spaces instead of 32 in order to indent the code consistently. (Indentation level is at 2.)(œ¿…Âùÿÿÿÿ
+
+java:S11204"xMake this line start after 8 spaces instead of 16 in order to indent the code consistently. (Indentation level is at 2.)( …“
+
+java:S11207"xMake this line start after 8 spaces instead of 16 in order to indent the code consistently. (Indentation level is at 2.)(Ì§ó˜
+Œ
+java:S1120="wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(ó±óo
+
+java:S1120?"yMake this line start after 10 spaces instead of 12 in order to indent the code consistently. (Indentation level is at 2.)(§ßĞ
+
+java:S1120C"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(ˆ÷ğ
+c	java:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(„©·†
+V
+java:S1312"@Rename the "log" logger to comply with the format "LOG(?:GER)?".(üÁ®·
+E
+java:S1066*"/Merge this if statement with the enclosing one.(ÈĞÚ¨
+2
+java:S2384"Store a copy of "tasksList".(¯ÅòÁ
+\
+java:S21844"FCast one of the operands of this multiplication operation to a "long".( …“
+W
+java:S1106"AMove this left curly brace to the beginning of next line of code.(›Š®û
+\
+java:S1106"AMove this left curly brace to the beginning of next line of code.(•‚…÷ûÿÿÿÿ
+W
+java:S1106"AMove this left curly brace to the beginning of next line of code.(“–ış
+\
+java:S1106"AMove this left curly brace to the beginning of next line of code.(˜ïˆÿÿÿÿÿ
+W
+java:S1106"AMove this left curly brace to the beginning of next line of code.(€²ªâ
+\
+java:S1106"AMove this left curly brace to the beginning of next line of code.(åº™òøÿÿÿÿ
+W
+java:S1106"AMove this left curly brace to the beginning of next line of code.(„©·†
+W
+java:S1106("AMove this left curly brace to the beginning of next line of code.(á¢–¬
+\
+java:S1106$"AMove this left curly brace to the beginning of next line of code.(€Û½¼ıÿÿÿÿ
+\
+java:S1106)"AMove this left curly brace to the beginning of next line of code.(é¹ÿüÿÿÿÿ
+W
+java:S1106*"AMove this left curly brace to the beginning of next line of code.(ÈĞÚ¨
+\
+java:S11063"AMove this left curly brace to the beginning of next line of code.(¡»¢üùÿÿÿÿ
+W
+java:S11066"AMove this left curly brace to the beginning of next line of code.(ä ¹€
+W
+java:S1106<"AMove this left curly brace to the beginning of next line of code.(˜‚¬
+W
+java:S1106B"AMove this left curly brace to the beginning of next line of code.(£º÷÷
+o	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(©Ù§š
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(İ–ë“ûÿÿÿÿ
+h
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.(“–ış
+E
+java:S6212"/Declare this local variable with "var" instead.(€ğğ¿
+?
+java:S2143")Use the Java 8 Date and Time API instead.(€ğğ¿
+^
+java:S1107("HMove this "else" on the same line that the previous closing curly brace.(á¢–¬
+t
+java:S21426"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€
+H
+java:S11086"2Move this "catch" keyword to a new dedicated line.(ä ¹€
+D
+java:S21439")Use the Java 8 Date and Time API instead.(øó”åúÿÿÿÿ
+B
+java:S1602>",Remove useless curly braces around statement(ÃÉş©

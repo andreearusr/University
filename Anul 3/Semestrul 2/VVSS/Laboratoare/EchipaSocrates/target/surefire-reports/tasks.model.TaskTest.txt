@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: tasks.model.TaskTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.001 s <<< FAILURE! - in tasks.model.TaskTest
+testTaskCreation  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.reflect.InaccessibleObjectException: Unable to make tasks.model.TaskTest() accessible: module tasks does not "opens tasks.model" to unnamed module @505fc5a4
+

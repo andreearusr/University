@@ -1,0 +1,29 @@
+
+­
+java:S3577"Rename class "ETaskTestTopDown" to match the regular expression: '^((Test|IT)[a-zA-Z0-9_]+|[A-Z][a-zA-Z0-9_]*(Test|Tests|TestCase|IT|ITCase))$'(â•¡8…Ó‰ş0
+@
+java:S5786"Remove this 'public' modifier.(ßÊ‹ıÿÿÿÿ8ú‡“ş0
+;
+java:S5786"Remove this 'public' modifier.(ÒÑÃ¸8Îª“ş0
+;
+java:S5786"Remove this 'public' modifier.(â•¡8ªá–ş0
+t
+java:S3578"RRename this method name to match the regular expression: '^test[A-Z][a-zA-Z0-9]*$'(ßÊ‹ıÿÿÿÿ8ˆÓ‰ş0
+s
+java:S3415"VSwap these 2 arguments so they are in the correct order: expected value, actual value.(¡½¯ê8ŠÓ‰ş0
+=
+java:S2698" Add a message to this assertion.(¡½¯ê8‹Ó‰ş0
+x
+java:S3415"VSwap these 2 arguments so they are in the correct order: expected value, actual value.(­¼†‘øÿÿÿÿ8ŒÓ‰ş0
+B
+java:S2698" Add a message to this assertion.(­¼†‘øÿÿÿÿ8ŒÓ‰ş0
+o
+java:S3578"RRename this method name to match the regular expression: '^test[A-Z][a-zA-Z0-9]*$'(ÒÑÃ¸8ŒÓ‰ş0
+s
+java:S3415!"VSwap these 2 arguments so they are in the correct order: expected value, actual value.(¯ÍÍ8Ó‰ş0
+=
+java:S2698!" Add a message to this assertion.(¯ÍÍ8Ó‰ş0
+x
+java:S3415""VSwap these 2 arguments so they are in the correct order: expected value, actual value.(˜ç×¡ûÿÿÿÿ8‘Ó‰ş0
+B
+java:S2698"" Add a message to this assertion.(˜ç×¡ûÿÿÿÿ8‘Ó‰ş0

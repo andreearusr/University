@@ -1,0 +1,19 @@
+
+¸
+java:S3577"šRename class "RTasksOperationsTestTopDown" to match the regular expression: '^((Test|IT)[a-zA-Z0-9_]+|[A-Z][a-zA-Z0-9_]*(Test|Tests|TestCase|IT|ITCase))$'(–²İ¼8Œ¥•ş0
+@
+java:S5786""Remove this 'public' modifier.(ÇÜƒıÿÿÿÿ8¥•ş0
+;
+java:S5786*"Remove this 'public' modifier.(¯‹ìú8¥•ş0
+;
+java:S5786"Remove this 'public' modifier.(–²İ¼8­½•ş0
+t
+java:S3578""RRename this method name to match the regular expression: '^test[A-Z][a-zA-Z0-9]*$'(ÇÜƒıÿÿÿÿ8¥•ş0
+x
+java:S3415&"VSwap these 2 arguments so they are in the correct order: expected value, actual value.(ùÔİ²øÿÿÿÿ8¥•ş0
+B
+java:S2698&" Add a message to this assertion.(ùÔİ²øÿÿÿÿ8¥•ş0
+o
+java:S3578*"RRename this method name to match the regular expression: '^test[A-Z][a-zA-Z0-9]*$'(¯‹ìú8¥•ş0
+=
+java:S2698/" Add a message to this assertion.(ŸªŠú8¥•ş0

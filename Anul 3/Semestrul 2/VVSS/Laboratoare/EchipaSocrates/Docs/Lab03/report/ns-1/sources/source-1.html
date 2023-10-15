@@ -1,0 +1,281 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ArrayTaskList</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">tasks.model</a>
+</div>
+
+<h1>Coverage Summary for Class: ArrayTaskList (tasks.model)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ArrayTaskList</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/53)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ArrayTaskList$ArrayTaskListIterator</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/14)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/67)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package tasks.model;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;import org.apache.log4j.Logger;
+&nbsp;
+&nbsp;import java.util.*;
+&nbsp;
+&nbsp;public class ArrayTaskList extends TaskList{
+&nbsp;
+&nbsp;    private Task[] tasks;
+&nbsp;    private int numberOfTasks;
+&nbsp;    private int currentCapacity;
+<b class="nc">&nbsp;    private static final Logger log = Logger.getLogger(ArrayTaskList.class.getName());</b>
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;    private class ArrayTaskListIterator implements Iterator&lt;Task&gt; {</b>
+<b class="nc">&nbsp;        private int cursor=0;</b>
+<b class="nc">&nbsp;        private int lastCalled = -1;</b>
+&nbsp;
+&nbsp;        @Override
+&nbsp;        public boolean hasNext() {
+<b class="nc">&nbsp;            return cursor &lt; numberOfTasks;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        @Override
+&nbsp;        public Task next() {
+<b class="nc">&nbsp;            if (!hasNext()){</b>
+<b class="nc">&nbsp;                log.error(&quot;next iterator element doesn&#39;t exist&quot;);</b>
+<b class="nc">&nbsp;                throw new NoSuchElementException(&quot;No next element&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            lastCalled = cursor;</b>
+<b class="nc">&nbsp;            return getTask(cursor++);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        @Override
+&nbsp;        public void remove() {
+<b class="nc">&nbsp;            if (lastCalled == -1){</b>
+<b class="nc">&nbsp;                throw new IllegalStateException();</b>
+&nbsp;            }
+<b class="nc">&nbsp;            ArrayTaskList.this.remove(getTask(lastCalled));</b>
+<b class="nc">&nbsp;            cursor = lastCalled;</b>
+<b class="nc">&nbsp;            lastCalled = -1;</b>
+&nbsp;        }
+&nbsp;    }
+<b class="nc">&nbsp;    public ArrayTaskList(){</b>
+<b class="nc">&nbsp;        currentCapacity = 10;</b>
+<b class="nc">&nbsp;        this.tasks = new Task[currentCapacity];</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Iterator&lt;Task&gt; iterator() {
+<b class="nc">&nbsp;        return new ArrayTaskListIterator();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void add(Task task){
+<b class="nc">&nbsp;        if (task.equals(null)) throw new NullPointerException(&quot;Task shouldn&#39;t be null&quot;);</b>
+<b class="nc">&nbsp;        if (numberOfTasks == currentCapacity-1){</b>
+<b class="nc">&nbsp;            currentCapacity = currentCapacity * 2;</b>
+<b class="nc">&nbsp;            Task[] withAddedTask = new Task[currentCapacity];</b>
+<b class="nc">&nbsp;            System.arraycopy(tasks,0,withAddedTask,0,tasks.length);</b>
+<b class="nc">&nbsp;            this.tasks = withAddedTask;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        this.tasks[numberOfTasks] = task;</b>
+<b class="nc">&nbsp;        this.numberOfTasks++;</b>
+&nbsp;    }
+&nbsp;    @Override
+&nbsp;    public boolean remove(Task task){
+<b class="nc">&nbsp;        int indexOfTaskToDelete = -1;</b>
+<b class="nc">&nbsp;        for(int i = 0; i &lt; tasks.length; i++){</b>
+<b class="nc">&nbsp;            if (task.equals(tasks[i])){</b>
+<b class="nc">&nbsp;                indexOfTaskToDelete = i;</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        if (indexOfTaskToDelete &gt;= 0){</b>
+<b class="nc">&nbsp;            this.numberOfTasks--;</b>
+<b class="nc">&nbsp;            System.arraycopy(tasks, indexOfTaskToDelete+1,tasks,indexOfTaskToDelete,</b>
+&nbsp;                    numberOfTasks-indexOfTaskToDelete+1);
+<b class="nc">&nbsp;            return true;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;    @Override
+&nbsp;    public int size(){
+<b class="nc">&nbsp;        return this.numberOfTasks;</b>
+&nbsp;    }
+&nbsp;    @Override
+&nbsp;    public Task getTask(int index){
+<b class="nc">&nbsp;        if (index &lt; 0 || index &gt; size()-1) {</b>
+<b class="nc">&nbsp;            log.error(&quot;not existing index&quot;);</b>
+<b class="nc">&nbsp;            throw new IndexOutOfBoundsException(&quot;Index not found&quot;);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;        return tasks[index];</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Task&gt; getAll() {
+<b class="nc">&nbsp;        ArrayList&lt;Task&gt; tks=new ArrayList&lt;&gt;();</b>
+<b class="nc">&nbsp;        for (int i=0; i&lt;this.numberOfTasks;i++)</b>
+<b class="nc">&nbsp;            tks.add(this.tasks[i]);</b>
+<b class="nc">&nbsp;        return tks;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object o) {
+<b class="nc">&nbsp;        if (this == o) return true;</b>
+<b class="nc">&nbsp;        if (o == null || getClass() != o.getClass()) return false;</b>
+&nbsp;
+<b class="nc">&nbsp;        ArrayTaskList that = (ArrayTaskList) o;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (numberOfTasks != that.numberOfTasks) return false;</b>
+<b class="nc">&nbsp;        int i = 0;</b>
+<b class="nc">&nbsp;        for (Task a : this){</b>
+<b class="nc">&nbsp;            if (!a.equals(((ArrayTaskList) o).getTask(i))){</b>
+<b class="nc">&nbsp;                return false;</b>
+&nbsp;            }
+<b class="nc">&nbsp;            i++;</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return true;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int hashCode() {
+<b class="nc">&nbsp;        int result = Arrays.hashCode(tasks);</b>
+<b class="nc">&nbsp;        result = 31 * result + numberOfTasks;</b>
+<b class="nc">&nbsp;        result = 31 * result + currentCapacity;</b>
+<b class="nc">&nbsp;        return result;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="nc">&nbsp;        return &quot;ArrayTaskList{&quot; +</b>
+<b class="nc">&nbsp;                &quot;tasks=&quot; + Arrays.toString(tasks) +</b>
+&nbsp;                &quot;, numberOfTasks=&quot; + numberOfTasks +
+&nbsp;                &quot;, currentCapacity=&quot; + currentCapacity +
+&nbsp;                &#39;}&#39;;
+&nbsp;    }
+&nbsp;    @Override
+&nbsp;    protected ArrayTaskList clone() throws CloneNotSupportedException {
+<b class="nc">&nbsp;        ArrayTaskList tasks = new ArrayTaskList();</b>
+<b class="nc">&nbsp;        for (int i = 0; i &lt; this.tasks.length; i++){</b>
+<b class="nc">&nbsp;            tasks.add(this.getTask(i));</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return tasks;</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-20 18:31</div>
+</div>
+</body>
+</html>

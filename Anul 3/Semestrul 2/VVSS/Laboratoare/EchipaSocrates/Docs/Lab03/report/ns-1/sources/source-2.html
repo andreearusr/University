@@ -1,0 +1,341 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LinkedTaskList</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">tasks.model</a>
+</div>
+
+<h1>Coverage Summary for Class: LinkedTaskList (tasks.model)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LinkedTaskList</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/59)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">LinkedTaskList$LinkedTaskListIterator</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/15)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">LinkedTaskList$Node</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/82)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package tasks.model;
+&nbsp;
+&nbsp;
+&nbsp;import org.apache.log4j.Logger;
+&nbsp;
+&nbsp;import java.util.Iterator;
+&nbsp;import java.util.LinkedList;
+&nbsp;import java.util.List;
+&nbsp;import java.util.NoSuchElementException;
+&nbsp;
+&nbsp;import static java.util.Objects.isNull;
+&nbsp;public class LinkedTaskList  extends TaskList {
+<b class="nc">&nbsp;    private static final Logger log = Logger.getLogger(LinkedTaskList.class.getName());</b>
+&nbsp;
+<b class="nc">&nbsp;    public LinkedTaskList() {</b>
+<b class="nc">&nbsp;        this.numberOfTasks = 0;</b>
+&nbsp;//        this.last = null;
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private class LinkedTaskListIterator implements Iterator&lt;Task&gt;{</b>
+<b class="nc">&nbsp;        private int cursor=0;</b>
+<b class="nc">&nbsp;        private int lastCalled = -1;</b>
+&nbsp;
+&nbsp;
+&nbsp;        @Override
+&nbsp;        public boolean hasNext() {
+<b class="nc">&nbsp;            return cursor &lt; numberOfTasks;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        @Override
+&nbsp;        public Task next() {
+<b class="nc">&nbsp;            if (!hasNext()){</b>
+<b class="nc">&nbsp;                log.error(&quot;next iterator element doesn&#39;t exist&quot;);</b>
+<b class="nc">&nbsp;                throw new NoSuchElementException(&quot;No next element&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            lastCalled = cursor;</b>
+<b class="nc">&nbsp;            cursor++;</b>
+<b class="nc">&nbsp;            return getTask(cursor-1);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        @Override
+&nbsp;        public void remove() {
+<b class="nc">&nbsp;            if (lastCalled == -1){</b>
+<b class="nc">&nbsp;                throw new IllegalStateException();</b>
+&nbsp;            }
+<b class="nc">&nbsp;            LinkedTaskList.this.remove(getTask(lastCalled));</b>
+<b class="nc">&nbsp;            cursor = lastCalled;</b>
+<b class="nc">&nbsp;            lastCalled = -1;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    private int numberOfTasks;
+&nbsp;    private Node last;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void add(Task task) {
+<b class="nc">&nbsp;        numberOfTasks++;</b>
+<b class="nc">&nbsp;        Node lastNode = last;</b>
+<b class="nc">&nbsp;        Node newNode = new Node(task, lastNode);</b>
+<b class="nc">&nbsp;        if (last!= null) last.setNext(newNode);</b>
+<b class="nc">&nbsp;        last = newNode;</b>
+&nbsp;    }
+&nbsp;    @Override
+&nbsp;    public boolean remove(Task task) {
+<b class="nc">&nbsp;        if (isNull(task)) {</b>
+<b class="nc">&nbsp;            log.error(&quot;removing task that doesn&#39;t exist&quot;);</b>
+<b class="nc">&nbsp;            throw new NullPointerException(&quot;Task is null&quot;);</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        Node lastNode = last;</b>
+<b class="nc">&nbsp;        if (last.getTask().equals(task)) this.last = last.getLast();</b>
+<b class="nc">&nbsp;        int tasksToCheck = size();</b>
+<b class="nc">&nbsp;        while (tasksToCheck &gt; 0 &amp;&amp; !task.equals(lastNode.getTask())){</b>
+<b class="nc">&nbsp;            lastNode = lastNode.getLast();</b>
+<b class="nc">&nbsp;            tasksToCheck--;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (isNull(lastNode)) return false;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (lastNode.last!= null) lastNode.getLast().setNext(lastNode.getNext());</b>
+<b class="nc">&nbsp;        if (lastNode.next!= null)</b>
+&nbsp;        {
+<b class="nc">&nbsp;            lastNode.getNext().setLast(lastNode.getLast());</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        numberOfTasks--;</b>
+<b class="nc">&nbsp;        return true;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int size() {
+<b class="nc">&nbsp;        return numberOfTasks;</b>
+&nbsp;    }
+&nbsp;    @Override
+&nbsp;    public Task getTask(int index) {
+<b class="nc">&nbsp;        if (index &lt; 0 || index &gt; size()-1) {</b>
+<b class="nc">&nbsp;            log.error(&quot;index doesn&#39;t exist&quot;);</b>
+<b class="nc">&nbsp;            throw new IndexOutOfBoundsException(&quot;Index not found&quot;);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        int stepsBack = size()-index-1;</b>
+<b class="nc">&nbsp;        Node current = last;</b>
+<b class="nc">&nbsp;        while (stepsBack &gt; 0){</b>
+<b class="nc">&nbsp;            current = current.getLast();</b>
+<b class="nc">&nbsp;            stepsBack--;</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return current.getTask();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Task&gt; getAll() {
+<b class="nc">&nbsp;        LinkedList&lt;Task&gt; tks=new LinkedList&lt;&gt;();</b>
+<b class="nc">&nbsp;        for (Task t: this)</b>
+<b class="nc">&nbsp;            tks.add(t);</b>
+<b class="nc">&nbsp;        return tks;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Iterator&lt;Task&gt; iterator() {
+<b class="nc">&nbsp;        return new LinkedTaskListIterator();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static class Node {
+&nbsp;        private Task task;
+&nbsp;        private Node last;
+&nbsp;        private Node next;
+&nbsp;
+&nbsp;        private Node getNext() {
+<b class="nc">&nbsp;            return next;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        private void setNext(Node next) {
+<b class="nc">&nbsp;            this.next = next;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        private Node(Task task, Node last) {</b>
+<b class="nc">&nbsp;            this.task = task;</b>
+<b class="nc">&nbsp;            this.last = last;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        private Task getTask() {
+<b class="nc">&nbsp;            return task;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        private Node getLast() {
+<b class="nc">&nbsp;            return last;</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        private void setLast(Node last) {
+<b class="nc">&nbsp;            this.last = last;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object o) {
+<b class="nc">&nbsp;        if (this == o) return true;</b>
+<b class="nc">&nbsp;        if (o == null || getClass() != o.getClass()) {</b>
+<b class="nc">&nbsp;              return false;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        LinkedTaskList that = (LinkedTaskList) o;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (numberOfTasks != that.numberOfTasks) return false;</b>
+<b class="nc">&nbsp;        int i = 0;</b>
+<b class="nc">&nbsp;        for (Task a : this){</b>
+<b class="nc">&nbsp;            if (!a.equals(((LinkedTaskList) o).getTask(i))){</b>
+<b class="nc">&nbsp;                return false;</b>
+&nbsp;            }
+<b class="nc">&nbsp;            i++;</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return true;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int hashCode() {
+<b class="nc">&nbsp;        int result = numberOfTasks;</b>
+<b class="nc">&nbsp;        result = 31 * result + getTask(0).hashCode();</b>
+<b class="nc">&nbsp;        return result;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="nc">&nbsp;        return &quot;LinkedTaskList{&quot; +</b>
+&nbsp;                &quot;numberOfTasks=&quot; + numberOfTasks +
+&nbsp;                &quot;, last=&quot; + last +
+&nbsp;                &#39;}&#39;;
+&nbsp;    }
+&nbsp;    @Override
+&nbsp;    protected LinkedTaskList clone() throws CloneNotSupportedException {
+<b class="nc">&nbsp;        LinkedTaskList tasks = new LinkedTaskList();</b>
+<b class="nc">&nbsp;        for (Task t : this){</b>
+<b class="nc">&nbsp;            tasks.add(t);</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return tasks;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-20 18:31</div>
+</div>
+</body>
+</html>

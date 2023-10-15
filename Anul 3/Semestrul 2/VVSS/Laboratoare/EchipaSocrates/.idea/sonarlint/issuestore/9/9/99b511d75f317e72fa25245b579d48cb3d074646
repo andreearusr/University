@@ -1,0 +1,21 @@
+
+’
+java:S1120"wMake this line start after 2 spaces instead of 4 in order to indent the code consistently. (Indentation level is at 2.)(âÔ½øşÿÿÿÿ
+’
+java:S1120"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(ÀÖàûÿÿÿÿ
+
+java:S1120#"wMake this line start after 4 spaces instead of 8 in order to indent the code consistently. (Indentation level is at 2.)(ƒìäõ
+[
+java:S1312"@Rename the "log" logger to comply with the format "LOG(?:GER)?".(âÔ½øşÿÿÿÿ
+\
+java:S1106	"AMove this left curly brace to the beginning of next line of code.(×Ş‚…ùÿÿÿÿ
+\
+java:S1106"AMove this left curly brace to the beginning of next line of code.(·òşÿÿÿÿ
+W
+java:S1106""AMove this left curly brace to the beginning of next line of code.(áªÿ€
+U
+java:S1258	":Add a constructor to the class, or provide default values.(×Ş‚…ùÿÿÿÿ
+J
+java:S6212"/Declare this local variable with "var" instead.(×‹Œøşÿÿÿÿ
+]
+java:S1774"GConvert this usage of the ternary operator to an "if"/"else" structure.(¢®•×

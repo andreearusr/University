@@ -1,0 +1,9 @@
+tasks\services\STasksServiceTestMockito.class
+tasks\services\DateServiceTest.class
+tasks\model\RTasksOperationsTestMockito.class
+tasks\model\RTasksOperationsTestTopDown.class
+tasks\model\TaskTest.class
+tasks\model\ETaskTestTopDown.class
+tasks\model\ETaskTest.class
+tasks\controller\NewEditControllerTest.class
+tasks\model\TasksOperationsTest.class

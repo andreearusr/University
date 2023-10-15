@@ -1,0 +1,12 @@
+# Created at 2023-05-03T16:57:12.062
+mai 03, 2023 4:57:12 P.M. org.junit.jupiter.engine.discovery.MethodSelectorResolver resolve
+
+# Created at 2023-05-03T16:57:12.063
+WARNING: Possible configuration error: method [public void tasks.controller.NewEditControllerTest.makeTaskBVAinvalid1()] resulted in multiple TestDescriptors [org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor, org.junit.jupiter.engine.descriptor.TestTemplateTestDescriptor]. This is typically the result of annotating a method with multiple competing annotations such as @Test, @RepeatedTest, @ParameterizedTest, @TestFactory, etc.
+
+# Created at 2023-05-03T16:57:12.102
+mai 03, 2023 4:57:12 P.M. org.junit.jupiter.engine.discovery.MethodSelectorResolver resolve
+
+# Created at 2023-05-03T16:57:12.102
+WARNING: Possible configuration error: method [public void tasks.controller.NewEditControllerTest.makeTaskBVAinvalid1()] resulted in multiple TestDescriptors [org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor, org.junit.jupiter.engine.descriptor.TestTemplateTestDescriptor]. This is typically the result of annotating a method with multiple competing annotations such as @Test, @RepeatedTest, @ParameterizedTest, @TestFactory, etc.
+
