@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1680895284 source:c:\users\admin\desktop\an 3\semestrul2\grafica pe calculator\lab\sistemplanetar\main.cpp
+	<glad/glad.h>
+	<GLFW/glfw3.h>
+	<GL/glut.h>
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	<unistd.h>
+	<string>
+	<iostream>
+	<vector>
+	<fstream>
+	<stb/stb_image.h>
+
+1680879166 c:\users\admin\desktop\an 3\semestrul2\grafica pe calculator\lab\sistemplanetar\glad\glad.h
+	"khrplatform.h"
+
+1680879166 c:\users\admin\desktop\an 3\semestrul2\grafica pe calculator\lab\sistemplanetar\glad\khrplatform.h
+	<stdint.h>
+	<inttypes.h>
+	<stdint.h>
+

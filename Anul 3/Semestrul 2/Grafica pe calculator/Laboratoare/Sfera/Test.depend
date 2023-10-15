@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1679571893 source:c:\users\admin\desktop\an 3\semestrul2\grafica pe calculator\lab\ex2\main.cpp
+	<GLFW/glfw3.h>
+	<GL/glut.h>
+	<unistd.h>
+	<math.h>
+
+1680893787 source:c:\users\admin\desktop\an 3\semestrul2\grafica pe calculator\lab\sfera\main.cpp
+	<GLFW/glfw3.h>
+	<GL/glut.h>
+	<unistd.h>
+	<math.h>
+
