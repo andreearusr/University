@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: org.example.features.search.SearchByKeywordStory
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0 s <<< FAILURE! - in org.example.features.search.SearchByKeywordStory
+org.example.features.search.SearchByKeywordStory.initializationError  Time elapsed: 0 s  <<< ERROR!
+org.junit.runners.model.InvalidTestClassError: 
+Invalid test class 'org.example.features.search.SearchByKeywordStory':
+  1. No runnable methods
+

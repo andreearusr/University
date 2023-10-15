@@ -1,0 +1,26 @@
+-------------------------------------------------------------------------------
+Test set: org.example.features.search.ProiectColectivTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 6.778 s <<< FAILURE! - in org.example.features.search.ProiectColectivTest
+org.example.features.search.ProiectColectivTest.unsuccessfulLogin[0]  Time elapsed: 6.072 s  <<< FAILURE!
+java.lang.AssertionError: 
+
+Expecting:
+ <"Empty fields!">
+to be equal to:
+ <"Wrong username or password!">
+ignoring case considerations
+	at ProiectColectiv@1.0-SNAPSHOT/org.example.features.search.ProiectColectivTest.lambda$unsuccessfulLogin$1(ProiectColectivTest.java:73)
+	at ProiectColectiv@1.0-SNAPSHOT/org.example.features.search.ProiectColectivTest.unsuccessfulLogin(ProiectColectivTest.java:72)
+
+org.example.features.search.ProiectColectivTest.successfulLogin[0]  Time elapsed: 6.731 s  <<< FAILURE!
+java.lang.AssertionError: 
+
+Expecting:
+ <"Empty fields!">
+to be equal to:
+ <"Wrong username or password!">
+ignoring case considerations
+	at ProiectColectiv@1.0-SNAPSHOT/org.example.features.search.ProiectColectivTest.lambda$unsuccessfulLogin$1(ProiectColectivTest.java:73)
+	at ProiectColectiv@1.0-SNAPSHOT/org.example.features.search.ProiectColectivTest.unsuccessfulLogin(ProiectColectivTest.java:72)
+

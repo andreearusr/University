@@ -1,0 +1,15 @@
+
+˜
+java:S5793"{Change this JUnit4 org.junit.runner.RunWith to the equivalent JUnit5 org.junit.jupiter.api.extension.ExtendWith annotation.(úÓ±â8ê•ß»þ0
+t
+java:S35786"RRename this method name to match the regular expression: '^test[A-Z][a-zA-Z0-9]*$'(îÆÅÃûÿÿÿÿ8ê•ß»þ0
+ƒ
+java:S57934"aChange this JUnit4 org.junit.Test to the equivalent JUnit5 org.junit.jupiter.api.Test annotation.(½†Þ°úÿÿÿÿ8ë•ß»þ0
+d
+java:S2698B"BAdd a message to this assertion chain before the predicate method.(â’òíüÿÿÿÿ8ì•ß»þ0
+d
+java:S2698G"BAdd a message to this assertion chain before the predicate method.(ñÛ¹µûÿÿÿÿ8ì•ß»þ0
+d
+java:S2698K"BAdd a message to this assertion chain before the predicate method.(£ýˆûûÿÿÿÿ8ì•ß»þ0
+d
+java:S2698O"BAdd a message to this assertion chain before the predicate method.(ÆÒ¨Ìüÿÿÿÿ8í•ß»þ0

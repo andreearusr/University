@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.example.features.search.TestScenariuComplet
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.27 s - in org.example.features.search.TestScenariuComplet

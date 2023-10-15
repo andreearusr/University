@@ -1,0 +1,4 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Login successful","Login to application with valid credential generates no error message","SUCCESS","2023-05-04T18:58:54.8784491+03:00[Europe/Athens]","0.0","5.62"
+"Login unsuccessful","Login to application with invalid credential generates error message","SUCCESS","2023-05-04T18:59:02.2333886+03:00[Europe/Athens]","0.0","4.57"
+"Test scenariu complet","Login to application with valid credential generates no error message","SUCCESS","2023-05-04T18:59:09.2955509+03:00[Europe/Athens]","0.0","5.79"

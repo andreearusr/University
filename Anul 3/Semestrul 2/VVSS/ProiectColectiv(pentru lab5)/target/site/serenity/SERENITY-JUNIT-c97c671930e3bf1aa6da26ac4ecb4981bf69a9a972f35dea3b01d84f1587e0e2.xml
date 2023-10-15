@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="org.example.features.search.TestScenariuComplet" skipped="0" tests="1" time="5.79" timestamp="2023-05-04 06:59:09"><testcase classname="org.example.features.search.TestScenariuComplet" name="Login to application with valid credential generates no error message"/></testsuite>

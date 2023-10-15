@@ -1,0 +1,2 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Login unsuccessful","Login to application with invalid credential generates error message","SUCCESS","2023-05-04T18:59:02.2333886+03:00[Europe/Athens]","0.0","4.57"

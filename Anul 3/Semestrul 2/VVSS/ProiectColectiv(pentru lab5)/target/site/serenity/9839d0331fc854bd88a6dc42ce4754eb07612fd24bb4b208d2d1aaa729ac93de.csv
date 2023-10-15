@@ -1,0 +1,2 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Login successful","Login to application with valid credential generates no error message","SUCCESS","2023-05-04T18:58:54.8784491+03:00[Europe/Athens]","0.0","5.62"

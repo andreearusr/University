@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="org.example.features.search.LoginUnsuccessful" skipped="0" tests="1" time="4.57" timestamp="2023-05-04 06:59:02"><testcase classname="org.example.features.search.LoginUnsuccessful" name="Login to application with invalid credential generates error message"/></testsuite>

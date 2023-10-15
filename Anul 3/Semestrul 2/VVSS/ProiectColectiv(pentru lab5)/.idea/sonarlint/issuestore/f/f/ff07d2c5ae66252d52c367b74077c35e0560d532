@@ -1,0 +1,11 @@
+
+¬
+java:S3577"ŽRename class "LoginSuccessful" to match the regular expression: '^((Test|IT)[a-zA-Z0-9_]+|[A-Z][a-zA-Z0-9_]*(Test|Tests|TestCase|IT|ITCase))$'(³îÒˆ8¨…äºþ0
+˜
+java:S5793"{Change this JUnit4 org.junit.runner.RunWith to the equivalent JUnit5 org.junit.jupiter.api.extension.ExtendWith annotation.(úÓ±â8©…äºþ0
+t
+java:S3578,"RRename this method name to match the regular expression: '^test[A-Z][a-zA-Z0-9]*$'(£ª¼æùÿÿÿÿ8©…äºþ0
+ƒ
+java:S5793*"aChange this JUnit4 org.junit.Test to the equivalent JUnit5 org.junit.jupiter.api.Test annotation.(½†Þ°úÿÿÿÿ8©…äºþ0
+d
+java:S26988"BAdd a message to this assertion chain before the predicate method.(â’òíüÿÿÿÿ8ª…äºþ0
