@@ -1,0 +1,10 @@
+C:\Users\Admin\Desktop\An 2\Semestrul 2\SGBD\Tema2SGBD\Tema1SGBD\bin\Debug\Tema1SGBD.exe.config
+C:\Users\Admin\Desktop\An 2\Semestrul 2\SGBD\Tema2SGBD\Tema1SGBD\bin\Debug\Tema1SGBD.exe
+C:\Users\Admin\Desktop\An 2\Semestrul 2\SGBD\Tema2SGBD\Tema1SGBD\bin\Debug\Tema1SGBD.pdb
+C:\Users\Admin\Desktop\An 2\Semestrul 2\SGBD\Tema2SGBD\Tema1SGBD\obj\Debug\Tema2SGBD.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\An 2\Semestrul 2\SGBD\Tema2SGBD\Tema1SGBD\obj\Debug\Tema1SGBD.Form1.resources
+C:\Users\Admin\Desktop\An 2\Semestrul 2\SGBD\Tema2SGBD\Tema1SGBD\obj\Debug\Tema1SGBD.Properties.Resources.resources
+C:\Users\Admin\Desktop\An 2\Semestrul 2\SGBD\Tema2SGBD\Tema1SGBD\obj\Debug\Tema2SGBD.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\An 2\Semestrul 2\SGBD\Tema2SGBD\Tema1SGBD\obj\Debug\Tema2SGBD.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\An 2\Semestrul 2\SGBD\Tema2SGBD\Tema1SGBD\obj\Debug\Tema1SGBD.exe
+C:\Users\Admin\Desktop\An 2\Semestrul 2\SGBD\Tema2SGBD\Tema1SGBD\obj\Debug\Tema1SGBD.pdb
