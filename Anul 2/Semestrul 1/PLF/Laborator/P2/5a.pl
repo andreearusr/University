@@ -1,0 +1,78 @@
+
+%maxim(L:list, MaxG:Integer, Max:Integer) - determinist
+%model de flux: (i,i,o),(i,i,i)
+%L - lista de unde vrem sa determinam maximul
+%MaxG- maxim global
+%Max - elementul maxim din lista
+maxim([], MaxG, MaxG).
+
+maxim([H|T], MaxG, Max) :-
+      H > MaxG,
+      maxim(T, H, Max);
+      maxim(T, MaxG, Max).
+
+
+%poz_max(L:list, Max:Integer, Rez:list) - determinist
+%model de flux : (i,i,o),(i,i,i)
+%L- lista din care vrem sa obtinem o lista cu pozitiile pe care se afla
+%     elementul maxim
+%Max- elementul maxim din lista
+%Rez- lista rezultat (pozitiile pe care se afla elementul maxim in
+%      lista L)
+poz_max([H|T], Max, Rez) :-
+	poz_max([H|T], Max, 1, Rez).
+
+
+%poz_max(L:list, Max:Integer, Contor:Integer, Rez:list) - determinist
+%model de flux : (i,i,i,o),(i,i,i,i)
+%L- lista din care vrem sa obtinem o lista cu pozitiile pe care se afla
+%     elementul maxim
+%Max- elementul maxim din lista
+%Contor- variabila ajutatoare
+%Rez- lista rezultat (pozitiile pe care se afla elementul maxim in
+%      lista L)
+
+poz_max([], _, _, []).
+
+poz_max([H|T], Max, Contor, [Contor|Rez]) :-
+	H=:=Max,
+	Contor1 is Contor + 1,
+	poz_max(T, Max, Contor1, Rez).
+
+poz_max([H|T], Max, Contor, Rez) :-
+	H=\=Max,
+	Contor1 is Contor + 1,
+	poz_max(T, Max, Contor1, Rez).
+
+
+%f(L:list, Rez:List) - determinist
+%modele de flux: (i,o),(i,i)
+%L- lista din care vrem sa obtinem o lista cu pozitiile pe care se afla
+%     elementul maxim
+%Rez- lista rezultat (pozitiile pe care se afla elementul maxim in
+%      lista L)
+f([H|T],Rez) :-
+      maxim([H|T], H, Max),
+      poz_max([H|T], Max, Rez).
+
+
+t1 :-	f([1,2,3],[3]),
+	f([1,1,1],[1,2,3]),
+	f([2,3,4,7,1,4,7],[4,7]),
+	f([11,3,5,-2,11],[1,5]),
+	f([0,0],[1,2]),
+	f([10,14,12,13,14],[2,5]).
+
+
+
+
+
+
+
+
+
+
+
+
+
+

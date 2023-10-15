@@ -1,0 +1,12 @@
+(defun nrAtomi (l)
+	(cond
+		((null l) 0)
+		((listp (car l)) (nrAtomi(cdr l))) 
+		(t (+ 1 (nrAtomi(cdr l))) )
+	)
+)
+
+(print (nrAtomi '(1 2 (3 (4 5) (6 7)) 8 (9 10))))
+(print (nrAtomi '(1 2)))
+(print (nrAtomi '()))
+(print (nrAtomi '(1 2 ())))

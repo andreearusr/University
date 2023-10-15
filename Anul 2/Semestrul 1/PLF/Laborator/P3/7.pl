@@ -1,0 +1,41 @@
+%comb(L:list, K:integer, C:list)
+%(i,i,o) - nedeterminist
+comb([H|_],1,[H]).
+comb([_|T],K,C):-
+	comb(T,K,C).
+comb([H|T],K,[H|C]):-
+	K>1,
+	K1 is K-1,
+	comb(T,K1,C).
+
+%insereaza(E:integer, L:list, Rez:list)
+%(i,i,o) - nedeterminist
+insereaza(E,L,[E|L]).
+insereaza(E,[H|T],[H|Rez]):-
+	insereaza(E,T,Rez).
+
+%perm(L:list, P:list)
+%(i,o) - nedeterminist
+perm([],[]).
+perm([E|T],P):-
+	perm(T,L),
+	insereaza(E,L,P).
+
+%aranj(L:list, K:integer, Rez:list)
+%(i,i,o) - nedeterminist
+aranj(L,K,Rez):-
+	comb(L,K,Rez1),
+	perm(Rez1,Rez).
+
+%toateAr(L:list, K:integer, LA:lista de liste)
+%(i,i,o) - determinist
+toateAr(L,K,LA):-
+	findall(Rez,aranj(L,K,Rez),LA).
+
+test:-
+	toateAr([1,2,3],2,[[2,3],[3,2],[1,2],[2,1],[1,3],[3,1]]),
+	toateAr([1,2,3],1,[[1],[2],[3]]),
+	toateAr([1,2],2,[[1,2],[2,1]]),
+	toateAr([1,2,3],3,[[1,2,3],[2,1,3],[2,3,1],[1,3,2],[3,1,2],[3,2,1]]).
+
+
