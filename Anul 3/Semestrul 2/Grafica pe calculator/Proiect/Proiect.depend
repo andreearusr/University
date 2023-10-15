@@ -1,0 +1,60 @@
+# depslib dependency file v1.0
+1646864443 source:c:\users\admin\desktop\an 3\semestrul2\grafica pe calculator\proiect\glad.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<glad/glad.h>
+	<windows.h>
+	<winapifamily.h>
+	<dlfcn.h>
+
+1684956850 source:c:\users\admin\desktop\an 3\semestrul2\grafica pe calculator\proiect\main.cpp
+	<glad/glad.h>
+	<GLFW/glfw3.h>
+	<iostream>
+	<fstream>
+	<vector>
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	"model.hh"
+	"mesh.hh"
+	"obj.hh"
+	"scene.hh"
+	<stb/stb_image.h>
+
+1672316012 c:\users\admin\desktop\an 3\semestrul2\grafica pe calculator\proiect\model.hh
+	<fstream>
+	<iostream>
+	<sstream>
+	<string>
+	<vector>
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<assimp/Importer.hpp>
+	<assimp/postprocess.h>
+	<assimp/scene.h>
+	<stb/stb_image.h>
+	<glad/glad.h>
+	"mesh.hh"
+
+1672316012 c:\users\admin\desktop\an 3\semestrul2\grafica pe calculator\proiect\mesh.hh
+	<string>
+	<vector>
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glad/glad.h>
+
+1672316012 c:\users\admin\desktop\an 3\semestrul2\grafica pe calculator\proiect\obj.hh
+	<iostream>
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+	"model.hh"
+
+1672316012 c:\users\admin\desktop\an 3\semestrul2\grafica pe calculator\proiect\scene.hh
+	<iostream>
+	<map>
+	<algorithm>
+	"obj.hh"
+
