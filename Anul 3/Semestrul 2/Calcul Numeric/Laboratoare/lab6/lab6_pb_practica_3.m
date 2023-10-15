@@ -1,0 +1,1 @@
+% aproximam sqrt(115) pe baza valorilor sqrt(100), sqrt(110.25), sqrt(121), sqrt(144)x = [100 110 120 144];y = [10 10.4881 10.9545 12];xi = 115;sqrt_115 = Lagrange(x, y, xi)sqrt(115)

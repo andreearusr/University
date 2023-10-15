@@ -1,0 +1,1 @@
+syms x;f = exp(x ^ 2 - 1);nodes = [1 1.1 1.2 1.3 1.4];y = eval(subs(f, x, nodes));xi = 1.25;val_aprox = Lagrange(nodes, y, xi)
