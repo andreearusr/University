@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="634.0" prefWidth="737.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="joc.client.gui.JocController">
+   <children>
+      <Button layoutX="301.0" layoutY="596.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="23.0" prefWidth="102.0" text="Logout" textFill="#2e2e2e">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font></Button>
+      <Button blendMode="MULTIPLY" layoutX="203.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleIncepeJoc" prefHeight="23.0" prefWidth="264.0" text="Incepe joc">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Button>
+      <TableView fx:id="tableViewPozitii" layoutX="165.0" layoutY="140.0" prefHeight="58.0" prefWidth="338.0">
+        <columns>
+          <TableColumn fx:id="l1" prefWidth="106.4000244140625" text="L1" />
+          <TableColumn fx:id="l2" prefWidth="106.39994812011719" text="L2" />
+            <TableColumn fx:id="l3" prefWidth="122.4000244140625" text="L3" />
+        </columns>
+      </TableView>
+      <TextField fx:id="textAlias" layoutX="260.0" layoutY="38.0" promptText="Alias" />
+      <Button fx:id="butonTrimitere" layoutX="452.0" layoutY="235.0" mnemonicParsing="false" onAction="#handleTrimitere" text="Trimitere" />
+      <TextField fx:id="textGhicit" layoutX="277.0" layoutY="265.0" prefHeight="26.0" prefWidth="150.0" />
+      <TableView fx:id="tableViewClasament" layoutX="119.0" layoutY="427.0" prefHeight="159.0" prefWidth="466.0">
+        <columns>
+          <TableColumn fx:id="aliasColumn" prefWidth="144.79998779296875" text="Alias" />
+            <TableColumn fx:id="rezColumn" prefWidth="167.99993896484375" text="Rezultat" />
+          <TableColumn fx:id="dataSiOraColumn" prefWidth="151.1999969482422" text="Data si ora" />
+        </columns>
+      </TableView>
+      <TextField fx:id="textRezultate" layoutX="250.0" layoutY="332.0" prefHeight="26.0" prefWidth="57.0" />
+      <TextField fx:id="textCuvant" layoutX="279.0" layoutY="235.0" promptText="Cuvant" />
+      <Label layoutX="165.0" layoutY="239.0" text="Introduceti cuvant:" />
+      <Label layoutX="167.0" layoutY="336.0" text="Rezultat final:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableViewCuvintePosibile" layoutX="387.0" layoutY="332.0" prefHeight="58.0" prefWidth="286.0">
+        <columns>
+          <TableColumn fx:id="cuv1" prefWidth="75.0" text="Cuvant1" />
+          <TableColumn fx:id="cuv2" prefWidth="112.800048828125" text="Cuvant2" />
+            <TableColumn fx:id="cuv3" prefWidth="97.59991455078125" text="Cuvant3" />
+        </columns>
+      </TableView>
+      <Label layoutX="483.0" layoutY="313.0" text="Cuvinte posibile:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
