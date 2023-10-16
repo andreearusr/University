@@ -1,0 +1,153 @@
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdio.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
+#include <string.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+void deservire_client(int c){
+
+uint16_t n;
+int i,j;
+
+printf("S-a conectat un client.\n");
+
+recv(c, &n, sizeof(n), MSG_WAITALL);
+n=ntohs(n);
+
+uint16_t matrice[n][n];
+for(i=0; i<n; i++)
+        for(j=0; j<n; j++)
+                matrice[i][j]=0;
+
+for(i=0; i<n; i++){
+        uint16_t a = rand()%n;
+        uint16_t b = rand()%n;
+        matrice[a][b]=1;
+}
+
+for(i=0; i<n; i++)
+        {
+        for(j=0; j<n; j++)
+               printf("%hu", matrice[i][j]);
+        printf("\n");
+        }
+printf("\n");
+
+char msg[] = "Incepe jocul";
+uint16_t l = strlen(msg);
+l=htons(l);
+send(c, &l, sizeof(l), 0);
+//printf("Sir server %s\n",msg);
+send(c, msg, sizeof(char)*l, 0);
+
+
+uint16_t nr_av_nebomb;
+nr_av_nebomb=n;
+
+uint16_t nr_greseli=0;
+        while(nr_av_nebomb!=0 && nr_greseli<5){
+        //printf("aiciii\n");
+                uint16_t a,b;
+
+                recv(c, &a, sizeof(a), MSG_WAITALL);
+                recv(c, &b, sizeof(b), MSG_WAITALL);
+
+                //printf("here\n");
+                a=ntohs(a);
+                b=ntohs(b);
+                printf("a si b  %hu %hu\n",a,b);
+
+
+                if(matrice[a][b]==1){
+                        char msg1[]="DA";
+                        uint16_t l1= strlen(msg1);
+                        l1=htons(l1);
+                        send(c, &l1, sizeof(l1), 0);
+                        send(c, msg1, sizeof(char)*l1,0);
+                        matrice[a][b]=0;
+                        nr_av_nebomb--;
+                }
+                else if(matrice[a][b]==0){
+                        char msg2[]="NU";
+                        uint16_t l2= strlen(msg2);
+                        l2=htons(l2);
+                        send(c, &l2, sizeof(l2), 0);
+                        send(c, msg2, sizeof(char)*l2,0);
+                        nr_greseli++;
+                }
+
+                nr_greseli=htons(nr_greseli);
+                send(c, &nr_greseli, sizeof(nr_greseli), 0);
+
+
+                nr_av_nebomb=htons(nr_av_nebomb);
+                send(c, &nr_av_nebomb, sizeof(nr_av_nebomb), 0);
+
+                nr_greseli=ntohs(nr_greseli);
+                nr_av_nebomb=ntohs(nr_av_nebomb);
+
+        }
+if(nr_av_nebomb==0 && nr_greseli<5){
+        char msg3[]="Ai castigat";
+        uint16_t l3= strlen(msg3);
+        l3=htons(l3);
+        send(c, &l3, sizeof(l3), 0);
+        send(c, msg3, sizeof(char)*l3,0);
+
+}
+else if(nr_av_nebomb>0 && nr_greseli==5){
+        char msg4[]="Ai pierdut";
+        uint16_t l4= strlen(msg4);
+        l4=htons(l4);
+        send(c, &l4, sizeof(l4), 0);
+        send(c, msg4, sizeof(char)*l4,0);
+
+}
+close(c);
+exit(0);
+}
+
+
+int main() {
+  int s;
+  struct sockaddr_in server, client;
+  int c;
+  socklen_t  l;
+
+  s = socket(AF_INET, SOCK_STREAM, 0);
+  if (s < 0) {
+    printf("Eroare la crearea socketului server\n");
+    return 1;
+  }
+
+  memset(&server, 0, sizeof(server));
+  server.sin_port = htons(3004);
+  server.sin_family = AF_INET;
+  server.sin_addr.s_addr = INADDR_ANY;
+
+  if (bind(s, (struct sockaddr *) &server, sizeof(server)) < 0) {
+    printf("Eroare la bind\n");
+    return 1;
+  }
+
+  listen(s, 5);
+  l = sizeof(client);
+  memset(&client, 0, sizeof(client));
+
+  while (1) {
+    c = accept(s, (struct sockaddr *) &client, &l);
+    printf("S-a conectat un client.\n");
+        if(fork()==0) {//fiu
+                deservire_client(c);
+                return 0;
+        }
+
+
+    }
+ }
+
+
+

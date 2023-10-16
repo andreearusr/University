@@ -1,0 +1,101 @@
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdio.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+
+int main() {
+  int c;
+  struct sockaddr_in server;
+
+  c = socket(AF_INET, SOCK_STREAM, 0);
+  if (c < 0) {
+    printf("Eroare la crearea socketului client\n");
+    return 1;
+  }
+
+  memset(&server, 0, sizeof(server));
+  server.sin_port = htons(3004);
+  server.sin_family = AF_INET;
+  server.sin_addr.s_addr = inet_addr("127.0.0.1");
+
+  if (connect(c, (struct sockaddr *) &server, sizeof(server)) < 0) {
+    printf("Eroare la conectarea la server\n");
+    return 1;
+  }
+  uint16_t n,l;
+
+  printf("Dati n, intreg, cuprins intre 4 si 9: ");
+  scanf("%hu", &n);
+
+  if(n>=4 && n<=9){
+        n=htons(n);
+        send(c, &n, sizeof(n), 0);
+        recv(c, &l, sizeof(l), MSG_WAITALL);
+        //l=ntohs(l);
+        //printf("l este egal cu %hu\n", l);
+        char sir[l];
+        recv(c, sir, sizeof(char)*l, MSG_WAITALL);
+        //printf("%s\n",sir);
+
+char sir1[]="Incepe jocul";
+        uint16_t a,b;
+        uint16_t nr_greseli, nr_av_nebomb;
+
+        n=ntohs(n);
+                if(strcmp(sir,sir1)==0){
+                printf("Incepe jocullll\n");
+                while(1){
+
+                        //uint16_t a = rand()%n;
+                        //uint16_t b = rand()%n;
+			printf("Dati pozitiile avionului(2 separate prin enter)\n");
+                        scanf("%hu",&a);
+                        scanf("%hu",&b);
+                        a=htons(a);
+                        b=htons(b);
+                        send(c, &a, sizeof(a), 0);
+                        send(c, &b, sizeof(b), 0);
+
+                        uint16_t l1;
+                        recv(c, &l1, sizeof(l1), MSG_WAITALL);
+                        char rsp[l1];
+                        recv(c, rsp, sizeof(char)*l1, MSG_WAITALL);
+                        printf("%s\n",rsp);
+
+                        recv(c, &nr_greseli, sizeof(nr_greseli), MSG_WAITALL);
+                        recv(c, &nr_av_nebomb, sizeof(nr_av_nebomb), MSG_WAITALL);
+                        nr_greseli=ntohs(nr_greseli);
+                        nr_av_nebomb=ntohs(nr_av_nebomb);
+
+                        printf("nr greseli: %hu\n",nr_greseli);
+                        printf("nr av nebomb: %hu\n",nr_av_nebomb);
+                        if(nr_greseli==5)
+                                break;
+                        if(nr_av_nebomb==0)
+                                break;
+                }
+        }
+
+uint16_t nr;
+        recv(c, &nr, sizeof(nr), MSG_WAITALL);
+
+        char final[nr];
+        recv(c, final, sizeof(char)*nr, MSG_WAITALL);
+        printf("%s\n",final);
+ }
+ else {
+        printf("Numarul nu este cuprins intre 4 si 9!\n");
+ }
+
+
+  close(c);
+  return 0;
+ }
+
+
+

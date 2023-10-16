@@ -1,0 +1,151 @@
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdio.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
+#include <string.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+void deservire_client(int c1, int c2, uint16_t id){
+
+uint16_t l_ch, l_cuv, player1=1, player2=2;
+
+id=htons(id);
+
+send(c1, &id, sizeof(id), 0);
+send(c2, &id, sizeof(id), 0);
+
+player1=htons(player1);
+send(c1, &player1, sizeof(player1), 0);
+player2=htons(player2);
+send(c2, &player2, sizeof(player2), 0);
+
+
+char car;
+car = 'a' +rand()%26 ;
+printf("caracter generat: %c\n", car);
+//l_ch=strlen(car);
+//l_ch=htons(l_ch);
+//send(c1, &l_ch, sizeof(l_ch),0);
+send(c1, &car, sizeof(car),0);
+
+recv(c1, &l_cuv, sizeof(l_cuv), MSG_WAITALL);
+char cuvant[l_cuv];
+recv(c1, cuvant, sizeof(char)*l_cuv, MSG_WAITALL);
+
+uint16_t j_castigator=0;
+uint16_t ok=1;
+uint16_t err=5;
+if(cuvant[0]!=car){
+        ok=0;
+        send(c2, &err, sizeof(err), 0);
+        send(c1, &err, sizeof(err), 0);
+        j_castigator = 2;
+
+}
+
+while(ok){
+
+        uint16_t l_cuv2;
+        send(c2, &l_cuv, sizeof(l_cuv), 0);
+        send(c2, cuvant, sizeof(char)*l_cuv, 0);
+
+        recv(c2, &l_cuv2, sizeof(l_cuv2),MSG_WAITALL);
+        char cuvant2[l_cuv2];
+        recv(c2, cuvant2, sizeof(char)*l_cuv2, MSG_WAITALL);
+
+        l_cuv=ntohs(l_cuv);
+        if(cuvant[l_cuv-2]!=cuvant2[0] ||  cuvant[l_cuv-1]!=cuvant2[1]){
+        //      printf("Nu respecta\n");
+                ok=0;
+                j_castigator=1;
+                err=htons(err);
+                send(c1, &err, sizeof(err), 0);
+                send(c2, &err, sizeof(err), 0);
+                break;
+        }
+
+        send(c1, &l_cuv2, sizeof(l_cuv2), 0);
+        send(c1, cuvant2, sizeof(char)*l_cuv2, 0);
+
+        l_cuv=htons(l_cuv);
+//      uint16_t l_cuv3;
+        recv(c1, &l_cuv, sizeof(l_cuv), MSG_WAITALL);
+//      char cuvant3[l_cuv3];
+        recv(c1, cuvant, sizeof(char)*l_cuv, MSG_WAITALL);
+
+        l_cuv2=ntohs(l_cuv2);
+        if(cuvant2[l_cuv2-2]!=cuvant[0] || cuvant2[l_cuv2-1]!=cuvant[1]){
+        //      printf("Nu respecta 2\n");
+                ok=0;
+		j_castigator=2;
+                err=htons(err);
+                send(c1, &err, sizeof(err), 0);
+                send(c2, &err, sizeof(err), 0);
+                break;
+        }
+        //uint16_t cont=0;
+        //cont=htons(cont);
+        //send(c1, &cont, sizeof(cont), 0);
+        //send(c2, &cont, sizeof(cont), 0);
+}
+
+j_castigator=htons(j_castigator);
+send(c1, &j_castigator, sizeof(j_castigator), 0);
+send(c2, &j_castigator, sizeof(j_castigator), 0);
+
+
+close(c1);
+close(c2);
+exit(0);
+}
+
+int main() {
+  int s;
+  struct sockaddr_in server, client;
+  int c1,c2;
+  socklen_t  l;
+
+  s = socket(AF_INET, SOCK_STREAM, 0);
+  if (s < 0) {
+    printf("Eroare la crearea socketului server\n");
+    return 1;
+  }
+
+  memset(&server, 0, sizeof(server));
+  server.sin_port = htons(3004);
+  server.sin_family = AF_INET;
+  server.sin_addr.s_addr = INADDR_ANY;
+
+  if (bind(s, (struct sockaddr *) &server, sizeof(server)) < 0) {
+    printf("Eroare la bind\n");
+    return 1;
+  }
+
+  listen(s, 5);
+  l = sizeof(client);
+  memset(&client, 0, sizeof(client));
+
+  while (1) {
+
+    uint16_t id=0;
+    c1 = accept(s, (struct sockaddr *) &client, &l);
+    printf("S-a conectat un client1.\n");
+
+    c2 = accept(s, (struct sockaddr *) &client, &l);
+    printf("S-a conectat un client2.\n");
+
+    id++;
+    if(fork()==0) {//fiu
+          deservire_client(c1,c2,id);
+          return 0;
+        }
+
+
+    }
+ }
+
+
+
+

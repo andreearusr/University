@@ -1,0 +1,110 @@
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdio.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+
+int main() {
+  int c;
+  struct sockaddr_in server;
+
+  c = socket(AF_INET, SOCK_STREAM, 0);
+  if (c < 0) {
+    printf("Eroare la crearea socketului client\n");
+    return 1;
+  }
+
+  memset(&server, 0, sizeof(server));
+  server.sin_port = htons(3004);
+  server.sin_family = AF_INET;
+  server.sin_addr.s_addr = inet_addr("127.0.0.1");
+
+  if (connect(c, (struct sockaddr *) &server, sizeof(server)) < 0) {
+    printf("Eroare la conectarea la server\n");
+    return 1;
+  }
+
+uint16_t id, player,l_a,l_cuv;
+char cuvant[100];
+
+recv(c, &id, sizeof(id), MSG_WAITALL);
+id=ntohs(id);
+recv(c, &player, sizeof(player), MSG_WAITALL);
+player=ntohs(player);
+
+printf("id-ul jocului este: %hu\n",id);
+
+if(player==1){
+        printf("Player 1\n");
+        //recv(c, &l_a, sizeof(l_a), MSG_WAITALL);
+        char litera;
+        recv(c, &litera, sizeof(char), MSG_WAITALL);
+
+        printf("Am primit litera %c\n",litera);
+        printf("Dati un cuvant care incepe cu litera %c: ",litera);
+        scanf("%s", cuvant);
+        printf("\n");
+
+        l_cuv=strlen(cuvant);
+        l_cuv=htons(l_cuv);
+        send(c, &l_cuv, sizeof(l_cuv), 0);
+        send(c, cuvant, sizeof(char)*l_cuv, 0);
+}
+else if(player==2)
+        printf("Player 2\n");
+
+
+uint16_t ok=1;
+while(ok){
+        uint16_t l, l_cuv3;
+
+        char cuvant3[100];
+        recv(c, &l, sizeof(l), MSG_WAITALL);
+        l=ntohs(l);
+        if(l==5)
+                break;
+
+        l=htons(l);
+        char cuvant2[l];
+        recv(c, cuvant2, sizeof(char)*l, MSG_WAITALL);
+        printf("Ai  primit %s\n", cuvant2);
+        printf("Dati un cuvant ce respecta conditia FAZAN: ");
+        scanf("%s", cuvant3);
+        l_cuv3=strlen(cuvant3);
+        l_cuv3=htons(l_cuv3);
+        send(c, &l_cuv3, sizeof(l_cuv3), 0);
+        send(c, cuvant3, sizeof(char)*l_cuv3, 0);
+
+	//recv(c, &ok, sizeof(ok), MSG_WAITALL);
+        //ok=ntohs(ok);
+
+        //if(ok==0){
+          //      printf("Jocul continua!\n");
+                //continue;
+        //}
+
+}
+
+        recv(c, &ok, sizeof(ok), MSG_WAITALL);
+        ok=ntohs(ok);
+
+        if(ok==player){
+                printf("Ai castigat!\n");
+
+        }
+        else{
+                printf("Ai pierdut!\n");
+
+        }
+
+
+
+close(c);
+return 0;
+}
+
+
