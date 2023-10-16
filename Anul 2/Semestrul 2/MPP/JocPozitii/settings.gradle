@@ -1,0 +1,9 @@
+rootProject.name = 'JocPozitii'
+include 'JocModel'
+include 'JocPersistence'
+include 'JocServer'
+include 'JocServices'
+include 'JocNetworking'
+include 'JocClientFX'
+include 'RestServices'
+
