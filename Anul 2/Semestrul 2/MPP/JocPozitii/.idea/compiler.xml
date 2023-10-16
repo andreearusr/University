@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="11" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="JocPozitii.JocClientFX.main" options="--add-modules java.base" />
+      <module name="JocPozitii.JocModel.main" options="--add-modules java.base" />
+      <module name="JocPozitii.JocNetworking.main" options="--add-modules java.base" />
+      <module name="JocPozitii.JocPersistence.main" options="--add-modules java.base,java.sql" />
+      <module name="JocPozitii.JocServer.main" options="--add-modules java.base" />
+      <module name="JocPozitii.JocServices.main" options="--add-modules java.base" />
+    </option>
+  </component>
+</project>
