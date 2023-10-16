@@ -1,0 +1,7 @@
+package joc.network.rpcprotocol;
+
+
+public enum RequestType {
+    LOGIN, LOGOUT, FIND_JUCATOR_BY_USERNAME, START, CLASAMENT, UPDATE_CLASAMENT, FIND_MUTARE_JUCATOR, UPDATE_MUTARE
+}
+

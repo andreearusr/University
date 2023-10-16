@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="joc.domain">
+    <class name="joc.domain.Joc" table="joc">
+        <id name="id">
+            <generator class="increment"/>
+        </id>
+        <property
+                name="stareJoc"
+                column="stare_joc"
+                type="string"/>
+
+    </class>
+</hibernate-mapping>
