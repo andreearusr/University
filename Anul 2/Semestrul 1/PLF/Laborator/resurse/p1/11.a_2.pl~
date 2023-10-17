@@ -1,0 +1,43 @@
+% el=integer   list=el*
+
+% vale(L:list, Up:integer, Low:integer)
+% L - lista de numere indexata de la 0
+% [H|[H1|T]-   H- capul listei, H1|T- coada listei
+% Up - variabila
+% Low - variabila
+% vale(L,Up,Low) (i,i,i) - modelul de flux
+%vale(Up,Low) (i,i)
+%f(L) (i)
+
+vale([H|[H1|T]],Up,Low) :-
+	H<H1,
+        L=[H1|T],
+%	Low1 is Low+1,
+	vale(L,Up,Low1),
+	Low is Low1+1.
+
+vale([H|[H1|T]],Up,Low) :-
+	H>H1,
+	Low=<1,
+	L=[H1|T],
+%	Up1 is Up+1,
+	vale(L,Up1,Low),
+	Up is Up1+1.
+
+vale([_],Up,Low) :-
+	vale(Up,Low).
+
+vale(Up,Low) :-
+	write(Up),
+	write(Low),
+	Up>1,
+	Low>1,
+	!.
+
+f(L) :-	vale(L,1,1).
+
+
+
+
+
+

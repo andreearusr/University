@@ -1,0 +1,55 @@
+% lungime(L:list, Rez:integer) (i, o)
+% L - lista ce urmeaza a i se determina lungimea
+% Rez - lungimea listei
+
+lungime([], 0).
+lungime([_|T], Rez) :-
+    lungime(T, Rez1),
+    Rez is Rez1 + 1.
+
+% vale(L:list, Vale:list, Deal:list) (i, o, o)
+% L - lista de despartit in vale si deal
+% Vale - partea descrescatoaref% Deal - restul listei L
+
+vale([], [], []) :-
+	!.
+vale([H|[H2|T]], [H], [H2|T]) :-
+    H < H2,
+    !.
+
+vale([H|T], [H|Rez], Deal) :-
+    vale(T, Rez, Deal).
+
+% deal(L:list, Rez:list) (i, o)
+% L - lista din care se separa prima secventa crescatoare
+% Rez - prima secventa crescatoare
+
+deal([], []) :- !.
+deal([H|[H2|_]], [H]) :- H > H2, !.
+deal([H|T], [H|Rez]) :-
+    deal(T, Rez).
+
+
+% f(L:list) (i)
+% L - lista de determinat daca verifica acea proprietate
+
+f(L) :-
+    lungime(L, LungimeInitiala),
+   vale(L, Vale, DealPartial),
+
+    deal(DealPartial, Deal),
+    lungime(Vale, LungimeVale),
+    lungime(Deal, LungimeDeal),
+    LungimeVale =\= 1,
+    LungimeDeal =\= 1,
+    LungimeInitiala =:= LungimeVale + LungimeDeal.
+
+
+
+
+
+
+
+
+
+
