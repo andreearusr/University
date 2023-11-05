@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.accompanist:accompanist-permissions:0.23.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/fdaaed8d494a360f60e4438ad7b241f6/transformed/jetified-accompanist-permissions-0.23.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/fdaaed8d494a360f60e4438ad7b241f6/transformed/jetified-accompanist-permissions-0.23.1/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.accompanist/accompanist-permissions/0.23.1/bcd4c67f03847849a90ef6909f0f923b52dff4e6/accompanist-permissions-0.23.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.accompanist/accompanist-permissions/0.23.1/2792ca348e895d0992108afdd794f0a4bbd2bfe1/accompanist-permissions-0.23.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
