@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmyApp=self.webpackChunkmyApp||[]).push([[5806],{5806:function(n,t,e){e.r(t),e.d(t,{startStatusTap:function(){return i}});var o=e(9878),i=function(){var n=window;n.addEventListener("statusTap",(function(){(0,o.f)((function(){var t=n.innerWidth,e=n.innerHeight,i=document.elementFromPoint(t/2,e/2);if(i){var c=i.closest("ion-content");c&&c.componentOnReady().then((function(){(0,o.c)((function(){return c.scrollToTop(300)}))}))}}))}))}}}]);
+//# sourceMappingURL=5806.a14e209c.chunk.js.map
