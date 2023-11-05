@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/SpecialEventListFragment">
+
+    <fragment
+        android:id="@+id/SpecialEventListFragment"
+        android:name="com.example.eventManager.specialEvents.specialEvents.SpecialEventListFragment"
+        android:label="@string/list_special_events_label"
+        tools:layout="@layout/fragment_special_event_list">
+
+        <action
+            android:id="@+id/action_SpecialEventListFragment_to_SpecialEventEditFragment"
+            app:destination="@id/SpecialEventEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SpecialEventEditFragment"
+        android:name="com.example.eventManager.specialEvents.specialEvent.SpecialEventEditFragment"
+        android:label="@string/edit_special_event_label"
+        tools:layout="@layout/fragment_special_event_edit">
+
+        <action
+            android:id="@+id/action_SpecialEventEditFragment_to_SpecialEventListFragment"
+            app:destination="@id/SpecialEventListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/FragmentLogin"
+        android:name="com.example.eventManager.auth.login.LoginFragment"
+        android:label="@string/login"
+        tools:layout="@layout/fragment_login" />
+</navigation>
